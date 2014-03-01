@@ -18,12 +18,15 @@ public class Laser implements GameObject {
 	private static final Stroke STROKE = new BasicStroke(2);
 	
 	Laser(double init_x, double init_y, boolean facesRight, GameRoom room){
+		ship1 = room.getShipLeft();
+		ship2 = room.getShipRight();
+		this.room = room;
 		path = integrate(init_x, init_y, facesRight);
 		life = 30;
 		on = true;
-		this.room = room;
-		ship1 = room.getShipLeft();
-		ship2 = room.getShipRight();
+		
+		
+		
 	}
 	@Override
 	public void draw(Graphics2D g) {
@@ -48,6 +51,7 @@ public class Laser implements GameObject {
 	}
 	
 	public int[][] integrate(double init_x, double init_y, boolean facesRight){
+		
 		List<int[]> rList = new ArrayList<>();
 		double[] r = {init_x, init_y, facesRight?1:-1, 0};
 		double timeStep = 5;
@@ -83,7 +87,7 @@ public class Laser implements GameObject {
 		}
 		
 		
-		return (int[][]) rList.toArray();
+		return  rList.toArray(new int[0][]);
 		
 		
 	}
