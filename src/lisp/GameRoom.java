@@ -73,6 +73,17 @@ public class GameRoom {
 		gameObjects.add(asteroidField);
 	}
 	
+	private void processEvents() {
+		synchronized (keysPressed) {
+			synchronized (keysReleased) {
+				for (int keyCode : keysPressed) {
+					// TODO do something
+					keysReleased.remove(keyCode);
+				}
+			}
+		}
+	}
+	
 	public void addObject(GameObject go)
 	{
 		gameObjects.add(go);
