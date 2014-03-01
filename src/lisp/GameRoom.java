@@ -85,7 +85,18 @@ public class GameRoom {
 		synchronized (keysPressed) {
 			synchronized (keysReleased) {
 				for (int keyCode : keysPressed) {
-					// TODO do something
+					if(keyCode == shipLeftUp)
+						shipLeft.accUp();
+					else if(keyCode == shipLeftLaser)
+						shipLeft.fireLaser();
+					else if(keyCode == shipLeftDown)
+						shipLeft.accDown();
+					else if(keyCode == shipRightUp)
+						shipRight.accUp();
+					else if(keyCode == shipRightLaser)
+						shipRight.fireLaser();
+					else if(keyCode == shipRightDown)
+						shipRight.accDown();
 					keysReleased.remove(keyCode);
 				}
 			}
