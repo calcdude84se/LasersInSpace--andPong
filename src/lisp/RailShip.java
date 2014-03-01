@@ -8,10 +8,11 @@ public class RailShip implements GameObject {
 	private double y;
 	private double y_speed;
 	private boolean facesRight;
+	private int lazerCoolDown=0;
 	
 	private static double PER_STEP_ACC = .1;
-	private static int SHIP_WIDTH = 5;
-	private static int SHIP_HEIGHT = 10;
+	public static final int SHIP_WIDTH = 5;
+	private static final int SHIP_HEIGHT = 10;
 	
 	public RailShip(double x, double y, boolean facesRight, GameRoom room){
 		this.x = x;
@@ -22,6 +23,7 @@ public class RailShip implements GameObject {
 	
 	public void step(){
 		y += y_speed;
+		lazerCoolDown--;
 	}
 	
 	public void draw(Graphics2D g){
@@ -30,14 +32,18 @@ public class RailShip implements GameObject {
 	}
 	
 	public void accUp(){
-		
+		y_speed+= PER_STEP_ACC;
 	}
 	
 	public void accDown(){
-		
+		y_speed-= PER_STEP_ACC;
 	}
 	
 	public void fireLaser(){
+		if(lazerCoolDown<0){
+			room.addObject(new Lazer(x+SHIP_WIDTH/2, y+SHIP_HEIGHT/2, facesRight, room));
+			lazerCoolDown = 30;
+		}
 		
 	}
 }
