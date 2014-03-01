@@ -143,7 +143,7 @@ public class GameRoom {
 		}
 		
 		@Override
-		public void paintComponents(Graphics g) {
+		public void paint(Graphics g) {
 			// TODO Auto-generated method stub
 			super.paintComponents(g);
 			Graphics2D g2d = (Graphics2D)g;
