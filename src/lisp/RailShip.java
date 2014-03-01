@@ -10,6 +10,8 @@ public class RailShip implements GameObject {
 	private boolean facesRight;
 	private int lazerCoolDown=0;
 	
+	private GameRoom room;
+	
 	private static double PER_STEP_ACC = .1;
 	public static final int SHIP_WIDTH = 5;
 	private static final int SHIP_HEIGHT = 10;
@@ -19,6 +21,7 @@ public class RailShip implements GameObject {
 		this.y = y;
 		this.facesRight = facesRight;
 		this.y_speed = 0;
+		this.room = room;
 	}
 	
 	public void step(){
