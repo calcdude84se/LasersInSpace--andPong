@@ -8,6 +8,8 @@ public abstract class Main {
 		JFrame gameFrame = new JFrame("Lasers In Space! -- and Pong");
 		GameRoom gameRoom = new GameRoom();
 		gameFrame.add(gameRoom.getPanel());
+		gameFrame.pack();
+		gameFrame.setVisible(true);
 		gameRoom.startGame();
 	}
 

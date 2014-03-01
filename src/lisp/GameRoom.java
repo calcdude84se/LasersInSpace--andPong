@@ -20,8 +20,10 @@ public class GameRoom {
 	
 	public GameRoom()
 	{
-		//TODO initialize this GameRoom
 		stepSize = 10;
+		final int panelWidth = 640, panelHeight = 480;
+		panel = new GamePanel();
+		panel.setSize(panelWidth, panelHeight);
 	}
 
 	public JPanel getPanel() {
