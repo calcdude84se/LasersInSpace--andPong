@@ -1,5 +1,6 @@
 package lisp;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,6 +28,7 @@ public class AsteroidField implements GameObject{
 
 	@Override
 	public void draw(Graphics2D g) {
+		g.setColor(Color.black);
 		for (AsteroidImp asteroid : asteroids){
 			//Draw each asteroid in Asteroid Field
 			asteroid.draw(g);

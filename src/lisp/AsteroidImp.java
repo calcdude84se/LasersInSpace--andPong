@@ -14,7 +14,8 @@ public class AsteroidImp implements Asteroid{
 	}
 
 	public void draw(Graphics2D g) {
-		g.drawOval(x, y, r, r);
+	//	g.drawOval(x, y, r, r); Comented out for science
+		g.fillOval(x, y, r, r);
 	}
 
 	public void step() {

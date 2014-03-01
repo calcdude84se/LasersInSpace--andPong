@@ -25,6 +25,7 @@ public class GameRoom {
 	private Collection<GameObject> gameObjects = new ArrayList<>();
 	private Set<Integer> keysPressed = new HashSet<>();
 	private Set<Integer> keysReleased = new HashSet<>();
+	private boolean isGameOver;
 	
 	public GameRoom()
 	{
@@ -41,17 +42,22 @@ public class GameRoom {
 	public void startGame() {
 		init();
 		//Run the event loop
-		while(!isGameOver())
+		while(!isGameOver)
 		{
 			//Process all game events, step all objects, wait one step, and continue
 			processEvents();
 			for(GameObject go : gameObjects)
 				go.step();
-			Thread.sleep(stepSize);
+			try {
+				Thread.sleep(stepSize);
+			} catch (InterruptedException e) {
+				System.out.println("Sleep was interrupted! Oh noes!");
+				e.printStackTrace();
+			}
 		}
 		deinit();
 	}
-
+	
 	/**
 	 * Initializes for one game.
 	 */
@@ -71,6 +77,24 @@ public class GameRoom {
 		gameObjects.add(shipRight);
 		gameObjects.add(scoreBoard);
 		gameObjects.add(asteroidField);
+	}
+	
+	private void processEvents() {
+		synchronized (keysPressed) {
+			synchronized (keysReleased) {
+				for (int keyCode : keysPressed) {
+					// TODO do something
+					keysReleased.remove(keyCode);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Gets run after the game has ended
+	 */
+	private void deinit() {
+		//TODO do something
 	}
 	
 	public void addObject(GameObject go)
@@ -132,7 +156,7 @@ public class GameRoom {
 		}
 		
 		@Override
-		public void paintComponents(Graphics g) {
+		public void paint(Graphics g) {
 			// TODO Auto-generated method stub
 			super.paintComponents(g);
 			Graphics2D g2d = (Graphics2D)g;
