@@ -17,8 +17,8 @@ public class AsteroidField implements GameObject{
 		 * Based on a 480 X 620 sized room
 		 */
 		for (int i=0; i<=asteroidNum; i++){
-		int x = gen.nextInt(430)+ 50;
-		int y = gen.nextInt(540) + 50;
+		int x = gen.nextInt(500)+ 60;
+		int y = gen.nextInt(400) + 60;
 		int r = gen.nextInt(30) + 30;
 		asteroids.add(new AsteroidImp(x,y,r));
 		}
