@@ -1,7 +1,6 @@
 package lisp;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public abstract class Main {
 
