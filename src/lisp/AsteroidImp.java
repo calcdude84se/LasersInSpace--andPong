@@ -38,4 +38,9 @@ public class AsteroidImp implements Asteroid{
 	public double getYCenter() {
 		return y;
 	}
+	
+	public boolean isFree(double x1, double y1){
+		return !((Math.pow((x1 - x), 2) + Math.pow((y1 - y), 2)) <= Math.pow(r, 2));
+	}
+
 }

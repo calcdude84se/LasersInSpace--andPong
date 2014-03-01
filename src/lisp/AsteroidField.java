@@ -41,5 +41,14 @@ public class AsteroidField implements GameObject{
 	public Collection<AsteroidImp> getAsteroids(){
 		return asteroids;
 	}
+	/*
+	 * Checks that the passed coordinates are not occupied.
+	 */
+	public boolean isFree(double x, double y){
+		for (AsteroidImp asteroid : asteroids){
+			if (!asteroid.isFree(x, y)) return false;
+		}
+		return true;
+	}
 
 }
