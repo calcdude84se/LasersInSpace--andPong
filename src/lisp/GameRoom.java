@@ -76,6 +76,10 @@ public class GameRoom {
 		gameObjects.remove(go);
 	}
 	
+	public AsteroidField getAsteroidField() {
+		return asteroidField;
+	}
+	
 	private class GamePanel extends JPanel {
 		@Override
 		public void paintComponents(Graphics g) {
