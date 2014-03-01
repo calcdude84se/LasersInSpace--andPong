@@ -9,13 +9,13 @@ public class ScoreBoard implements GameObject {
 	
 	private static int INDENT = 100;
 	private int height;
-	private int width = 480;
+	private int width;
 	private int shipLeft;
 	private int shipRight;
 
 	public ScoreBoard(GameRoom room){
-		//JPanel panel = room.getPanel();
-		//this.width = panel.getWidth();
+		JPanel panel = room.getPanel();
+		this.width = panel.getWidth();
 		this.height = 60;
 	}
 
