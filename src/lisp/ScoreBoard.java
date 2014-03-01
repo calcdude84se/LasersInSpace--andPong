@@ -7,15 +7,15 @@ import javax.swing.JPanel;
 
 public class ScoreBoard implements GameObject {
 	
-	private static int INDENT = 50;
+	private static int INDENT = 100;
 	private int height;
-	private int width;
+	private int width = 480;
 	private int shipLeft;
 	private int shipRight;
 
 	public ScoreBoard(GameRoom room){
-		JPanel panel = room.getPanel();
-		this.width = panel.getWidth();
+		//JPanel panel = room.getPanel();
+		//this.width = panel.getWidth();
 		this.height = 60;
 	}
 
@@ -34,8 +34,8 @@ public class ScoreBoard implements GameObject {
 	private void drawScore(Graphics2D g) {
 		String left = shipLeft + "";
 		String right = shipRight + "";
-		g.drawString(left, width/2-INDENT, width/2+INDENT);
-		g.drawString(right, width/2-INDENT, width/2+INDENT);
+		g.drawString(left, width/2-INDENT, height/2);
+		g.drawString(right, width/2+INDENT, height/2);
 	}
 	public void setScore(int bit){
 		if (bit == 0) shipLeft += 1;
