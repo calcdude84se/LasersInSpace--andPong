@@ -59,5 +59,15 @@ public class GameRoom {
 		gameObjects.add(scoreBoard);
 		gameObjects.add(asteroidField);
 	}
+	
+	public void addObject(GameObject go)
+	{
+		gameObjects.add(go);
+	}
+	
+	public void removeObject(GameObject go)
+	{
+		gameObjects.remove(go);
+	}
 
 }
