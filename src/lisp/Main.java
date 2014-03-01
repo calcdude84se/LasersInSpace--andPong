@@ -10,6 +10,7 @@ public abstract class Main {
 		gameFrame.add(gameRoom.getPanel());
 		gameFrame.pack();
 		gameFrame.setVisible(true);
+		gameRoom.getPanel().requestFocusInWindow();
 		gameRoom.startGame();
 	}
 
