@@ -11,7 +11,11 @@ public class AsteroidField implements GameObject{
 	private int asteroidNum = gen.nextInt(4) + 5;
 	private Collection<Asteroid> asteroids = new ArrayList<>();
 	
-	public AsteroidField(){
+	public AsteroidField(GameRoom room){
+		/*
+		 * Creates a random number of asteroids between 5 and 9
+		 * Based on a 480 X 620 sized room
+		 */
 		for (int i=0; i<=asteroidNum; i++){
 		int x = gen.nextInt(430)+ 50;
 		int y = gen.nextInt(540) + 50;
@@ -24,7 +28,8 @@ public class AsteroidField implements GameObject{
 	@Override
 	public void draw(Graphics2D g) {
 		for (Asteroid asteroid : asteroids){
-			g.drawOval(asteroid.getX(), asteroid.getY(), asteroid.getR(), asteroid.getR());
+			//Draw each asteroid in Asteroid Field
+			asteroid.draw(g);
 		}
 	}
 
