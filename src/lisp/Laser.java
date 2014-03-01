@@ -9,12 +9,16 @@ public class Laser implements GameObject {
 	boolean on = true;
 	int life;
 	GameRoom room;
+	RailShip ship1;
+	RailShip ship2;
 	
 	Laser(double init_x, double init_y, boolean facesRight, GameRoom room){
 		path = integrate(init_x, init_y, facesRight);
 		life = 30;
 		on = true;
 		this.room = room;
+		ship1 = room.getShipLeft();
+		ship2 = room.getShipRight();
 	}
 	@Override
 	public void draw(Graphics2D g) {
@@ -51,7 +55,7 @@ public class Laser implements GameObject {
 		
 		double dist;
 		
-		while(field.positionIsFree(r[0], r[1]) && r[0]>0 && r[0]<room.getPanel().getWidth() && r[1]>0 && r[1]< room.getPanel().getHeight()){
+		while(field.isFree(r[0], r[1]) && r[0]>0 && r[0]<room.getPanel().getWidth() && r[1]>0 && r[1]< room.getPanel().getHeight()){
 			int[] e = {(int) r[0], (int) r[1], (int) r[2], (int) r[3]};
 			rList.add(e);
 			for(double[] ast : AsteroidList){
