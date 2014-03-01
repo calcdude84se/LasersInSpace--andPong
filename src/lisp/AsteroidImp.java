@@ -12,18 +12,18 @@ public class AsteroidImp implements Asteroid{
 	public AsteroidImp(int x, int y, int r){
 		this.x = x;
 		this.y = y;
-		this.xcenter = (x+ (1/2)*r);
-		this.ycenter = (y+ (1/2)*r);
+		this.xcenter = (x+ r);
+		this.ycenter = (y+ r);
 		this.r = r; //radius of asteroid
 	}
 
 	public void draw(Graphics2D g) {
 	//	g.drawOval(x, y, r, r); Commented out for science.  Swap these for outline vs. solid.
-		g.fillOval(x, y, r, r);
+		g.fillOval(x, y, 2*r, 2*r);
 	}
 
 	public void step() {
-		//Dont step this yet.  These are static.
+		//Don't step this yet.  These are static.
 	}
 	@Override
 	public double getMass(){
