@@ -1,5 +1,7 @@
 package lisp;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -70,6 +72,17 @@ public class GameRoom {
 	public void removeObject(GameObject go)
 	{
 		gameObjects.remove(go);
+	}
+	
+	private class GamePanel extends JPanel {
+		@Override
+		public void paintComponents(Graphics g) {
+			// TODO Auto-generated method stub
+			super.paintComponents(g);
+			Graphics2D g2d = (Graphics2D)g;
+			for(GameObject go : gameObjects)
+				go.draw(g2d);
+		}
 	}
 
 }
