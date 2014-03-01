@@ -46,6 +46,7 @@ public class GameRoom {
 		{
 			//Process all game events, step all objects, wait one step, and continue
 			processEvents();
+			panel.repaint();
 			for(GameObject go : gameObjects)
 				go.step();
 			try {
