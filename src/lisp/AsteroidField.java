@@ -19,8 +19,8 @@ public class AsteroidField implements GameObject{
 		 */
 		for (int i=0; i<=asteroidNum; i++){
 		int x = gen.nextInt(500)+ 60;
-		int y = gen.nextInt(400) + 60;
-		int r = gen.nextInt(30) + 30;
+		int y = gen.nextInt(380) + 60;
+		int r = gen.nextInt(20) + 15;
 		asteroids.add(new AsteroidImp(x,y,r));
 		}
 	}
