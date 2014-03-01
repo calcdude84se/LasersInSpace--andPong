@@ -47,7 +47,7 @@ public class GameRoom {
 			//Process all game events, step all objects, wait one step, and continue
 			processEvents();
 			panel.repaint();
-			for(GameObject go : gameObjects)
+			for(GameObject go : (Collection<GameObject>)((ArrayList)gameObjects).clone())
 				go.step();
 			try {
 				Thread.sleep(stepSize);
