@@ -1,6 +1,8 @@
 package lisp;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+
 import javax.swing.JPanel;
 
 public class ScoreBoard implements GameObject {
@@ -19,6 +21,7 @@ public class ScoreBoard implements GameObject {
 
 	@Override
 	public void draw(Graphics2D g) {
+		g.setColor(Color.DARK_GRAY);
 		g.drawRect(0, 0, width, height);
 		drawScore(g);
 	}
