@@ -44,7 +44,7 @@ public class RailShip implements GameObject {
 	
 	public void fireLaser(){
 		if(lazerCoolDown<0){
-			room.addObject(new Lazer(x+SHIP_WIDTH/2, y+SHIP_HEIGHT/2, facesRight, room));
+			room.addObject(new Laser(x+SHIP_WIDTH/2, y+SHIP_HEIGHT/2, facesRight, room));
 			lazerCoolDown = 30;
 		}
 		
