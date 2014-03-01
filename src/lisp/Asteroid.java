@@ -1,7 +1,7 @@
 package lisp;
 import java.awt.Graphics2D;
 
-public class Asteroid implements GameObject{
+public class Asteroid extends AsteroidField{
 	
 	private int x;
 	private int y;
@@ -27,4 +27,13 @@ public class Asteroid implements GameObject{
 		return r*r*r;
 	}
 	
+	public int getX(){
+		return x;
+	}
+	public int getY(){
+		return y;
+	}
+	public int getR(){
+		return r;
+	}
 }
