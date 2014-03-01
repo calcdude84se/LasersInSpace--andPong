@@ -9,7 +9,7 @@ public class AsteroidField implements GameObject{
 	
 	Random gen = new Random();
 	private int asteroidNum = gen.nextInt(4) + 5;
-	private Collection<Asteroid> asteroids = new ArrayList<>();
+	private Collection<AsteroidImp> asteroids = new ArrayList<>();
 	
 	public AsteroidField(GameRoom room){
 		/*
@@ -20,14 +20,14 @@ public class AsteroidField implements GameObject{
 		int x = gen.nextInt(430)+ 50;
 		int y = gen.nextInt(540) + 50;
 		int r = gen.nextInt(30) + 30;
-		asteroids.add(new Asteroid(x,y,r));
+		asteroids.add(new AsteroidImp(x,y,r));
 		}
 	}
 	
 
 	@Override
 	public void draw(Graphics2D g) {
-		for (Asteroid asteroid : asteroids){
+		for (AsteroidImp asteroid : asteroids){
 			//Draw each asteroid in Asteroid Field
 			asteroid.draw(g);
 		}
@@ -36,6 +36,10 @@ public class AsteroidField implements GameObject{
 	@Override
 	public void step() {
 		throw new RuntimeException("Stahp.  Dont step the AsteroidField yet!");
+	}
+	
+	public Collection<AsteroidImp> getAsteroids(){
+		return asteroids;
 	}
 
 }
