@@ -1,5 +1,6 @@
 package lisp;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class RailShip implements GameObject {
@@ -24,6 +25,16 @@ public class RailShip implements GameObject {
 	}
 	
 	public void draw(Graphics2D g){
-		g.drawRect(Math.round(x), Math.round(y), SHIP_WIDTH, SHIP_HEIGHT);
+		g.setColor(Color.GREEN);
+		g.drawRect((int) Math.round(x), (int) Math.round(y), SHIP_WIDTH, SHIP_HEIGHT);
 	}
+	
+	public void accUp(){
+		
+	}
+	
+	public void accDown(){
+		
+	}
+	
 }
