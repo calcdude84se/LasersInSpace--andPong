@@ -37,8 +37,10 @@ public class GameRoom {
 		//Run the event loop
 		while(!isGameOver())
 		{
-			//Process all game events, wait one step, and continue
+			//Process all game events, step all objects, wait one step, and continue
 			processEvents();
+			for(GameObject go : gameObjects)
+				go.step();
 			Thread.sleep(stepSize);
 		}
 		deinit();
