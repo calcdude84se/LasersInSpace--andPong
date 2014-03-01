@@ -35,7 +35,7 @@ public class AsteroidField implements GameObject{
 
 	@Override
 	public void step() {
-		throw new RuntimeException("Stahp.  Dont step the AsteroidField yet!");
+		//Dont Step the feild yet.  THX.
 	}
 	
 	public Collection<AsteroidImp> getAsteroids(){
