@@ -1,7 +1,7 @@
 package lisp;
 import java.awt.Graphics2D;
 
-public class Asteroid extends AsteroidField{
+public class Asteroid{
 	
 	private int x;
 	private int y;
@@ -13,12 +13,10 @@ public class Asteroid extends AsteroidField{
 		this.r = r; //radius of asteroid
 	}
 
-	@Override
 	public void draw(Graphics2D g) {
 		g.drawOval(x, y, r, r);
 	}
 
-	@Override
 	public void step() {
 		throw new RuntimeException("What the fuck are you doing stepping an Asteroid??");
 	}

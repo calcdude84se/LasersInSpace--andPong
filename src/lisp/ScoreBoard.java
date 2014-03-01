@@ -2,12 +2,12 @@ package lisp;
 
 import java.awt.Graphics2D;
 
-public class AScoreboard implements GameObject{
+public class ScoreBoard implements GameObject {
 	
 	private static int INDENT;
 	
-	public AScoreboard(){
-		
+	public ScoreBoard(GameRoom room){
+		//TODO constructor
 	}
 
 	@Override
@@ -26,8 +26,5 @@ public class AScoreboard implements GameObject{
 	private void drawScore(Graphics2D g, Score score) {
 		g.fillRect(INDENT, INDENT, width/2-INDENT, height/2-INDENT);
 	}
-	
-}
-	
 	
 }

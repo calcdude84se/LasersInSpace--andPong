@@ -14,7 +14,7 @@ public class GameRoom {
 	 */
 	private int stepSize;
 	private RailShip shipLeft, shipRight;
-	private AScoreBoard scoreBoard;
+	private ScoreBoard scoreBoard;
 	private AsteroidField asteroidField;
 	private Collection<GameObject> gameObjects = new ArrayList<>();
 	
@@ -52,7 +52,7 @@ public class GameRoom {
 				shipRightY = shipY;
 		shipLeft = new RailShip(shipLeftX, shipLeftY, true, this);
 		shipRight = new RailShip(shipRightX, shipRightY, false, this);
-		scoreBoard = new AScoreBoard(this);
+		scoreBoard = new ScoreBoard(this);
 		asteroidField = new AsteroidField(this);
 		gameObjects.add(shipLeft);
 		gameObjects.add(shipRight);
