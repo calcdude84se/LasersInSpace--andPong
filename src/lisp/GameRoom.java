@@ -43,6 +43,13 @@ public class GameRoom {
 	 */
 	private void init() {
 		//TODO write method
+		final int shipY = panel.getHeight() / 2;
+		final int shipLeftX = 0, shipLeftY = shipY,
+				shipRightX = panel.getWidth() - RailShip.SHIP_WIDTH,
+				shipRightY = shipY;
+		shipLeft = new RailShip(shipLeftX, shipLeftY, true, this);
+		shipRight = new RailShip(shipRightX, shipRightY, false, this);
+		
 	}
 
 }
