@@ -19,7 +19,7 @@ public class ScoreBoard implements GameObject {
 
 	@Override
 	public void draw(Graphics2D g) {
-		g.fillRect(0, 0, width, height);
+		g.drawRect(0, 0, width, height);
 		drawScore(g);
 	}
 
