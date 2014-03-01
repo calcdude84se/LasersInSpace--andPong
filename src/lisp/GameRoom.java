@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -48,7 +47,7 @@ public class GameRoom {
 			//Process all game events, step all objects, wait one step, and continue
 			processEvents();
 			panel.repaint();
-			for(GameObject go : (Collection<GameObject>)((ArrayList)gameObjects).clone())
+			for(GameObject go : getGameObjectsClone())
 				go.step();
 			try {
 				Thread.sleep(stepSize);
@@ -132,6 +131,10 @@ public class GameRoom {
 		return shipRight;
 	}
 	
+	private Collection<GameObject> getGameObjectsClone() {
+		return (Collection<GameObject>)((ArrayList)gameObjects).clone();
+	}
+	
 	private final int shipLeftUp = KeyEvent.VK_Q, shipLeftLaser = KeyEvent.VK_A,
 			shipLeftDown = KeyEvent.VK_Z, shipRightUp = KeyEvent.VK_CLOSE_BRACKET,
 			shipRightLaser = KeyEvent.VK_QUOTE, shipRightDown = KeyEvent.VK_SLASH;
@@ -173,7 +176,7 @@ public class GameRoom {
 			// TODO Auto-generated method stub
 			super.paint(g);
 			Graphics2D g2d = (Graphics2D)g;
-			for(GameObject go : gameObjects)
+			for(GameObject go : getGameObjectsClone())
 				go.draw(g2d);
 		}
 	}
