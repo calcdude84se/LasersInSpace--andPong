@@ -1,6 +1,9 @@
 package lisp;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +14,8 @@ public class Laser implements GameObject {
 	GameRoom room;
 	RailShip ship1;
 	RailShip ship2;
+	
+	private static final Stroke STROKE = new BasicStroke(2);
 	
 	Laser(double init_x, double init_y, boolean facesRight, GameRoom room){
 		path = integrate(init_x, init_y, facesRight);
@@ -23,6 +28,10 @@ public class Laser implements GameObject {
 	@Override
 	public void draw(Graphics2D g) {
 		if(on){
+			
+			g.setColor(Color.RED);
+			g.setStroke(STROKE);
+			
 			for(int i = 0; i<path.length-1; i++){  			
 				g.drawLine( path[i][0], path[i][1], path[i+1][0], path[i+1][1]);
 			}
