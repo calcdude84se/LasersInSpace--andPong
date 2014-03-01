@@ -36,12 +36,12 @@ public class AsteroidImp implements Asteroid{
 
 	@Override
 	public double getXCenter() {
-		return x;
+		return xcenter;
 	}
 
 	@Override
 	public double getYCenter() {
-		return y;
+		return ycenter;
 	}
 	
 	public boolean isFree(double x1, double y1){
