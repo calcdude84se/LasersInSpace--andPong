@@ -25,6 +25,7 @@ public class GameRoom {
 	private Collection<GameObject> gameObjects = new ArrayList<>();
 	private Set<Integer> keysPressed = new HashSet<>();
 	private Set<Integer> keysReleased = new HashSet<>();
+	private boolean isGameOver;
 	
 	public GameRoom()
 	{
@@ -41,17 +42,22 @@ public class GameRoom {
 	public void startGame() {
 		init();
 		//Run the event loop
-		while(!isGameOver())
+		while(!isGameOver)
 		{
 			//Process all game events, step all objects, wait one step, and continue
 			processEvents();
 			for(GameObject go : gameObjects)
 				go.step();
-			Thread.sleep(stepSize);
+			try {
+				Thread.sleep(stepSize);
+			} catch (InterruptedException e) {
+				System.out.println("Sleep was interrupted! Oh noes!");
+				e.printStackTrace();
+			}
 		}
 		deinit();
 	}
-
+	
 	/**
 	 * Initializes for one game.
 	 */
@@ -82,6 +88,13 @@ public class GameRoom {
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Gets run after the game has ended
+	 */
+	private void deinit() {
+		//TODO do something
 	}
 	
 	public void addObject(GameObject go)
