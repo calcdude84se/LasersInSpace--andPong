@@ -1,5 +1,6 @@
 package lisp;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -32,7 +33,7 @@ public class GameRoom {
 		stepSize = 10;
 		final int panelWidth = 640, panelHeight = 480;
 		panel = new GamePanel();
-		panel.setSize(panelWidth, panelHeight);
+		panel.setPreferredSize(new Dimension(panelWidth, panelHeight));
 	}
 
 	public JPanel getPanel() {
