@@ -87,6 +87,14 @@ public class GameRoom {
 		return asteroidField;
 	}
 	
+	public RailShip getShipLeft() {
+		return shipLeft;
+	}
+	
+	public RailShip getShipRight() {
+		return shipRight;
+	}
+	
 	private final int shipLeftUp = KeyEvent.VK_Q, shipLeftLaser = KeyEvent.VK_A,
 			shipLeftDown = KeyEvent.VK_Z, shipRightUp = KeyEvent.VK_CLOSE_BRACKET,
 			shipRightLaser = KeyEvent.VK_QUOTE, shipRightDown = KeyEvent.VK_SLASH;
