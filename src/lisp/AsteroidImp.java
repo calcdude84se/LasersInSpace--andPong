@@ -18,7 +18,7 @@ public class AsteroidImp implements Asteroid{
 	}
 
 	public void step() {
-		throw new RuntimeException("What the fuck are you doing stepping an Asteroid??");
+		//Dont step this yet.  These are static.
 	}
 	@Override
 	public double getMass(){
