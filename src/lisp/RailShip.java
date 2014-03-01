@@ -37,4 +37,7 @@ public class RailShip implements GameObject {
 		
 	}
 	
+	public void fireLaser(){
+		
+	}
 }
