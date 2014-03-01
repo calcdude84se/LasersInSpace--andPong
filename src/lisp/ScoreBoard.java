@@ -35,7 +35,7 @@ public class ScoreBoard implements GameObject {
 		String left = shipLeft + "";
 		String right = shipRight + "";
 		g.drawString(left, width/2-INDENT, width/2+INDENT);
-		g.drawString(right, width/2-INDENT, width/2+INDENT);
+		g.drawString(right, width/2+INDENT, width/2+INDENT);
 	}
 	public void setScore(int bit){
 		if (bit == 0) shipLeft += 1;
