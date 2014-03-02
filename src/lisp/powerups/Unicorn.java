@@ -14,13 +14,15 @@ public class Unicorn extends Powerup<Unicorn> {
 	private GameObjectDrawer<RailShip> oldShipBodyDrawer;
 	private IndirectGameObjectDrawer<AsteroidImp> asteroidDrawer;
 	private IndirectGameObjectDrawer<RailShip> shipBodyDrawer;
+	public int id;
 
 	public Unicorn(GameRoom room, PowerupField puField, double x, double y, double xv,
-			double yv, double r) {
+			double yv, double r, int id) {
 		super(puField, x, y, xv, yv, r);
 		asteroidDrawer = (IndirectGameObjectDrawer<AsteroidImp>)room.getAsteroidDrawer();
 		shipBodyDrawer = (IndirectGameObjectDrawer<RailShip>)room.getShipDrawer();
 		drawer = new UnicornImageDrawer();
+		this.id = id;
 	}
 
 	@Override
