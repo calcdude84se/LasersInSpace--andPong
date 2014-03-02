@@ -82,9 +82,16 @@ public class AsteroidField implements GameObject{
 	/*
 	 * Checks that the passed coordinates are not occupied.
 	 */
-	public boolean isFree(double x, double y){
+	public boolean testLazerFree(double x, double y){
 		for (AsteroidImp asteroid : getAsteroidsClone()){
 			if (!asteroid.testLazerFree(x, y)) return false;
+		}
+		return true;
+	}
+	
+	public boolean isFree(double x, double y){
+		for (AsteroidImp asteroid : getAsteroidsClone()){
+			if (!asteroid.isFree(x, y)) return false;
 		}
 		return true;
 	}
