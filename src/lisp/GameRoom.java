@@ -230,11 +230,8 @@ public class GameRoom implements Drawable {
 		panel.resetKeys();
 		gameObjects.clear();
 		final int shipY = panel.getHeight() / 2;
-		final int shipLeftX = 0, shipLeftY = shipY,
-				shipRightX = panel.getWidth() - RailShip.SHIP_WIDTH,
-				shipRightY = shipY;
-		shipLeft = new RailShip(shipLeftY, true, this);
-		shipRight = new RailShip(shipRightY, false, this);
+		shipLeft = new RailShip(shipY, true, this);
+		shipRight = new RailShip(shipY, false, this);
 		scoreBoard = new ScoreBoard(this);
 		asteroidField = new AsteroidField(this);
 		powerupField = new PowerupField(this);
