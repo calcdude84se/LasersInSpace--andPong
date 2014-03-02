@@ -4,11 +4,12 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Stroke;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D.Double;
 import java.util.Random;
 
 import lisp.drawers.RailShipGeoDrawer;
 
-public class RailShip extends GameObjectInRoom {
+public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	
 
 	public double x;
@@ -25,8 +26,8 @@ public class RailShip extends GameObjectInRoom {
 	private GameRoom room;
 	public static final Stroke STROKE = new BasicStroke(2);
 	private static double PER_STEP_ACC = .06;
-	public static final int SHIP_WIDTH = 20;
-	public static final int SHIP_HEIGHT = 40;
+	public static final int SHIP_WIDTH = 30;
+	public static final int SHIP_HEIGHT = 55;
 	private static final int COOL_DOWN_TIME = 50;
 	
 	
@@ -140,5 +141,15 @@ public class RailShip extends GameObjectInRoom {
 	}
 	public int getLives(){
 		return lives;
+	}
+
+	@Override
+	public int getId() {
+		return facesRight ? 1 : 0;
+	}
+
+	@Override
+	public Double getPosition() {
+		return new Double(x, y, SHIP_WIDTH, SHIP_HEIGHT);
 	}
 }

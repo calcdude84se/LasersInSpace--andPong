@@ -48,7 +48,7 @@ public class AsteroidField implements GameObject{
 	@Override
 	public void draw(Graphics2D g) {
 		g.setColor(Color.white);
-		for (AsteroidImp asteroid : asteroids){
+		for (AsteroidImp asteroid : getAsteroidsClone()){
 			//Draw each asteroid in Asteroid Field
 			asteroid.draw(g);
 		}
@@ -57,7 +57,7 @@ public class AsteroidField implements GameObject{
 	@Override
 	public void step() {
 		
-		for (AsteroidImp asteroid: CollectionUtilities.cloneArrayList(asteroids)){
+		for (AsteroidImp asteroid: getAsteroidsClone()){
 			asteroid.step();
 			if (asteroid.getXCenter() > panel.getWidth()
 					|| asteroid.getYCenter() > panel.getHeight()){
@@ -67,6 +67,10 @@ public class AsteroidField implements GameObject{
 		}
 	}
 	
+	private Collection<AsteroidImp> getAsteroidsClone() {
+		return CollectionUtilities.cloneArrayList(asteroids);
+	}
+	
 	public Collection<AsteroidImp> getAsteroids(){
 		return asteroids;
 	}
@@ -74,7 +78,7 @@ public class AsteroidField implements GameObject{
 	 * Checks that the passed coordinates are not occupied.
 	 */
 	public boolean isFree(double x, double y){
-		for (AsteroidImp asteroid : asteroids){
+		for (AsteroidImp asteroid : getAsteroidsClone()){
 			if (!asteroid.isFree(x, y)) return false;
 		}
 		return true;
