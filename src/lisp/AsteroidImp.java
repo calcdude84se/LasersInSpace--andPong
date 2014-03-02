@@ -10,6 +10,7 @@ public class AsteroidImp implements Asteroid{
 	private double ycenter;
 	private double xvelocity;
 	private double yvelocity;
+	private Drawable drawer;
 	
 	public AsteroidImp(double x, double y, double r, double vx, double vy){
 		this.x = x;
@@ -19,11 +20,12 @@ public class AsteroidImp implements Asteroid{
 		this.xvelocity = vx;
 		this.yvelocity = vy;
 		this.r = r;
+		
+		this.drawer = new AsteroidGeoDrawer();
 	}
 
 	public void draw(Graphics2D g) {
-	//	g.drawOval(x, y, r, r); Commented out for science.  Swap these for outline vs. solid.
-		g.fillOval((int)x, (int)y, (int)(2*r), (int)(2*r));
+		drawer.draw(g);
 	}
 
 	public void step() {
@@ -58,4 +60,11 @@ public class AsteroidImp implements Asteroid{
 		//nothing to do here.
 	}
 
+	public class AsteroidGeoDrawer implements Drawable {
+
+		public void draw(Graphics2D g) {
+		//	g.drawOval(x, y, r, r); Commented out for science.  Swap these for outline vs. solid.
+			g.fillOval((int)x, (int)y, (int)(2*r), (int)(2*r));
+		}
+	}
 }
