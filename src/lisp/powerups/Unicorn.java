@@ -1,13 +1,20 @@
 package lisp.powerups;
 
+import java.awt.geom.Rectangle2D.Double;
+
 import lisp.AsteroidImp;
 import lisp.GameRoom;
 import lisp.PowerupField;
 import lisp.RailShip;
+import lisp.WithId;
+import lisp.WithPosition;
+import lisp.drawers.AsteroidUnicornDrawer;
 import lisp.drawers.GameObjectDrawer;
 import lisp.drawers.IndirectGameObjectDrawer;
+import lisp.drawers.RailShipBodyUnicornDrawer;
+import lisp.drawers.UnicornImageDrawer;
 
-public class Unicorn extends Powerup<Unicorn> {
+public class Unicorn extends Powerup<Unicorn> implements WithId, WithPosition {
 	
 	private int life = 200;
 	private GameObjectDrawer<AsteroidImp> oldAsteroidDrawer;
@@ -31,7 +38,7 @@ public class Unicorn extends Powerup<Unicorn> {
 		asteroidDrawer.setDrawer(new AsteroidUnicornDrawer());
 
 		oldShipBodyDrawer = shipBodyDrawer.getDrawer();
-		shipBodyDrawer.setDrawer(new ShipUnicornDrawer());
+		shipBodyDrawer.setDrawer(new RailShipBodyUnicornDrawer());
 	}
 
 	@Override
@@ -41,6 +48,16 @@ public class Unicorn extends Powerup<Unicorn> {
 			shipBodyDrawer.setDrawer(oldShipBodyDrawer);
 			destroy();
 		}
+	}
+
+	@Override
+	public Double getPosition() {
+		return new Double(x, y, x+2*r, y+2*r);
+	}
+
+	@Override
+	public int getId() {
+		return id;
 	}
 
 }
