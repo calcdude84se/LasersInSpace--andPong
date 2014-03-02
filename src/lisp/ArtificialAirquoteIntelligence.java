@@ -14,6 +14,7 @@ public class ArtificialAirquoteIntelligence extends GameObjectInRoom {
 	private int movingDown = 0;
 	Random r = new Random();
 	private int difficulty;
+	private static final int[] FIRE_PROBABILITIES = {400, 300, 200, 100, 50, 50, 100, 100, 200, 600}; 
 	
 	ArtificialAirquoteIntelligence(RailShip me, RailShip asshole, boolean facesRight, int difficulty, GameRoom room){
 		super(room);
@@ -21,6 +22,15 @@ public class ArtificialAirquoteIntelligence extends GameObjectInRoom {
 		this.me = me;
 		this.asshole = asshole;
 		this.facesRight = facesRight;
+		
+		difficulty = r.nextInt(10);
+		
+		if(difficulty < 0 || difficulty >9){
+			throw new RuntimeException("dificulty Out of bounds");
+		}
+		
+		System.out.println(difficulty);
+		
 		this.difficulty = difficulty;
 	}
 	
@@ -34,7 +44,8 @@ public class ArtificialAirquoteIntelligence extends GameObjectInRoom {
 		movingUp--;
 		movingDown--;
 		if(checkShot(me.getX()+RailShip.SHIP_WIDTH/2, me.getY()+RailShip.SHIP_HEIGHT/2, facesRight )){
-			me.fireLaser();
+			if(r.nextInt(10)<difficulty)
+				me.fireLaser();
 		}
 		if(movingUp>0){
 			me.accUp();
@@ -48,10 +59,10 @@ public class ArtificialAirquoteIntelligence extends GameObjectInRoom {
 		if(r.nextInt(100)==0){
 			movingDown = 25;
 		}
-		if(r.nextInt(100)==0){
+		if(r.nextInt(300 - 25*difficulty)==0){
 			me.fireMissile();
 		}
-		if(r.nextInt(100)==0){
+		if(r.nextInt(FIRE_PROBABILITIES[difficulty])==0){
 			me.fireLaser();
 		}
 	}
