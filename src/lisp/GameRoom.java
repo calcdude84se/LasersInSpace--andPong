@@ -53,14 +53,8 @@ public class GameRoom implements Drawable {
 	
 	private MenuState menuState;
 	
-	private BufferedImage background;
-	{
-		try {
-			background = ImageIO.read(new File("images/space.png"));
-		} catch (IOException e) {
-			
-		}
-	}
+	private BufferedImage background = Utilities.loadImage("images/space.png");
+	private BufferedImage logo = Utilities.loadImage("images/logo.png");
 	
 	public GameRoom()
 	{
@@ -288,7 +282,7 @@ public class GameRoom implements Drawable {
 	}
 
 	private Collection<GameObject> getGameObjectsClone() {
-		return CollectionUtilities.cloneArrayList(gameObjects);
+		return Utilities.cloneArrayList(gameObjects);
 	}
 	
 	public void draw(Graphics2D g) {

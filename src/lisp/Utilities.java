@@ -1,10 +1,15 @@
 package lisp;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
-public abstract class CollectionUtilities {
+import javax.imageio.ImageIO;
+
+public abstract class Utilities {
 
 	public static <T> ArrayList<T> cloneArrayList(Collection<T> arrayList) {
 		return (ArrayList<T>)((ArrayList)arrayList).clone();
@@ -12,5 +17,14 @@ public abstract class CollectionUtilities {
 	
 	public static <T> HashSet<T> cloneHashSet(Collection<T> hashSet) {
 		return (HashSet<T>)((HashSet<T>)hashSet).clone();
+	}
+	public static BufferedImage loadImage(String path){
+		BufferedImage image = null;
+			try {
+				image = ImageIO.read(new File(path));
+			} catch (IOException e) {
+				
+			}
+		return image;
 	}
 }

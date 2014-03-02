@@ -115,7 +115,7 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	}
 	
 	public void collideAsteroids(){
-		for(AsteroidImp ast : CollectionUtilities.cloneArrayList(room.getAsteroidField().getAsteroids())){
+		for(AsteroidImp ast : Utilities.cloneArrayList(room.getAsteroidField().getAsteroids())){
 			Ellipse2D asteroid = new Ellipse2D.Double(ast.getXCenter() - ast.getR(), ast.getYCenter()-ast.getR(), 2*ast.getR(), 2*ast.getR());
 			if(asteroid.intersects(x, y, SHIP_WIDTH, SHIP_HEIGHT)){			
 				room.addObject(new Explosion(ast.getXCenter(), ast.getYCenter(), room, Color.BLUE));

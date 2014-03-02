@@ -73,7 +73,7 @@ public class AsteroidField implements GameObject{
 	}
 	
 	private Collection<AsteroidImp> getAsteroidsClone() {
-		return CollectionUtilities.cloneArrayList(asteroids);
+		return Utilities.cloneArrayList(asteroids);
 	}
 	
 	public Collection<AsteroidImp> getAsteroids(){
