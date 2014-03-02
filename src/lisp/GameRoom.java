@@ -53,6 +53,7 @@ public class GameRoom implements Drawable {
 				}
 			} else {
 				processKey(panel.getKey());
+				panel.repaint();
 			}
 		}
 		deinit();
@@ -147,8 +148,13 @@ public class GameRoom implements Drawable {
 	}
 	
 	public void draw(Graphics2D g) {
-		for(GameObject go : getGameObjectsClone())
-			go.draw(g);
+		if(!isGameOver)
+			for(GameObject go : getGameObjectsClone())
+				go.draw(g);
+		else {
+			g.drawString("Lasers In Space! -- and Pong\nPress 's' to start,  'q' to quit", 0, 0);
+		}
+			
 	}
 	
 	private final int shipLeftUp = KeyEvent.VK_Q, shipLeftLaser = KeyEvent.VK_A,
