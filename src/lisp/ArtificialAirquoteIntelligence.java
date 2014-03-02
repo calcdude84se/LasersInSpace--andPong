@@ -43,7 +43,7 @@ public class ArtificialAirquoteIntelligence extends GameObjectInRoom {
 	public void step() {
 		movingUp--;
 		movingDown--;
-		if(checkShot(me.getX()+me.SHIP_WIDTH/2, me.getY()+me.SHIP_HEIGHT/2, facesRight )){
+		if(checkShot(me.getX()+me.getWidth()/2, me.getY()+me.getHeight()/2, facesRight )){
 			if(r.nextInt(10)<difficulty)
 				me.fireLaser();
 		}

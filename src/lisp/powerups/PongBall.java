@@ -24,16 +24,16 @@ public class PongBall extends GameObjectInRoom {
 			v = -.5*Math.abs(v);
 		}
 		
-		if(x<room.getShipLeft().SHIP_WIDTH){
+		if(x<room.getShipLeft().getWidth()){
 			h = Math.abs(h);
 			x+=h;
-			if(room.getShipLeft().getY()>y||room.getShipLeft().getY()+room.getShipLeft().SHIP_HEIGHT<y){
+			if(room.getShipLeft().getY()>y||room.getShipLeft().getY()+room.getShipLeft().getHeight()<y){
 				room.getShipLeft().removeLife();
 			}
 		}
-		if(x>room.getPanel().getWidth()-DIM - room.getShipRight().SHIP_WIDTH){
+		if(x>room.getPanel().getWidth()-DIM - room.getShipRight().getWidth()){
 			x = -.5*Math.abs(h);
-			if(room.getShipRight().getY()>y||room.getShipRight().getY()+room.getShipRight().SHIP_HEIGHT<y){
+			if(room.getShipRight().getY()>y||room.getShipRight().getY()+room.getShipRight().getHeight()<y){
 				room.getShipRight().removeLife();
 			}
 		}
