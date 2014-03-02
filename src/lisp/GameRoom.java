@@ -57,7 +57,7 @@ public class GameRoom implements Drawable {
 	 * Initializes for one game.
 	 */
 	private void init() {
-		panel.resetPressedKeys();
+		panel.resetKeys();
 		gameObjects.clear();
 		final int shipY = panel.getHeight() / 2;
 		final int shipLeftX = 0, shipLeftY = shipY,

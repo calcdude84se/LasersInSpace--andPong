@@ -7,7 +7,9 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashSet;
+import java.util.Queue;
 import java.util.Set;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import javax.swing.JPanel;
 
@@ -16,6 +18,7 @@ public class KeyPanel extends JPanel {
 	private Drawable drawable;
 	private Set<Integer> keysPressed = new HashSet<>();
 	private Set<Integer> keysReleased = new HashSet<>();
+	private Queue<Character> keysTyped = new ConcurrentLinkedQueue<>();
 
 	public KeyPanel(Drawable drawable) {
 		this.drawable = drawable;
@@ -24,7 +27,7 @@ public class KeyPanel extends JPanel {
 			
 			@Override
 			public void keyTyped(KeyEvent arg0) {
-				//Does nothing
+				keysTyped.offer(arg0.getKeyChar());
 			}
 			
 			@Override
@@ -72,6 +75,10 @@ public class KeyPanel extends JPanel {
 		}
 	}
 	
+	public char getKey() {
+		return keysTyped.remove();
+	}
+	
 	@Override
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
@@ -79,7 +86,8 @@ public class KeyPanel extends JPanel {
 		drawable.draw((Graphics2D)g);
 	}
 
-	public void resetPressedKeys() {
+	public void resetKeys() {
+		keysTyped.clear();
 		keysPressed.clear();
 		keysReleased.clear();
 	}
