@@ -13,37 +13,37 @@ public class AsteroidField implements GameObject{
 	Random gen = new Random();
 	private int asteroidNum = gen.nextInt(4) + 5;
 	private Collection<AsteroidImp> asteroids = new ArrayList<>();
+	private JPanel panel;
 	
 	public AsteroidField(GameRoom room){
 		/*
 		 * Creates a random number of asteroids between 5 and 9
 		 * Based on a 480 X 620 sized room
 		 */
+		panel = room.getPanel();
+		int x1 = panel.getWidth() - 120;
+		int y1 = panel.getHeight() - 120;
 		for (int i=0; i<=asteroidNum; i++){
-		int[] a = getCoords(room);
-		asteroids.add(new AsteroidImp(a[0],a[1],a[2],a[3],a[4]));
+		asteroids.add(getRoid(x1,y1));
 		}
+
 	}
 	/*
 	 * This gets the coordinates for the asteroids based on the frame size and not arbitrary magic numbers.
 	 */
-	private int[] getCoords(GameRoom room){
-		JPanel panel = room.getPanel();
-		int x1 = panel.getWidth();
-		int y1 = panel.getHeight();
-		
-		int x = gen.nextInt(x1-120)+ 60;
-		int y = gen.nextInt(y1-120) + 60;
+	private AsteroidImp getRoid(int x1, int y1){
+		int x = gen.nextInt(x1)+ 60;
+		int y = gen.nextInt(y1) + 60;
 		int r = gen.nextInt(20) + 15;
-		int vx = gen.nextInt(4) - 2;
-		int vy = gen.nextInt(4)+1;
-		int[] a = new int[] {x,y,r,vx,vy};
-		return a; 
+		double vx = gen.nextDouble() - (.5);
+		double vy = gen.nextDouble() + .2;
+		AsteroidImp jimmy = new AsteroidImp(x,y,r,vx,vy);
+		return jimmy; 
 	}
 
 	@Override
 	public void draw(Graphics2D g) {
-		g.setColor(Color.black);
+		g.setColor(Color.white);
 		for (AsteroidImp asteroid : asteroids){
 			//Draw each asteroid in Asteroid Field
 			asteroid.draw(g);
@@ -52,8 +52,14 @@ public class AsteroidField implements GameObject{
 
 	@Override
 	public void step() {
-		for (AsteroidImp asteroid: asteroids){
+		
+		for (AsteroidImp asteroid: CollectionUtilities.cloneArrayList(asteroids)){
 			asteroid.step();
+			if (asteroid.getXCenter() > panel.getWidth()
+					|| asteroid.getYCenter() > panel.getHeight()){
+				asteroids.remove(asteroid);
+				asteroids.add(getRoid(panel.getWidth()/2, 1));
+			}
 		}
 	}
 	
@@ -68,6 +74,10 @@ public class AsteroidField implements GameObject{
 			if (!asteroid.isFree(x, y)) return false;
 		}
 		return true;
+	}
+	@Override
+	public void destroy() {
+		//Not sure what to do here yet....
 	}
 
 }

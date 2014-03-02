@@ -22,7 +22,7 @@ public class ScoreBoard extends GameObjectInRoom {
 
 	@Override
 	public void draw(Graphics2D g) {
-		g.setColor(Color.DARK_GRAY);
+		g.setColor(Color.white);
 		g.drawRect(0, 0, width, height);
 		drawScore(g);
 	}

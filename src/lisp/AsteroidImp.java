@@ -3,15 +3,15 @@ import java.awt.Graphics2D;
 
 public class AsteroidImp implements Asteroid{
 	
-	private int x;
-	private int y;
-	private int r;
+	private double x;
+	private double y;
+	private double r;
 	private double xcenter;
 	private double ycenter;
-	private int xvelocity;
-	private int yvelocity;
+	private double xvelocity;
+	private double yvelocity;
 	
-	public AsteroidImp(int x, int y, int r, int vx,int vy){
+	public AsteroidImp(double x, double y, double r, double vx, double vy){
 		this.x = x;
 		this.y = y;
 		this.xcenter = (x+ r);
@@ -23,7 +23,7 @@ public class AsteroidImp implements Asteroid{
 
 	public void draw(Graphics2D g) {
 	//	g.drawOval(x, y, r, r); Commented out for science.  Swap these for outline vs. solid.
-		g.fillOval(x, y, 2*r, 2*r);
+		g.fillOval((int)x, (int)y, (int)(2*r), (int)(2*r));
 	}
 
 	public void step() {
@@ -37,7 +37,7 @@ public class AsteroidImp implements Asteroid{
 		return r*r*r;
 	}
 	
-	public int getR(){
+	public double getR(){
 		return r;
 	}
 
@@ -53,6 +53,9 @@ public class AsteroidImp implements Asteroid{
 	
 	public boolean isFree(double x1, double y1){
 		return !((Math.pow((x1 - xcenter), 2) + Math.pow((y1 - ycenter), 2)) <= Math.pow(r, 2));
+	}
+	public void destroy(){
+		//nothing to do here.
 	}
 
 }
