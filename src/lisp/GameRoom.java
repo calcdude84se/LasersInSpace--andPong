@@ -101,7 +101,7 @@ public class GameRoom implements Drawable {
 	}
 	
 	private static enum Menu {
-		main, options, controls
+		main, options, controls, gameOver
 	}
 	
 	private class MenuState implements Drawable {
@@ -123,6 +123,8 @@ public class GameRoom implements Drawable {
 			case controls:
 				controls(key);
 				break;
+			case gameOver:
+				gameOver(key);
 			}
 		}
 		
@@ -152,6 +154,10 @@ public class GameRoom implements Drawable {
 			if(key == exit)
 				menu = Menu.main;
 		}
+		
+		private void gameOver(char key) {
+			menu = Menu.main;
+		}
 
 		private final char startGame = 's', exit = 'e', toggleSinglePlayer = 'p', options = 'o', controls = 'c',
 				toggleRetro = 'r';
@@ -167,6 +173,9 @@ public class GameRoom implements Drawable {
 				break;
 			case controls:
 				drawString(g,"Controls\nPlayer 1:\n's': shoot missile\n'a': shoot laser\n'q': go up\n'z': go down\nPlayer 2:\n':':shoot missile\n'\"': shoot laser\n'}':go up\n'/': go down\n'"+exit+"' to return to the main menu",0,0);
+				break;
+			case gameOver:
+				drawString(g, "Game over!\nPress any key to return to main menu.", 0, 0);
 			}
 		}
 	}
@@ -227,6 +236,7 @@ public class GameRoom implements Drawable {
 	public void gameOver() {
 		isGameOver = true;
 		panel.resetKeys();
+		menuState.menu = Menu.gameOver;
 		panel.repaint();
 	}
 
