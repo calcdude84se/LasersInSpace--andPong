@@ -33,7 +33,7 @@ public class PongPowerUp extends Powerup{
 	}
 
 	
-	public Rectangle2D getPosition(){
+	public Rectangle2D.Double getPosition(){
 		return new Rectangle2D.Double(x, y, PongBall.DIM, PongBall.DIM);
 	}
 }
