@@ -3,6 +3,7 @@ package lisp;
 import java.awt.Graphics2D;
 import java.util.Random;
 
+import lisp.powerups.PongPowerUp;
 import lisp.powerups.Powerup;
 import lisp.powerups.Unicorn;
 
@@ -30,9 +31,18 @@ public class PowerupField extends GameObjectInRoom {
 			if (room.isOutOfBounds(powerup))
 				powerup.destroy();
 		}
-		else
-			this.powerup = new Unicorn(room, this, r.nextDouble()*room.getPanel().getWidth(), 0,
-					r.nextDouble()*4-2, r.nextDouble()*3+1, r.nextDouble()*30+30, r.nextInt(2));
+		else {
+			double x = r.nextDouble()*room.getPanel().getWidth();
+			double y = 0;
+			double vx = r.nextDouble()*4-2;
+			double vy = r.nextDouble()*3+1;
+			double rad = r.nextDouble()*30+30;
+			if(r.nextInt(2) != 0)
+				this.powerup = new Unicorn(room, this, x, y,
+						vx, vy, rad, r.nextInt(2));
+			else
+				this.powerup = new PongPowerUp(this, x, y, vx, vy, rad, room);
+		}
 	}
 
 	public void doPowerupAt(double x, double y) {
