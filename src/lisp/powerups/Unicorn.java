@@ -27,7 +27,7 @@ public class Unicorn extends Powerup<Unicorn> implements WithId, WithPosition {
 			double yv, double r, int id) {
 		super(puField, x, y, xv, yv, r);
 		asteroidDrawer = (IndirectGameObjectDrawer<AsteroidImp>)room.getAsteroidDrawer();
-		shipBodyDrawer = (IndirectGameObjectDrawer<RailShip>)room.getShipDrawer();
+		shipBodyDrawer = (IndirectGameObjectDrawer<RailShip>)room.getShipBodyDrawer();
 		drawer = new UnicornImageDrawer();
 		this.id = id;
 	}

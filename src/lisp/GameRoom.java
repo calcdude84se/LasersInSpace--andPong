@@ -324,6 +324,10 @@ public class GameRoom implements Drawable {
 	public GameObjectDrawer<RailShip> getShipDrawer() {
 		return shipDrawer;
 	}
+	
+	public GameObjectDrawer<RailShip> getShipBodyDrawer() {
+		return shipBodyDrawer;
+	}
 
 	private Collection<GameObject> getGameObjectsClone() {
 		return Utilities.cloneArrayList(gameObjects);
