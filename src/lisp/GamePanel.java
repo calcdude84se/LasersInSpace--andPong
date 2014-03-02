@@ -76,9 +76,7 @@ public class GamePanel extends JPanel {
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paint(g);
-		Graphics2D g2d = (Graphics2D)g;
-		for(GameObject go : gameRoom.getGameObjectsClone())
-			go.draw(g2d);
+		gameRoom.draw((Graphics2D)g);
 	}
 
 	public void resetPressedKeys() {

@@ -1,6 +1,7 @@
 package lisp;
 
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -126,6 +127,11 @@ public class GameRoom {
 	
 	Collection<GameObject> getGameObjectsClone() {
 		return (Collection<GameObject>)((ArrayList)gameObjects).clone();
+	}
+	
+	public void draw(Graphics2D g) {
+		for(GameObject go : getGameObjectsClone())
+			go.draw(g);
 	}
 	
 	private final int shipLeftUp = KeyEvent.VK_Q, shipLeftLaser = KeyEvent.VK_A,
