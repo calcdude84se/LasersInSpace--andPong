@@ -5,12 +5,10 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.swing.JPanel;
 
-public class GameRoom {
+public class GameRoom implements Drawable {
 	
 	private GamePanel panel;
 	/**
