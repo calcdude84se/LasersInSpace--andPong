@@ -3,6 +3,8 @@ package lisp;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -168,6 +170,19 @@ public class GameRoom {
 							keysReleased.remove(keyCode);
 						}
 					}
+				}
+			});
+			
+			addFocusListener(new FocusListener() {
+				
+				@Override
+				public void focusLost(FocusEvent arg0) {
+					requestFocusInWindow();
+				}
+				
+				@Override
+				public void focusGained(FocusEvent arg0) {
+					//Do nothing
 				}
 			});
 		}
