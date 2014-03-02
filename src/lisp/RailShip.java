@@ -8,11 +8,14 @@ import java.awt.geom.Ellipse2D;
 import java.util.Random;
 
 public class RailShip extends GameObjectInRoom implements GameObject {
+	
+
 	private double x;
 	private double y;
 	private double y_speed = 0;
 	private boolean facesRight;
 	private int lazerCoolDown=0;
+	private int missileCoolDown=0;
 	private int thrustingUp = 0;
 	private int thrustingDown = 0;
 	
@@ -21,6 +24,7 @@ public class RailShip extends GameObjectInRoom implements GameObject {
 	private static double PER_STEP_ACC = .03;
 	public static final int SHIP_WIDTH = 20;
 	private static final int SHIP_HEIGHT = 40;
+	private static final int COOL_DOWN_TIME = 50;
 	
 	Random r;
 	
@@ -96,7 +100,16 @@ public class RailShip extends GameObjectInRoom implements GameObject {
 		if(lazerCoolDown<0){
 			
 			room.addObject(new Laser(x+(facesRight?SHIP_WIDTH+1:-1) , y+SHIP_HEIGHT/2, facesRight, room));
-			lazerCoolDown = 30;
+			lazerCoolDown = COOL_DOWN_TIME;
+		}
+		
+	}
+	
+	public void fireMissile(){
+		if(missileCoolDown<0){
+			
+			room.addObject(new Missile(x+(facesRight?SHIP_WIDTH+1:-1) , y+SHIP_HEIGHT/2, facesRight, room));
+			missileCoolDown = COOL_DOWN_TIME;
 		}
 		
 	}

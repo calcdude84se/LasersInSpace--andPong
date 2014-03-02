@@ -2,23 +2,21 @@ package lisp;
 
 import java.awt.Color;
 import java.awt.Dimension;
+<<<<<<< HEAD
 import java.awt.Font;
 import java.awt.Graphics;
+=======
+>>>>>>> f9130fd6392fede64b3d787dd882662b85f4201b
 import java.awt.Graphics2D;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.swing.JPanel;
 
-public class GameRoom {
+public class GameRoom implements Drawable {
 	
-	private JPanel panel;
+	private KeyPanel panel;
 	/**
 	 * Step size in milliseconds
 	 */
@@ -27,9 +25,8 @@ public class GameRoom {
 	private ScoreBoard scoreBoard;
 	private AsteroidField asteroidField;
 	private Collection<GameObject> gameObjects = new ArrayList<>();
-	private Set<Integer> keysPressed = new HashSet<>();
-	private Set<Integer> keysReleased = new HashSet<>();
 	private boolean isGameOver;
+	private boolean done;
 	
 	private static Font text = new Font("Helvetica", Font.PLAIN, 30);
 	
@@ -37,7 +34,7 @@ public class GameRoom {
 	{
 		stepSize = 10;
 		final int panelWidth = 640, panelHeight = 480;
-		panel = new GamePanel();
+		panel = new KeyPanel(this);
 		panel.setPreferredSize(new Dimension(panelWidth, panelHeight));
 		panel.setBackground(Color.black);
 	}
@@ -47,31 +44,50 @@ public class GameRoom {
 	}
 
 	public void startGame() {
-		init();
+		isGameOver = true;
+		done = false;
 		//Run the event loop
-		while(!isGameOver)
+		while(!done)
 		{
-			//Process all game events, step all objects, wait one step, and continue
-			processEvents();
-			panel.repaint();
-			for(GameObject go : getGameObjectsClone())
-				go.step();
-			try {
-				Thread.sleep(stepSize);
-			} catch (InterruptedException e) {
-				System.out.println("Sleep was interrupted! Oh noes!");
-				e.printStackTrace();
+			if(!isGameOver) {
+				//Process all game events, step all objects, wait one step, and continue
+				processEvents();
+				panel.repaint();
+				for(GameObject go : getGameObjectsClone())
+					go.step();
+				try {
+					Thread.sleep(stepSize);
+				} catch (InterruptedException e) {
+					System.out.println("Sleep was interrupted! Oh noes!");
+					e.printStackTrace();
+				}
+			} else {
+				processKey(panel.getKey());
+				panel.repaint();
 			}
 		}
 		deinit();
 	}
 	
 	/**
+	 * Process a key in menu mode
+	 * @param key the key to be processed.
+	 */
+	private void processKey(char key) {
+		// TODO Auto-generated method stub
+		if(key == startGame) {
+			isGameOver = false;
+			init();
+		} else if(key == exit) {
+			done = true;
+		}
+	}
+
+	/**
 	 * Initializes for one game.
 	 */
 	private void init() {
-		keysPressed.clear();
-		keysReleased.clear();
+		panel.resetKeys();
 		gameObjects.clear();
 		final int shipY = panel.getHeight() / 2;
 		final int shipLeftX = 0, shipLeftY = shipY,
@@ -88,28 +104,30 @@ public class GameRoom {
 	}
 	
 	private void processEvents() {
-		synchronized (keysPressed) {
-			synchronized (keysReleased) {
-				for (int keyCode : keysPressed) {
-					if(keyCode == shipLeftUp)
-						shipLeft.accUp();
-					else if(keyCode == shipLeftLaser)
-						shipLeft.fireLaser();
-					else if(keyCode == shipLeftDown)
-						shipLeft.accDown();
-					else if(keyCode == shipRightUp)
-						shipRight.accUp();
-					else if(keyCode == shipRightLaser)
-						shipRight.fireLaser();
-					else if(keyCode == shipRightDown)
-						shipRight.accDown();
-				}
-				keysPressed.removeAll(keysReleased);
-				keysReleased.clear();
-			}
+		for (int keyCode : panel.receivePressedKeyCodes()) {
+			if(keyCode == shipLeftUp)
+				shipLeft.accUp();
+			else if(keyCode == shipLeftLaser)
+				shipLeft.fireLaser();
+			else if(keyCode == shipLeftDown)
+				shipLeft.accDown();
+			else if(keyCode == shipRightUp)
+				shipRight.accUp();
+			else if(keyCode == shipRightLaser)
+				shipRight.fireLaser();
+			else if(keyCode == shipRightDown)
+				shipRight.accDown();
+			else if(keyCode == exitGame)
+				gameOver();
 		}
 	}
 	
+	public void gameOver() {
+		isGameOver = true;
+		panel.resetKeys();
+		panel.repaint();
+	}
+
 	/**
 	 * Gets run after the game has ended
 	 */
@@ -147,67 +165,25 @@ public class GameRoom {
 		return text;
 	}
 	
-	private Collection<GameObject> getGameObjectsClone() {
+	Collection<GameObject> getGameObjectsClone() {
 		return (Collection<GameObject>)((ArrayList)gameObjects).clone();
+	}
+	
+	public void draw(Graphics2D g) {
+		if(!isGameOver)
+			for(GameObject go : getGameObjectsClone())
+				go.draw(g);
+		else {
+			g.drawString("Lasers In Space! -- and Pong", 0, 12);
+			g.drawString("Press 's' to start,  'e' to exit", 0, 24);
+		}
+			
 	}
 	
 	private final int shipLeftUp = KeyEvent.VK_Q, shipLeftLaser = KeyEvent.VK_A,
 			shipLeftDown = KeyEvent.VK_Z, shipRightUp = KeyEvent.VK_CLOSE_BRACKET,
-			shipRightLaser = KeyEvent.VK_QUOTE, shipRightDown = KeyEvent.VK_SLASH;
-	
-	private class GamePanel extends JPanel {
-		
-		public GamePanel() {
-			addKeyListener(new KeyListener() {
-				
-				@Override
-				public void keyTyped(KeyEvent arg0) {
-					//Does nothing
-				}
-				
-				@Override
-				public void keyReleased(KeyEvent arg0) {
-					synchronized (keysPressed) {
-						synchronized (keysReleased) {
-							keysReleased.add(arg0.getKeyCode());
-						}
-					}
-				}
-				
-				@Override
-				public void keyPressed(KeyEvent arg0) {
-					int keyCode = arg0.getKeyCode();
-					synchronized (keysPressed) {
-						synchronized (keysReleased) {
-							keysPressed.add(keyCode);
-							keysReleased.remove(keyCode);
-						}
-					}
-				}
-			});
-			
-			addFocusListener(new FocusListener() {
-				
-				@Override
-				public void focusLost(FocusEvent arg0) {
-					requestFocusInWindow();
-				}
-				
-				@Override
-				public void focusGained(FocusEvent arg0) {
-					//Do nothing
-				}
-			});
-		}
-		
-		@Override
-		public void paint(Graphics g) {
-			// TODO Auto-generated method stub
-			super.paint(g);
-			Graphics2D g2d = (Graphics2D)g;
-			for(GameObject go : getGameObjectsClone())
-				go.draw(g2d);
-		}
-	}
+			shipRightLaser = KeyEvent.VK_QUOTE, shipRightDown = KeyEvent.VK_SLASH,
+			exitGame = KeyEvent.VK_E;
+	private final char startGame = 's', exit = 'e';
 
 }
