@@ -108,12 +108,16 @@ public class GameRoom implements Drawable {
 				shipLeft.accUp();
 			else if(keyCode == shipLeftLaser)
 				shipLeft.fireLaser();
+			else if(keyCode == shipLeftMissile)
+				shipLeft.fireMissile();
 			else if(keyCode == shipLeftDown)
 				shipLeft.accDown();
 			else if(keyCode == shipRightUp)
 				shipRight.accUp();
 			else if(keyCode == shipRightLaser)
 				shipRight.fireLaser();
+			else if(keyCode == shipRightMissile)
+				shipRight.fireMissile();
 			else if(keyCode == shipRightDown)
 				shipRight.accDown();
 			else if(keyCode == exitGame)
@@ -187,8 +191,9 @@ public class GameRoom implements Drawable {
 	}
 	
 	private final int shipLeftUp = KeyEvent.VK_Q, shipLeftLaser = KeyEvent.VK_A,
-			shipLeftDown = KeyEvent.VK_Z, shipRightUp = KeyEvent.VK_CLOSE_BRACKET,
-			shipRightLaser = KeyEvent.VK_QUOTE, shipRightDown = KeyEvent.VK_SLASH,
+			shipLeftMissile = KeyEvent.VK_S, shipLeftDown = KeyEvent.VK_Z,
+			shipRightUp = KeyEvent.VK_CLOSE_BRACKET, shipRightLaser = KeyEvent.VK_QUOTE,
+			shipRightMissile = KeyEvent.VK_SEMICOLON, shipRightDown = KeyEvent.VK_SLASH,
 			exitGame = KeyEvent.VK_E;
 	private final char startGame = 's', exit = 'e';
 
