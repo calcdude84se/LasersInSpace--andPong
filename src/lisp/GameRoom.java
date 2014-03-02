@@ -339,10 +339,10 @@ public class GameRoom implements Drawable {
 			g.drawString(lines[i], x, y + (i + 1) * fontSize);
 	}
 	
-	private final int shipLeftUp = KeyEvent.VK_Q, shipLeftLaser = KeyEvent.VK_A,
-			shipLeftMissile = KeyEvent.VK_S, shipLeftDown = KeyEvent.VK_Z,
-			shipRightUp = KeyEvent.VK_CLOSE_BRACKET, shipRightLaser = KeyEvent.VK_QUOTE,
-			shipRightMissile = KeyEvent.VK_SEMICOLON, shipRightDown = KeyEvent.VK_SLASH,
+	private final int shipLeftUp = KeyEvent.VK_W, shipLeftLaser = KeyEvent.VK_D,
+			shipLeftMissile = KeyEvent.VK_A, shipLeftDown = KeyEvent.VK_S,
+			shipRightUp = KeyEvent.VK_P, shipRightLaser = KeyEvent.VK_L,
+			shipRightMissile = KeyEvent.VK_QUOTE, shipRightDown = KeyEvent.VK_SEMICOLON,
 			exitGame = KeyEvent.VK_E;
 
 }
