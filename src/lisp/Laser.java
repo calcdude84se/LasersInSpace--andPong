@@ -72,7 +72,11 @@ public class Laser implements GameObject {
 		
 		double dist;
 		
-		while(field.isFree(r[0], r[1]) && r[0]>0 && r[0]<room.getPanel().getWidth() && r[1]>0 && r[1]< room.getPanel().getHeight()){
+		while(field.isFree(r[0], r[1]) && 
+			  ship1.testLazerFree(r[0], r[1]) &&
+			  ship2.testLazerFree(r[0], r[1]) &&
+			  r[0]>0 && r[0]<room.getPanel().getWidth() && 
+			  r[1]>0 && r[1]< room.getPanel().getHeight()){
 			
 			
 			

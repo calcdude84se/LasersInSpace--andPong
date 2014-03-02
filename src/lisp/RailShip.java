@@ -25,11 +25,18 @@ public class RailShip implements GameObject {
 		this.y = y;
 		this.facesRight = facesRight;
 		this.room = room;
-		//y_speed = .5;
+		y_speed = .5;
 		
 	}
 	
 	public void step(){
+		
+		if(y<0||y>room.getPanel().getHeight()-SHIP_HEIGHT){
+			y_speed = -.5*y_speed;
+			y+=y_speed;
+			
+		}
+		
 		y += y_speed;
 		lazerCoolDown--;
 		//fireLaser();
@@ -52,13 +59,19 @@ public class RailShip implements GameObject {
 	public void fireLaser(){
 		if(lazerCoolDown<0){
 			
-			room.addObject(new Laser(x+SHIP_WIDTH/2, y+SHIP_HEIGHT/2, facesRight, room));
+			room.addObject(new Laser(x+(facesRight?SHIP_WIDTH+1:-1) , y+SHIP_HEIGHT/2, facesRight, room));
 			lazerCoolDown = 30;
 		}
 		
 	}
 	
-	public boolean isFree(){
-		return true;
+	public boolean testLazerFree(double xshot, double yshot){
+		if(xshot < x || xshot > x+SHIP_WIDTH || yshot < y || yshot> y + SHIP_HEIGHT){
+			return true;
+		}
+		room.addObject(new Explosion(x, y, room));
+		room.getScoreBoard().setScore(facesRight?1:0);
+		return false;
+		
 	}
 }
