@@ -15,6 +15,10 @@ public class Laser extends GameObjectInRoom {
 	RailShip ship1;
 	RailShip ship2;
 	
+	private double init_x;
+	private double init_y;
+	private boolean facesRight;
+	
 	private static final double STEPSIZE_GOAL = .5; 
 	
 	private static final Stroke STROKE = new BasicStroke(2);
@@ -27,6 +31,10 @@ public class Laser extends GameObjectInRoom {
 		ship2 = room.getShipRight();
 		this.room = room;
 		path = integrate(init_x, init_y, facesRight);
+		
+		this.init_x = init_x;
+		this.init_y = init_y;
+		this.facesRight = facesRight;
 		
 		
 		
@@ -47,10 +55,11 @@ public class Laser extends GameObjectInRoom {
 
 	@Override
 	public void step() {
+		path = integrate(init_x, init_y, facesRight);
 		on = (on<5)?on+1:0;
 		life--;
 		if(life == 0){
-			room.removeObject(this);
+			destroy();
 		}
 	}
 	
@@ -96,6 +105,10 @@ public class Laser extends GameObjectInRoom {
 			r[1] += timeStep*r[3];
 			
 			
+		}
+		
+		if(!field.isFree(r[0], r[1])){
+			room.addObject(new Explosion(r[0], r[1], room, 15,Color.BLUE ));
 		}
 		
 		
