@@ -10,6 +10,7 @@ import java.util.Collection;
 
 import javax.swing.JPanel;
 
+import lisp.drawers.AsteroidGeoDrawer;
 import lisp.drawers.AsteroidImageDrawer;
 import lisp.drawers.ComboGameObjectDrawer;
 import lisp.drawers.GameObjectDrawer;
@@ -152,8 +153,8 @@ public class GameRoom implements Drawable {
 	 * Initializes for one game.
 	 */
 	private void init() {
-		asteroidDrawer = new IndirectGameObjectDrawer<>(new AsteroidImageDrawer());
-		shipBodyDrawer = new IndirectGameObjectDrawer<>(new RailShipBodyImageDrawer());
+		asteroidDrawer = new IndirectGameObjectDrawer<>(retro ? new AsteroidGeoDrawer() : new AsteroidImageDrawer());
+		shipBodyDrawer = new IndirectGameObjectDrawer<>(retro ? new RailShipBodyGeoDrawer() : new RailShipBodyImageDrawer());
 		shipDrawer = new ComboGameObjectDrawer<>(shipBodyDrawer, new RailShipFlareGeoDrawer());
 		panel.resetKeys();
 		gameObjects.clear();
