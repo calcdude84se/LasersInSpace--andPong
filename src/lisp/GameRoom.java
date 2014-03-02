@@ -173,10 +173,7 @@ public class GameRoom implements Drawable {
 			for(GameObject go : getGameObjectsClone())
 				go.draw(g);
 		else {
-			g.setColor(Color.white);
-			g.setFont(new Font("Helvetica", Font.PLAIN, 20));
-			g.drawString("Lasers In Space! -- and Pong", 200, 200);
-			g.drawString("Press 's' to start,  'e' to exit", 210, 240);
+			drawString(g, "Lasers In Space! -- and Pong\nPress 's' to start,  'e' to exit", 0, 0);
 		}
 			
 	}
