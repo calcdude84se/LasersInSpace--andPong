@@ -11,14 +11,14 @@ import java.util.Set;
 
 import javax.swing.JPanel;
 
-public class GamePanel extends JPanel {
+public class KeyPanel extends JPanel {
 	
-	private Drawable gameRoom;
+	private Drawable drawable;
 	private Set<Integer> keysPressed = new HashSet<>();
 	private Set<Integer> keysReleased = new HashSet<>();
 
-	public GamePanel(GameRoom gameRoom) {
-		this.gameRoom = gameRoom;
+	public KeyPanel(Drawable drawable) {
+		this.drawable = drawable;
 		
 		addKeyListener(new KeyListener() {
 			
@@ -76,7 +76,7 @@ public class GamePanel extends JPanel {
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paint(g);
-		gameRoom.draw((Graphics2D)g);
+		drawable.draw((Graphics2D)g);
 	}
 
 	public void resetPressedKeys() {

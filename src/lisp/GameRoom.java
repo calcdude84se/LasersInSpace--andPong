@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 public class GameRoom implements Drawable {
 	
-	private GamePanel panel;
+	private KeyPanel panel;
 	/**
 	 * Step size in milliseconds
 	 */
@@ -25,7 +25,7 @@ public class GameRoom implements Drawable {
 	{
 		stepSize = 10;
 		final int panelWidth = 640, panelHeight = 480;
-		panel = new GamePanel(this);
+		panel = new KeyPanel(this);
 		panel.setPreferredSize(new Dimension(panelWidth, panelHeight));
 	}
 
