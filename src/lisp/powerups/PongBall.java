@@ -24,7 +24,7 @@ public class PongBall extends GameObjectInRoom {
 			y+=v;
 		}
 		if(y>room.getPanel().getHeight()-DIM){
-			v = -.5*Math.abs(v);
+			v = -Math.abs(v);
 		}
 		
 		if(x<RailShip.SHIP_WIDTH){
@@ -32,12 +32,14 @@ public class PongBall extends GameObjectInRoom {
 			x+=h;
 			if(room.getShipLeft().getY()>y||room.getShipLeft().getY()+RailShip.SHIP_HEIGHT<y){
 				room.getShipLeft().removeLife();
+				this.destroy();
 			}
 		}
 		if(x>room.getPanel().getWidth()-DIM - RailShip.SHIP_WIDTH){
-			x = -.5*Math.abs(h);
+			h = -Math.abs(h);
 			if(room.getShipRight().getY()>y||room.getShipRight().getY()+RailShip.SHIP_HEIGHT<y){
 				room.getShipRight().removeLife();
+				this.destroy();
 			}
 		}
 		

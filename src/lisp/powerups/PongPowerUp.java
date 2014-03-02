@@ -18,9 +18,9 @@ public class PongPowerUp extends Powerup{
 
 	@Override
 	protected void activate() {
-		ball = new PongBall(x, y, 15, 15, room);
+		ball = new PongBall(x, y, 5, 5, room);
 		room.addObject(ball);
-		int timer = 270;
+		int timer = 470;
 		
 	}
 
