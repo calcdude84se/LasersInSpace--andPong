@@ -11,7 +11,7 @@ public class RailShipBodyGeoDrawer implements GameObjectDrawer<RailShip> {
 	public void draw(RailShip railShip, Graphics2D g) {
 		
 		g.setColor(Color.GREEN);
-		g.drawRect((int) Math.round(railShip.getX()), (int) Math.round(railShip.y), RailShip.SHIP_WIDTH, RailShip.SHIP_HEIGHT);
+		g.drawRect((int) Math.round(railShip.getX()), (int) Math.round(railShip.y), railShip.SHIP_WIDTH, railShip.SHIP_HEIGHT);
 		
 	}
 

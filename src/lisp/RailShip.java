@@ -24,8 +24,8 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	private GameRoom room;
 	public static final Stroke STROKE = new BasicStroke(2);
 	private static double PER_STEP_ACC = .06;
-	public static final int SHIP_WIDTH = 30;
-	public static final int SHIP_HEIGHT = 55;
+	public int SHIP_WIDTH = 30;
+	public int SHIP_HEIGHT = 55;
 	private static final int COOL_DOWN_TIME = 50;
 	
 	

@@ -46,7 +46,7 @@ public class Laser extends GameObjectInRoom {
 
 	@Override
 	public void step() {
-		init_y = owner.getY() + RailShip.SHIP_HEIGHT/2;
+		init_y = owner.getY() + owner.SHIP_HEIGHT/2;
 		path = integrate(init_x, init_y, facesRight);
 		on = (on<5)?on+1:0;
 		life--;
