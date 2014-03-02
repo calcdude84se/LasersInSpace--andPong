@@ -2,7 +2,6 @@ package lisp;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.geom.Ellipse2D;
 import java.util.Random;
@@ -10,16 +9,16 @@ import java.util.Random;
 public class RailShip extends GameObjectInRoom {
 	
 
-	private double x;
-	private double y;
+	double x;
+	double y;
 	private double y_speed = 0;
 	private boolean facesRight;
 	private int lazerCoolDown=0;
 	private int missileCoolDown=0;
-	private int thrustingUp = 0;
-	private int thrustingDown = 0;
+	int thrustingUp = 0;
+	int thrustingDown = 0;
 	
-	private Random r = new Random();
+	Random r = new Random();
 	
 	private GameRoom room;
 	public static final Stroke STROKE = new BasicStroke(2);
@@ -110,44 +109,6 @@ public class RailShip extends GameObjectInRoom {
 	}
 	public double getY(){
 		return y;
-	}
-	
-	public class RailShipGeoDrawer implements Drawable {
-
-		@Override
-		public void draw(Graphics2D g) {
-
-			g.setStroke(STROKE);
-			
-			
-			//Engines
-			
-			g.setColor(Color.RED);
-			if(thrustingDown>0){
-				for(int i = 0; i<12; i++){
-					g.drawLine((int) Math.round(x+SHIP_WIDTH/2), 
-							   (int) Math.round(y), 
-							   (int) Math.round(x+SHIP_WIDTH*r.nextDouble()), 
-							   (int) Math.round(y - SHIP_HEIGHT*.5*r.nextDouble()));
-			
-				}
-			}
-			
-			else if(thrustingUp>0){
-				for(int i = 0; i<12; i++){
-					g.drawLine((int) Math.round(x+SHIP_WIDTH/2), 
-							   (int) Math.round(y+SHIP_HEIGHT), 
-							   (int) Math.round(x+SHIP_WIDTH*r.nextDouble()), 
-							   (int) Math.round(y + SHIP_HEIGHT*(1+.5*r.nextDouble())));
-			
-				}
-			}
-			
-			g.setColor(Color.GREEN);
-			g.drawRect((int) Math.round(x), (int) Math.round(y), SHIP_WIDTH, SHIP_HEIGHT);
-			
-		}
-
 	}
 
 }

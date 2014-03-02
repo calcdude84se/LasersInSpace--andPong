@@ -1,6 +1,5 @@
 package lisp;
 import java.awt.Color;
-import java.awt.Graphics2D;
 
 
 public class Explosion extends GameObjectInRoom{
@@ -33,18 +32,6 @@ public class Explosion extends GameObjectInRoom{
 		if( life>2*radius ){
 			this.destroy();
 			
-		}
-	}
-	
-	public class ExplosionGeoDrawer implements Drawable {
-
-		@Override
-		public void draw(Graphics2D g) {
-			g.setColor(color);
-			for(double angle = 0; angle < 2*Math.PI; angle+=Math.PI/4){
-				g.drawLine((int) (x+life*Math.sin(angle)), (int) (y+life*Math.cos(angle)), (int) (x+(radius+life)*Math.sin(angle)),(int) (y+(radius+life)*Math.cos(angle)));
-			}
-
 		}
 	}
 

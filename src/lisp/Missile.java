@@ -1,13 +1,12 @@
 package lisp;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Missile extends GameObjectInRoom {
 	
-	private double[] r;
+	double[] r;
 	private int thrusting = 10;
 	private GameRoom room;
 	private RailShip ship1, ship2; 
@@ -65,16 +64,5 @@ public class Missile extends GameObjectInRoom {
 		r[0] += r[2];
 		r[1] += r[3];
 		
-	}
-	
-	public class MissileGeoDrawer implements Drawable {
-
-		
-		public void draw(Graphics2D g){
-			g.setColor(Color.CYAN);
-			g.drawOval((int) r[0]-5,(int) r[1]-5, 10, 10);
-			
-			
-		}
 	}
 }

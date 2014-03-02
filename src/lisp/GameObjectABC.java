@@ -2,12 +2,12 @@ package lisp;
 
 import java.awt.Graphics2D;
 
-public abstract class GameObjectABC implements GameObject {
+public abstract class GameObjectABC<T extends GameObjectABC> implements GameObject {
 
-	protected Drawable drawer;
+	protected GameObjectDrawer<T> drawer;
 	
 	@Override
 	public void draw(Graphics2D g) {
-		drawer.draw(g);
+		drawer.draw((T)this, g);
 	}
 }
