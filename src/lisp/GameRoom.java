@@ -43,6 +43,8 @@ public class GameRoom implements Drawable {
 	private GameObjectDrawer<AsteroidImp> asteroidDrawer;
 	private GameObjectDrawer<RailShip> shipBodyDrawer, shipDrawer;
 	
+	private MenuState menuState;
+	
 	public GameRoom()
 	{
 		stepSize = 10;
@@ -50,6 +52,7 @@ public class GameRoom implements Drawable {
 		panel = new KeyPanel(this);
 		panel.setPreferredSize(new Dimension(panelWidth, panelHeight));
 		panel.setBackground(Color.black);
+		menuState = new MenuState();
 	}
 
 	public JPanel getPanel() {
@@ -75,26 +78,41 @@ public class GameRoom implements Drawable {
 					e.printStackTrace();
 				}
 			} else {
-				processKey(panel.getKey());
+				menuState.processKey(panel.getKey());
 				panel.repaint();
 			}
 		}
 		deinit();
 	}
 	
-	/**
-	 * Process a key in menu mode
-	 * @param key the key to be processed.
-	 */
-	private void processKey(char key) {
-		// TODO Auto-generated method stub
-		if(key == startGame) {
-			isGameOver = false;
-			init();
-		} else if(key == exit) {
-			done = true;
-		} else if(key == toggleSinglePlayer){
-			singlePlayer = !singlePlayer;
+	private static enum Menu {
+		main, options
+	}
+	
+	private class MenuState {
+		
+		private Menu menu = Menu.main;
+		
+		/**
+		 * Process a key in menu mode
+		 * @param key the key to be processed.
+		 */
+		private void processKey(char key) {
+			switch(menu) {
+			case main:
+				main(key);
+			}
+		}
+		
+		private void main(char key) {
+			if(key == startGame) {
+				isGameOver = false;
+				init();
+			} else if(key == exit) {
+				done = true;
+			} else if(key == toggleSinglePlayer){
+				singlePlayer = !singlePlayer;
+			}
 		}
 	}
 
