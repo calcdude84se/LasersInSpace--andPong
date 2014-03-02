@@ -96,8 +96,9 @@ public class GameRoom {
 						shipRight.fireLaser();
 					else if(keyCode == shipRightDown)
 						shipRight.accDown();
-					keysReleased.remove(keyCode);
 				}
+				keysPressed.removeAll(keysReleased);
+				keysReleased.clear();
 			}
 		}
 	}
