@@ -40,7 +40,7 @@ public class RailShip extends GameObjectInRoom {
 		this.facesRight = facesRight;
 		this.room = room;
 		
-		this.drawer = new RailShipGeoDrawer();
+		this.drawer = room.getShipDrawer();
 		
 	}
 	

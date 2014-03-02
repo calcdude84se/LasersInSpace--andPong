@@ -13,7 +13,7 @@ public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid{
 	private double yvelocity;
 
 	
-	public AsteroidImp(double x, double y, double r, double vx, double vy){
+	public AsteroidImp(GameRoom room, double x, double y, double r, double vx, double vy){
 		this.x = x;
 		this.y = y;
 		this.xcenter = (x+ r);
@@ -22,7 +22,7 @@ public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid{
 		this.yvelocity = vy;
 		this.r = r;
 		
-		this.drawer = new AsteroidGeoDrawer();
+		this.drawer = room.getAsteroidDrawer();
 	}
 
 	public void step() {

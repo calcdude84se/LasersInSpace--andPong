@@ -11,6 +11,10 @@ import java.util.Collection;
 
 import javax.swing.JPanel;
 
+import lisp.drawers.AsteroidGeoDrawer;
+import lisp.drawers.GameObjectDrawer;
+import lisp.drawers.RailShipGeoDrawer;
+
 public class GameRoom implements Drawable {
 	
 	//Gametype flags changeable in menu
@@ -32,6 +36,9 @@ public class GameRoom implements Drawable {
 	private int fontSize = 30;
 	private Font text = new Font("Helvetica", Font.PLAIN, fontSize);
 	private Color textColor = Color.white;
+	
+	private GameObjectDrawer<AsteroidImp> asteroidDrawer = new IndirectGameObjectDrawer<>(new AsteroidGeoDrawer());
+	private GameObjectDrawer<RailShip> shipDrawer = new IndirectGameObjectDrawer<>(new RailShipGeoDrawer());
 	
 	public GameRoom()
 	{
@@ -175,6 +182,14 @@ public class GameRoom implements Drawable {
 	
 	public Font getText() {
 		return text;
+	}
+	
+	public GameObjectDrawer<AsteroidImp> getAsteroidDrawer() {
+		return asteroidDrawer;
+	}
+	
+	public GameObjectDrawer<RailShip> getShipDrawer() {
+		return shipDrawer;
 	}
 
 	private Collection<GameObject> getGameObjectsClone() {
