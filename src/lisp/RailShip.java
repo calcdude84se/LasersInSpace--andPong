@@ -27,6 +27,9 @@ public class RailShip extends GameObjectInRoom {
 	public static final int SHIP_HEIGHT = 40;
 	private static final int COOL_DOWN_TIME = 50;
 	
+	private double health = 20;
+	private int lives = 10;
+	
 	public RailShip(double x, double y, boolean facesRight, GameRoom room){
 		super(room);
 		this.x = x;
@@ -53,6 +56,16 @@ public class RailShip extends GameObjectInRoom {
 		thrustingUp--;
 		thrustingDown--;
 		missileCoolDown--;
+		if(health<20){
+			health+=.01;
+		}
+		if(health<0){
+			lives--;
+			health = 20;
+		}
+		if(lives <0){
+			room.gameOver();
+		}
 	}
 	
 	public void accUp(){
@@ -88,7 +101,7 @@ public class RailShip extends GameObjectInRoom {
 			return true;
 		}
 		room.addObject(new Explosion(xshot, yshot, room, Color.RED));
-		room.getScoreBoard().setScore(facesRight?1:0);
+		health--;
 		return false;
 		
 	}
