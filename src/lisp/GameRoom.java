@@ -200,8 +200,12 @@ public class GameRoom implements Drawable {
 				drawString(g,"Controls\nPlayer 1:\n's': shoot missile\n'a': shoot laser\n'q': go up\n'z': go down\nPlayer 2:\n':':shoot missile\n'\"': shoot laser\n'}':go up\n'/': go down\n'"+exit+"' to return to the main menu",0,0);
 				break;
 			case gameOver:
-				if(shipLeft.getHealth()>shipRight.getHealth())
+				if(shipLeft.getLives()>shipRight.getLives())
 				drawString(g, "Game over!\nPlayer 1 has won!\nPress any key to return to main menu.", 0, 0);
+				else if(shipLeft.getLives()<shipRight.getLives())
+					drawString(g, "Game over!\nPlayer 2 has won!\nPress any key to return to main menu.", 0, 0);
+				else if(shipLeft.getHealth()>shipRight.getHealth())
+					drawString(g, "Game over!\nPlayer 1 has won!\nPress any key to return to main menu.", 0, 0);
 				else if(shipLeft.getHealth()<shipRight.getHealth())
 					drawString(g, "Game over!\nPlayer 2 has won!\nPress any key to return to main menu.", 0, 0);
 				else
