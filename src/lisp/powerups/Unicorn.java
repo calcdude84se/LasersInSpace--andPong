@@ -52,7 +52,7 @@ public class Unicorn extends Powerup<Unicorn> implements WithId, WithPosition {
 
 	@Override
 	public Double getPosition() {
-		return new Double(x, y, x+2*r, y+2*r);
+		return new Double(x, y, 2*r, 2*r);
 	}
 
 	@Override
