@@ -1,16 +1,17 @@
 package lisp.drawers;
 
-import java.awt.Graphics2D;
-
 import lisp.AsteroidImp;
 
-public class AsteroidImageDrawer implements GameObjectDrawer<AsteroidImp> {
+public class AsteroidImageDrawer extends GenericImageDrawer<AsteroidImp> {
 	
-
+	private static final String[] paths = new String[] {"images/asteroid0.png", "images/asteroid1.png"};
+	
+	public AsteroidImageDrawer() {
+		init();
+	}
+	
 	@Override
-	public void draw(AsteroidImp asteroid, Graphics2D g) {
-        g.drawImage(asteroid.getImage(),
-        		(int)asteroid.x,(int)asteroid.y,(int)(2*asteroid.r),(int)(2*asteroid.r),
-        		null);
+	protected String[] getPaths() {
+		return paths;
 	}
 }
