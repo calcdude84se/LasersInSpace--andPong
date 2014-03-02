@@ -7,7 +7,7 @@ import java.awt.Stroke;
 import java.awt.geom.Ellipse2D;
 import java.util.Random;
 
-public class RailShip extends GameObjectInRoom implements GameObject {
+public class RailShip extends GameObjectInRoom {
 	
 
 	private double x;
@@ -19,14 +19,14 @@ public class RailShip extends GameObjectInRoom implements GameObject {
 	private int thrustingUp = 0;
 	private int thrustingDown = 0;
 	
+	private Random r = new Random();
+	
 	private GameRoom room;
-	private static final Stroke STROKE = new BasicStroke(2);
+	public static final Stroke STROKE = new BasicStroke(2);
 	private static double PER_STEP_ACC = .06;
 	public static final int SHIP_WIDTH = 20;
 	public static final int SHIP_HEIGHT = 40;
 	private static final int COOL_DOWN_TIME = 50;
-	
-	Random r;
 	
 	public RailShip(double x, double y, boolean facesRight, GameRoom room){
 		super(room);
@@ -35,7 +35,7 @@ public class RailShip extends GameObjectInRoom implements GameObject {
 		this.facesRight = facesRight;
 		this.room = room;
 		
-		r = new Random();
+		this.drawer = new RailShipGeoDrawer();
 		
 	}
 	
@@ -54,38 +54,6 @@ public class RailShip extends GameObjectInRoom implements GameObject {
 		thrustingUp--;
 		thrustingDown--;
 		missileCoolDown--;
-	}
-	
-	public void draw(Graphics2D g){
-		
-		g.setStroke(STROKE);
-		
-		
-		//Engines
-		
-		g.setColor(Color.RED);
-		if(thrustingDown>0){
-			for(int i = 0; i<12; i++){
-				g.drawLine((int) Math.round(x+SHIP_WIDTH/2), 
-						   (int) Math.round(y), 
-						   (int) Math.round(x+SHIP_WIDTH*r.nextDouble()), 
-						   (int) Math.round(y - SHIP_HEIGHT*.5*r.nextDouble()));
-		
-			}
-		}
-		
-		if(thrustingUp>0){
-			for(int i = 0; i<12; i++){
-				g.drawLine((int) Math.round(x+SHIP_WIDTH/2), 
-						   (int) Math.round(y+SHIP_HEIGHT), 
-						   (int) Math.round(x+SHIP_WIDTH*r.nextDouble()), 
-						   (int) Math.round(y + SHIP_HEIGHT*(1+.5*r.nextDouble())));
-		
-			}
-		}
-		
-		g.setColor(Color.GREEN);
-		g.drawRect((int) Math.round(x), (int) Math.round(y), SHIP_WIDTH, SHIP_HEIGHT);
 	}
 	
 	public void accUp(){
@@ -143,4 +111,43 @@ public class RailShip extends GameObjectInRoom implements GameObject {
 	public double getY(){
 		return y;
 	}
+	
+	public class RailShipGeoDrawer implements Drawable {
+
+		@Override
+		public void draw(Graphics2D g) {
+
+			g.setStroke(STROKE);
+			
+			
+			//Engines
+			
+			g.setColor(Color.RED);
+			if(thrustingDown>0){
+				for(int i = 0; i<12; i++){
+					g.drawLine((int) Math.round(x+SHIP_WIDTH/2), 
+							   (int) Math.round(y), 
+							   (int) Math.round(x+SHIP_WIDTH*r.nextDouble()), 
+							   (int) Math.round(y - SHIP_HEIGHT*.5*r.nextDouble()));
+			
+				}
+			}
+			
+			else if(thrustingUp>0){
+				for(int i = 0; i<12; i++){
+					g.drawLine((int) Math.round(x+SHIP_WIDTH/2), 
+							   (int) Math.round(y+SHIP_HEIGHT), 
+							   (int) Math.round(x+SHIP_WIDTH*r.nextDouble()), 
+							   (int) Math.round(y + SHIP_HEIGHT*(1+.5*r.nextDouble())));
+			
+				}
+			}
+			
+			g.setColor(Color.GREEN);
+			g.drawRect((int) Math.round(x), (int) Math.round(y), SHIP_WIDTH, SHIP_HEIGHT);
+			
+		}
+
+	}
+
 }
