@@ -7,9 +7,8 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.HashSet;
-import java.util.Queue;
 import java.util.Set;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import javax.swing.JPanel;
 
@@ -18,7 +17,7 @@ public class KeyPanel extends JPanel {
 	private Drawable drawable;
 	private Set<Integer> keysPressed = new HashSet<>();
 	private Set<Integer> keysReleased = new HashSet<>();
-	private Queue<Character> keysTyped = new ConcurrentLinkedQueue<>();
+	private LinkedBlockingQueue<Character> keysTyped = new LinkedBlockingQueue<>();
 
 	public KeyPanel(Drawable drawable) {
 		this.drawable = drawable;
@@ -76,7 +75,13 @@ public class KeyPanel extends JPanel {
 	}
 	
 	public char getKey() {
-		return keysTyped.remove();
+		while(true) {
+			try {
+				return keysTyped.take();
+			} catch(InterruptedException e) {
+				
+			}
+		}
 	}
 	
 	@Override
