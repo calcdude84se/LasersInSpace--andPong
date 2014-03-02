@@ -133,10 +133,10 @@ public class GameRoom implements Drawable {
 		public void draw(Graphics2D g) {
 			switch(menu) {
 			case main:
-				drawString(g, "Lasers In Space! -- and Pong\nPress 's' to start,  'e' to exit\n'p' to toggle single-player\n'o' for options\n"+(singlePlayer?"Single-player on!":"Single-player off!"), 0, 0);
+				drawString(g, "Lasers In Space! -- and Pong\nPress '"+startGame+"' to start,  '"+exit+"' to exit\n'"+toggleSinglePlayer+"' to toggle single-player\n'"+options+"' for options\n"+(singlePlayer?"Single-player on!":"Single-player off!"), 0, 0);
 				break;
 			case options:
-				drawString(g, "Options\nPress 'm' to return to the main menu", 0, 0);
+				drawString(g, "Options\nPress '"+mainMenu+"' to return to the main menu", 0, 0);
 			}
 		}
 	}
