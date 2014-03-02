@@ -11,8 +11,6 @@ import lisp.drawers.RailShipBodyGeoDrawer;
 
 public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	
-
-	public double x;
 	public double y;
 	private double y_speed = 0;
 	private boolean facesRight;
@@ -26,17 +24,16 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	private GameRoom room;
 	public static final Stroke STROKE = new BasicStroke(2);
 	private static double PER_STEP_ACC = .06;
-	public static final int SHIP_WIDTH = 30;
-	public static final int SHIP_HEIGHT = 55;
+	private int width = 30;
+	private int height = 55;
 	private static final int COOL_DOWN_TIME = 50;
 	
 	
 	private double health = 10;
 	private int lives = 3;
 	
-	public RailShip(double x, double y, boolean facesRight, GameRoom room){
+	public RailShip(double y, boolean facesRight, GameRoom room){
 		super(room);
-		this.x = x;
 		this.y = y;
 		this.facesRight = facesRight;
 		this.room = room;
@@ -51,7 +48,7 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 			y_speed = .5*Math.abs(y_speed);
 			y+=y_speed;
 		}
-		if(y>room.getPanel().getHeight()-SHIP_HEIGHT){
+		if(y>room.getPanel().getHeight()-height){
 			y_speed = -.5*Math.abs(y_speed);
 		}
 		
@@ -85,7 +82,7 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	public void fireLaser(){
 		if(lazerCoolDown<0){
 			
-			room.addObject(new Laser(x+(facesRight?SHIP_WIDTH+1:-1) , y+SHIP_HEIGHT/2, facesRight, this, room));
+			room.addObject(new Laser(getX()+(facesRight?width+1:-1) , y+height/2, facesRight, this, room));
 			lazerCoolDown = COOL_DOWN_TIME;
 		}
 		
@@ -94,14 +91,14 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	public void fireMissile(){
 		if(missileCoolDown<0){
 			
-			room.addObject(new Missile(x+(facesRight?SHIP_WIDTH+1:-1) , y+SHIP_HEIGHT/2, facesRight, room));
+			room.addObject(new Missile(getX()+(facesRight?width+1:-1) , y+height/2, facesRight, room));
 			missileCoolDown = COOL_DOWN_TIME;
 		}
 		
 	}
 	
 	public boolean testLazerFree(double xshot, double yshot, boolean isMissile){
-		if(xshot < x || xshot > x+SHIP_WIDTH || yshot < y || yshot> y + SHIP_HEIGHT){
+		if(xshot < getX() || xshot > getX() +width || yshot < y || yshot> y + height){
 			return true;
 		}
 		room.addObject(new Explosion(xshot, yshot, room, Color.RED));
@@ -117,7 +114,7 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	public void collideAsteroids(){
 		for(AsteroidImp ast : Utilities.cloneArrayList(room.getAsteroidField().getAsteroids())){
 			Ellipse2D asteroid = new Ellipse2D.Double(ast.getXCenter() - ast.getR(), ast.getYCenter()-ast.getR(), 2*ast.getR(), 2*ast.getR());
-			if(asteroid.intersects(x, y, SHIP_WIDTH, SHIP_HEIGHT)){			
+			if(asteroid.intersects(getX(), y, width, height)){			
 				room.addObject(new Explosion(ast.getXCenter(), ast.getYCenter(), room, Color.BLUE));
 				removeLife();
 				ast.destroy();
@@ -126,7 +123,7 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 		}
 	}
 	public double getX(){
-		return x;
+		return facesRight ? 0 : room.getPanel().getWidth() - width;
 	}
 	public double getY(){
 		return y;
@@ -134,7 +131,7 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	public void removeLife(){
 		lives--;
 		health = 10;
-		room.addObject(new CircularExplosion(x, y, room, 180, Color.CYAN));
+		room.addObject(new CircularExplosion(getX(), y, room, 180, Color.CYAN));
 	}
 	public double getHealth(){
 		return health;
@@ -150,6 +147,22 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 
 	@Override
 	public Double getPosition() {
-		return new Double(x, y, SHIP_WIDTH, SHIP_HEIGHT);
+		return new Double(getX(), y, width, height);
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int sHIP_WIDTH) {
+		width = sHIP_WIDTH;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int sHIP_HEIGHT) {
+		height = sHIP_HEIGHT;
 	}
 }
