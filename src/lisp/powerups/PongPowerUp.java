@@ -4,6 +4,7 @@ import java.awt.geom.Rectangle2D;
 
 import lisp.GameRoom;
 import lisp.PowerupField;
+import lisp.drawers.PongBallPowerUpDrawer;
 
 public class PongPowerUp extends Powerup{
 	GameRoom room;
@@ -12,7 +13,7 @@ public class PongPowerUp extends Powerup{
 	public PongPowerUp(PowerupField puField, double x, double y, double xv, double yv, double r, GameRoom room){
 		super(puField, x, y, xv, yv, r);
 		this.room = room;
-		
+		this.drawer = new PongBallPowerUpDrawer();
 	}
 
 	@Override
