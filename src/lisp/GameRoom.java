@@ -134,6 +134,10 @@ public class GameRoom {
 		return shipRight;
 	}
 	
+	public ScoreBoard getScoreBoard() {
+		return scoreBoard;
+	}
+	
 	private Collection<GameObject> getGameObjectsClone() {
 		return (Collection<GameObject>)((ArrayList)gameObjects).clone();
 	}
