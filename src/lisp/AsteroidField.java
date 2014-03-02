@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 
+import javax.swing.JPanel;
+
 public class AsteroidField implements GameObject{
 	
 	Random gen = new Random();
@@ -18,13 +20,24 @@ public class AsteroidField implements GameObject{
 		 * Based on a 480 X 620 sized room
 		 */
 		for (int i=0; i<=asteroidNum; i++){
-		int x = gen.nextInt(500)+ 60;
-		int y = gen.nextInt(380) + 60;
-		int r = gen.nextInt(20) + 15;
-		asteroids.add(new AsteroidImp(x,y,r));
+		int[] a = getCoords(room);
+		asteroids.add(new AsteroidImp(a[0],a[1],a[2]));
 		}
 	}
-	
+	/*
+	 * This gets the coordinates for the asteroids based on the frame size and not arbitrary magic numbers.
+	 */
+	private int[] getCoords(GameRoom room){
+		JPanel panel = room.getPanel();
+		int x1 = panel.getWidth();
+		int y1 = panel.getHeight();
+		
+		int x = gen.nextInt(x1-120)+ 60;
+		int y = gen.nextInt(y1-120) + 60;
+		int r = gen.nextInt(20) + 15;
+		int[] a = new int[] {x,y,r};
+		return a; 
+	}
 
 	@Override
 	public void draw(Graphics2D g) {
