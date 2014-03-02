@@ -32,7 +32,7 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	
 	
 	private double health = 10;
-	private int lives = 5;
+	private int lives = 3;
 	
 	public RailShip(double x, double y, boolean facesRight, GameRoom room){
 		super(room);
