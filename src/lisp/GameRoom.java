@@ -28,6 +28,7 @@ public class GameRoom implements Drawable {
 	//Gametype flags changeable in menu
 	private boolean singlePlayer = false;
 	private boolean retro = false;
+	private int difficulty = 0;
 	
 	private static final String NAME = "Laser Space Pong -- In Spaaaace";
 	
@@ -207,7 +208,7 @@ public class GameRoom implements Drawable {
 		gameObjects.add(scoreBoard);
 		gameObjects.add(asteroidField);
 		if(singlePlayer){
-			gameObjects.add(new ArtificialAirquoteIntelligence(shipRight, shipLeft, false, this));
+			gameObjects.add(new ArtificialAirquoteIntelligence(shipRight, shipLeft, false, difficulty, this));
 		}
 	}
 	

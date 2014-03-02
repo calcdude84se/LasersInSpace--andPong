@@ -13,13 +13,15 @@ public class ArtificialAirquoteIntelligence extends GameObjectInRoom {
 	private int movingUp = 0;
 	private int movingDown = 0;
 	Random r = new Random();
+	private int difficulty;
 	
-	ArtificialAirquoteIntelligence(RailShip me, RailShip asshole, boolean facesRight, GameRoom room){
+	ArtificialAirquoteIntelligence(RailShip me, RailShip asshole, boolean facesRight, int difficulty, GameRoom room){
 		super(room);
 		
 		this.me = me;
 		this.asshole = asshole;
 		this.facesRight = facesRight;
+		this.difficulty = difficulty;
 	}
 	
 	@Override
