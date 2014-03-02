@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
 
-public class RailShip implements GameObject {
+public class RailShip extends GameObjectInRoom implements GameObject {
 	private double x;
 	private double y;
 	private double y_speed = 0;
@@ -20,7 +20,7 @@ public class RailShip implements GameObject {
 	private static final int SHIP_HEIGHT = 40;
 	
 	public RailShip(double x, double y, boolean facesRight, GameRoom room){
-		
+		super(room);
 		this.x = x;
 		this.y = y;
 		this.facesRight = facesRight;
@@ -68,7 +68,7 @@ public class RailShip implements GameObject {
 		if(xshot < x || xshot > x+SHIP_WIDTH || yshot < y || yshot> y + SHIP_HEIGHT){
 			return true;
 		}
-		room.addObject(new Explosion(x, y, room));
+		room.addObject(new Explosion(xshot, yshot, room, Color.RED));
 		room.getScoreBoard().setScore(facesRight?1:0);
 		return false;
 		
