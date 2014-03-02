@@ -25,7 +25,6 @@ public class RailShip implements GameObject {
 		this.y = y;
 		this.facesRight = facesRight;
 		this.room = room;
-		y_speed = .5;
 		
 	}
 	
