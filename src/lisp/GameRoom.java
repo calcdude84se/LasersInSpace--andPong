@@ -14,6 +14,7 @@ import lisp.drawers.AsteroidImageDrawer;
 import lisp.drawers.GameObjectDrawer;
 import lisp.drawers.IndirectGameObjectDrawer;
 import lisp.drawers.RailShipGeoDrawer;
+import lisp.drawers.RailShipImageDrawer;
 
 public class GameRoom implements Drawable {
 	
@@ -100,7 +101,7 @@ public class GameRoom implements Drawable {
 	 */
 	private void init() {
 		asteroidDrawer = new IndirectGameObjectDrawer<>(new AsteroidImageDrawer());
-		shipDrawer = new IndirectGameObjectDrawer<>(new RailShipGeoDrawer());
+		shipDrawer = new IndirectGameObjectDrawer<>(new RailShipImageDrawer());
 		panel.resetKeys();
 		gameObjects.clear();
 		final int shipY = panel.getHeight() / 2;

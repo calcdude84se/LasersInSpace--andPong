@@ -48,7 +48,7 @@ public class AsteroidField implements GameObject{
 	@Override
 	public void draw(Graphics2D g) {
 		g.setColor(Color.white);
-		for (AsteroidImp asteroid : asteroids){
+		for (AsteroidImp asteroid : CollectionUtilities.cloneArrayList(asteroids)){
 			//Draw each asteroid in Asteroid Field
 			asteroid.draw(g);
 		}
