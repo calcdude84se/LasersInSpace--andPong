@@ -199,7 +199,7 @@ public class GameRoom implements Drawable {
 				drawString(g, "Options\nPress '"+toggleRetro+"' to toggle retro mode: "+booleanToString(retro)+"\n'"+increaseDiff+"' to increase difficulty\n'"+decreaseDiff+"' to decrease difficulty\nDifficulty currently "+difficulty+"\nPress '"+exit+"' to return to the main menu", 0, 0);
 				break;
 			case controls:
-				drawString(g,"Controls\nPlayer 1:\n's': shoot missile\n'a': shoot laser\n'q': go up\n'z': go down\nPlayer 2:\n':':shoot missile\n'\"': shoot laser\n'}':go up\n'/': go down\n'"+exit+"' to return to the main menu",0,0);
+				drawString(g,"Controls\n\nPlayer 1:\n's': shoot missile\n'a': shoot laser\n'q': go up\n'z': go down\n\nPlayer 2:\n':':shoot missile\n'\"': shoot laser\n'}':go up\n'/': go down\n'"+exit+"' to return to the main menu",0,0);
 				break;
 			case gameOver:
 				if(shipLeft.getLives()>shipRight.getLives())
