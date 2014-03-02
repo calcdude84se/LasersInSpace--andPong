@@ -25,7 +25,8 @@ public class GameRoom implements Drawable {
 	private boolean isGameOver;
 	private boolean done;
 	
-	private static Font text = new Font("Helvetica", Font.PLAIN, 30);
+	private int fontSize = 30;
+	private Font text = new Font("Helvetica", Font.PLAIN, fontSize);
 	
 	public GameRoom()
 	{
@@ -158,7 +159,7 @@ public class GameRoom implements Drawable {
 		return scoreBoard;
 	}
 	
-	public static Font getText() {
+	public Font getText() {
 		return text;
 	}
 
