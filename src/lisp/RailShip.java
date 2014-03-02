@@ -128,7 +128,7 @@ public class RailShip extends GameObjectInRoom {
 	}
 	void removeLife(){
 		lives--;
-		health = 20;
+		health = 10;
 	}
 	public double getHealth(){
 		return health;
