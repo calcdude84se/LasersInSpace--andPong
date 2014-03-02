@@ -36,8 +36,8 @@ public class ScoreBoard extends GameObjectInRoom {
 	private void drawScore(Graphics2D g) {
 		String left = shipLeft + "";
 		String right = shipRight + "";
-		room.drawString(g, left, width/2-INDENT, height/2);
-		room.drawString(g, right, width/2+INDENT, height/2);
+		room.drawString(g, left, width/2-INDENT, height/2 - 20);
+		room.drawString(g, right, width/2+INDENT, height/2 - 20);
 	}
 	public void setScore(int bit){
 		if (bit == 0) shipLeft += 1;
