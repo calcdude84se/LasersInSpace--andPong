@@ -37,11 +37,11 @@ public class PowerupField extends GameObjectInRoom {
 			double vx = r.nextDouble()*4-2;
 			double vy = r.nextDouble()*3+1;
 			double rad = r.nextDouble()*20 + 15;
-			if(r.nextInt(2) != 0)
+			if(r.nextInt(1000) == 0)
 				this.powerup = new Unicorn(room, this, x, y,
 						vx, vy, rad, r.nextInt(2));
-			else
-				this.powerup = new PongPowerUp(this, x, y, vx, vy, rad, room);
+			//else
+			//	this.powerup = new PongPowerUp(this, x, y, vx, vy, rad, room);
 		}
 	}
 
