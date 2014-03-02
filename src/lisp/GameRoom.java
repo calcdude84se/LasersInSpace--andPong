@@ -154,8 +154,8 @@ public class GameRoom implements Drawable {
 		return scoreBoard;
 	}
 	
-	Collection<GameObject> getGameObjectsClone() {
-		return (Collection<GameObject>)((ArrayList)gameObjects).clone();
+	private Collection<GameObject> getGameObjectsClone() {
+		return CollectionUtilities.cloneArrayList(gameObjects);
 	}
 	
 	public void draw(Graphics2D g) {
