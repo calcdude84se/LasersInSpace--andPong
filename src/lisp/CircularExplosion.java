@@ -20,6 +20,8 @@ public class CircularExplosion extends GameObjectInRoom{
 		this.room = room;
 		this.color = color;
 		this.radius = radius;
+		SoundJLayer soundToPlay = new SoundJLayer("/sounds/gunshot5.mp3");
+        soundToPlay.play();
 		
 		drawer = new CircularExplosionGeoDrawer();
 	}
