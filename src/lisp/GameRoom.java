@@ -101,7 +101,7 @@ public class GameRoom implements Drawable {
 	}
 	
 	private static enum Menu {
-		main, options
+		main, options, controls
 	}
 	
 	private class MenuState implements Drawable {
@@ -120,6 +120,9 @@ public class GameRoom implements Drawable {
 			case options:
 				options(key);
 				break;
+			case controls:
+				controls(key);
+				break;
 			}
 		}
 		
@@ -133,6 +136,8 @@ public class GameRoom implements Drawable {
 				singlePlayer = !singlePlayer;
 			} else if(key == options) {
 				menu = Menu.options;
+			} else if(key == controls) {
+				menu = Menu.controls;
 			}
 		}
 		
@@ -142,18 +147,26 @@ public class GameRoom implements Drawable {
 			else if(key == toggleRetro)
 				retro ^= true;
 		}
+		
+		private void controls(char key) {
+			if(key == exit)
+				menu = Menu.main;
+		}
 
-		private final char startGame = 's', exit = 'e', toggleSinglePlayer = 'p', options = 'o',
+		private final char startGame = 's', exit = 'e', toggleSinglePlayer = 'p', options = 'o', controls = 'c',
 				toggleRetro = 'r';
 
 		@Override
 		public void draw(Graphics2D g) {
 			switch(menu) {
 			case main:
-				drawString(g, "Lasers In Space! -- and Pong\nPress '"+startGame+"' to start,  '"+exit+"' to exit\n'"+toggleSinglePlayer+"' to toggle single-player\n'"+options+"' for options\n"+"Single-player "+booleanToString(singlePlayer)+"!", 0, 0);
+				drawString(g, "Lasers In Space! -- and Pong\nPress '"+startGame+"' to start,  '"+exit+"' to exit\n'"+toggleSinglePlayer+"' to toggle single-player\n'"+options+"' for options\n'"+controls+"'for controls\n"+"Single-player "+booleanToString(singlePlayer)+"!", 0, 0);
 				break;
 			case options:
 				drawString(g, "Options\nPress '"+toggleRetro+"' to toggle retro mode: "+booleanToString(retro)+"\nPress '"+exit+"' to return to the main menu", 0, 0);
+				break;
+			case controls:
+				drawString(g,"Controls\nPlayer 1:\n's': shoot missile\n'a': shoot laser\n'q': go up\n'z': go down\nPlayer 2:\n':':shoot missile\n'\"': shoot laser\n'}':go up\n'/': go down",0,0);
 			}
 		}
 	}
