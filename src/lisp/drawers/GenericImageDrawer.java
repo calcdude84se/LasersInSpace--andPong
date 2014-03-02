@@ -23,9 +23,8 @@ public abstract class GenericImageDrawer<T extends GameObject & WithId & WithPos
 		String[] paths = getPaths();
 		images = new BufferedImage[paths.length];
 		for(int i = 0; i < images.length; i++)
-			try {images[i] = ImageIO.read(new File(paths[i]));
-	        } catch (IOException e){
-	        }
+			images[i] = lisp.Utilities.loadImage(paths[i]);
+	        
 	}
 
 	@Override

@@ -69,7 +69,7 @@ public class KeyPanel extends JPanel {
 			synchronized (keysReleased) {
 				keysPressed.removeAll(keysReleased);
 				keysReleased.clear();
-				return CollectionUtilities.cloneHashSet(keysPressed);
+				return Utilities.cloneHashSet(keysPressed);
 			}
 		}
 	}
