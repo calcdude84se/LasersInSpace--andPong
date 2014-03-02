@@ -169,7 +169,8 @@ public class GameRoom implements Drawable {
 		}
 		
 		private void gameOver(char key) {
-			menu = Menu.main;
+			if( key == exit)
+				menu = Menu.main;
 		}
 
 		private final char startGame = 's', exit = 'e', toggleSinglePlayer = 'p', options = 'o', controls = 'c',
@@ -201,15 +202,15 @@ public class GameRoom implements Drawable {
 				break;
 			case gameOver:
 				if(shipLeft.getLives()>shipRight.getLives())
-				drawString(g, "Game over!\nPlayer 1 has won!\nPress any key to return to main menu.", 0, 0);
+				drawString(g, "Game over!\nPlayer 1 has won!\nPress 'e' to return to main menu.", 0, 0);
 				else if(shipLeft.getLives()<shipRight.getLives())
-					drawString(g, "Game over!\nPlayer 2 has won!\nPress any key to return to main menu.", 0, 0);
+					drawString(g, "Game over!\nPlayer 2 has won!\nPress 'e' to return to main menu.", 0, 0);
 				else if(shipLeft.getHealth()>shipRight.getHealth())
-					drawString(g, "Game over!\nPlayer 1 has won!\nPress any key to return to main menu.", 0, 0);
+					drawString(g, "Game over!\nPlayer 1 has won!\nPress 'e' to return to main menu.", 0, 0);
 				else if(shipLeft.getHealth()<shipRight.getHealth())
-					drawString(g, "Game over!\nPlayer 2 has won!\nPress any key to return to main menu.", 0, 0);
+					drawString(g, "Game over!\nPlayer 2 has won!\nPress 'e' to return to main menu.", 0, 0);
 				else
-					drawString(g, "Game over!\nPlayer 2 and Player 1 have tied!\nPress any key to return to main menu.", 0, 0);
+					drawString(g, "Game over!\nPlayer 2 and Player 1 have tied!\nPress 'e' to return to main menu.", 0, 0);
 			}
 		}
 	}
