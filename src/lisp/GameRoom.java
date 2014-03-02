@@ -22,6 +22,7 @@ public class GameRoom implements Drawable {
 	
 	//Gametype flags changeable in menu
 	private boolean singlePlayer = false;
+	private boolean retro = false;
 	
 	
 	private KeyPanel panel;
@@ -124,20 +125,27 @@ public class GameRoom implements Drawable {
 		private void options(char key) {
 			if(key == exit)
 				menu = Menu.main;
+			else if(key == toggleRetro)
+				retro ^= true;
 		}
 
-		private final char startGame = 's', exit = 'e', toggleSinglePlayer = 'p', options = 'o';
+		private final char startGame = 's', exit = 'e', toggleSinglePlayer = 'p', options = 'o',
+				toggleRetro = 'r';
 
 		@Override
 		public void draw(Graphics2D g) {
 			switch(menu) {
 			case main:
-				drawString(g, "Lasers In Space! -- and Pong\nPress '"+startGame+"' to start,  '"+exit+"' to exit\n'"+toggleSinglePlayer+"' to toggle single-player\n'"+options+"' for options\n"+(singlePlayer?"Single-player on!":"Single-player off!"), 0, 0);
+				drawString(g, "Lasers In Space! -- and Pong\nPress '"+startGame+"' to start,  '"+exit+"' to exit\n'"+toggleSinglePlayer+"' to toggle single-player\n'"+options+"' for options\n"+"Single-player "+booleanToString(singlePlayer)+"!", 0, 0);
 				break;
 			case options:
-				drawString(g, "Options\nPress '"+exit+"' to return to the main menu", 0, 0);
+				drawString(g, "Options\nPress '"+toggleRetro+"' to toggle retro mode: "+booleanToString(retro)+"\nPress '"+exit+"' to return to the main menu", 0, 0);
 			}
 		}
+	}
+	
+	private static String booleanToString(boolean arg) {
+		return arg ? "on" : "off";
 	}
 
 	/**
