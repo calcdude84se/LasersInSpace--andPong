@@ -9,21 +9,20 @@ import java.util.Random;
 
 import javax.swing.JPanel;
 
-public class AsteroidField implements GameObject{
+public class AsteroidField extends GameObjectInRoom {
 	
 	Random gen = new Random();
 	private int asteroidNum = gen.nextInt(4) + 5;
 	private Collection<AsteroidImp> asteroids = new ArrayList<>();
 	private JPanel panel;
-	private GameRoom room;
 	
 	public AsteroidField(GameRoom room){
+		super(room);
 		/*
 		 * Creates a random number of asteroids between 5 and 9
 		 * Based on a 480 X 620 sized room
 		 */
 		panel = room.getPanel();
-		this.room = room;
 		int x1 = panel.getWidth() - 120;
 		int y1 = panel.getHeight() - 120;
 		for (int i=0; i<=asteroidNum; i++){
@@ -94,10 +93,6 @@ public class AsteroidField implements GameObject{
 			if (!asteroid.isFree(x, y)) return false;
 		}
 		return true;
-	}
-	@Override
-	public void destroy() {
-		//Not sure what to do here yet....
 	}
 	
 	public double[] getAcceleration(double x, double y){
