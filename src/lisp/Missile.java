@@ -20,7 +20,8 @@ public class Missile extends GameObjectInRoom {
 		this.r = r;
 		ship1 = room.getShipLeft();
 		ship2 = room.getShipRight();
-		
+        SoundJLayer soundToPlay = new SoundJLayer("/sounds/missile.mp3");
+        soundToPlay.play();
 		drawer = new MissileGeoDrawer();
 	}
 	
