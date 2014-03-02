@@ -114,6 +114,8 @@ public class GameRoom implements Drawable {
 				singlePlayer = !singlePlayer;
 			}
 		}
+
+		private final char startGame = 's', exit = 'e', toggleSinglePlayer = 'p';
 	}
 
 	/**
@@ -243,6 +245,5 @@ public class GameRoom implements Drawable {
 			shipRightUp = KeyEvent.VK_CLOSE_BRACKET, shipRightLaser = KeyEvent.VK_QUOTE,
 			shipRightMissile = KeyEvent.VK_SEMICOLON, shipRightDown = KeyEvent.VK_SLASH,
 			exitGame = KeyEvent.VK_E;
-	private final char startGame = 's', exit = 'e', toggleSinglePlayer = 'p';
 
 }
