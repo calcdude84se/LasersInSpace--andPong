@@ -200,8 +200,12 @@ public class GameRoom implements Drawable {
 				drawString(g,"Controls\nPlayer 1:\n's': shoot missile\n'a': shoot laser\n'q': go up\n'z': go down\nPlayer 2:\n':':shoot missile\n'\"': shoot laser\n'}':go up\n'/': go down\n'"+exit+"' to return to the main menu",0,0);
 				break;
 			case gameOver:
-				if(shipLeft.getHealth()>shipRight.getHealth())
+				if(shipLeft.getLives()>shipRight.getLives())
 				drawString(g, "Game over!\nPlayer 1 has won!\nPress any key to return to main menu.", 0, 0);
+				else if(shipLeft.getLives()<shipRight.getLives())
+					drawString(g, "Game over!\nPlayer 2 has won!\nPress any key to return to main menu.", 0, 0);
+				else if(shipLeft.getHealth()>shipRight.getHealth())
+					drawString(g, "Game over!\nPlayer 1 has won!\nPress any key to return to main menu.", 0, 0);
 				else if(shipLeft.getHealth()<shipRight.getHealth())
 					drawString(g, "Game over!\nPlayer 2 has won!\nPress any key to return to main menu.", 0, 0);
 				else
@@ -344,10 +348,10 @@ public class GameRoom implements Drawable {
 			g.drawString(lines[i], x, y + (i + 1) * fontSize);
 	}
 	
-	private final int shipLeftUp = KeyEvent.VK_Q, shipLeftLaser = KeyEvent.VK_A,
-			shipLeftMissile = KeyEvent.VK_S, shipLeftDown = KeyEvent.VK_Z,
-			shipRightUp = KeyEvent.VK_CLOSE_BRACKET, shipRightLaser = KeyEvent.VK_QUOTE,
-			shipRightMissile = KeyEvent.VK_SEMICOLON, shipRightDown = KeyEvent.VK_SLASH,
+	private final int shipLeftUp = KeyEvent.VK_W, shipLeftLaser = KeyEvent.VK_D,
+			shipLeftMissile = KeyEvent.VK_A, shipLeftDown = KeyEvent.VK_S,
+			shipRightUp = KeyEvent.VK_P, shipRightLaser = KeyEvent.VK_L,
+			shipRightMissile = KeyEvent.VK_QUOTE, shipRightDown = KeyEvent.VK_SEMICOLON,
 			exitGame = KeyEvent.VK_E;
 
 }
