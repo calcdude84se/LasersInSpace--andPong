@@ -1,13 +1,14 @@
 package lisp;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
 public class ScoreBoard extends GameObjectInRoom {
 	
-	private static int INDENT = 100;
+	private static int INDENT = 200;
 	private int height;
 	private int width;
 	private int shipLeft;
@@ -35,8 +36,9 @@ public class ScoreBoard extends GameObjectInRoom {
 	private void drawScore(Graphics2D g) {
 		String left = shipLeft + "";
 		String right = shipRight + "";
-		g.drawString(left, width/2-INDENT, height/2);
-		g.drawString(right, width/2+INDENT, height/2);
+		g.setFont(new Font("Helvetica", Font.PLAIN, 30));
+		g.drawString(left, width/2-INDENT, height/2+10);
+		g.drawString(right, width/2+INDENT, height/2+10);
 	}
 	public void setScore(int bit){
 		if (bit == 0) shipLeft += 1;
