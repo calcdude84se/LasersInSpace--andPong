@@ -89,7 +89,7 @@ public class GameRoom implements Drawable {
 		main, options
 	}
 	
-	private class MenuState {
+	private class MenuState implements Drawable {
 		
 		private Menu menu = Menu.main;
 		
@@ -128,6 +128,17 @@ public class GameRoom implements Drawable {
 
 		private final char startGame = 's', exit = 'e', toggleSinglePlayer = 'p', options = 'o',
 				mainMenu = 'm';
+
+		@Override
+		public void draw(Graphics2D g) {
+			switch(menu) {
+			case main:
+				drawString(g, "Lasers In Space! -- and Pong\nPress 's' to start,  'e' to exit\n'p' to toggle single-player\n'o' for options\n"+(singlePlayer?"Single-player on!":"Single-player off!"), 0, 0);
+				break;
+			case options:
+				drawString(g, "Options\nPress 'm' to return to the main menu", 0, 0);
+			}
+		}
 	}
 
 	/**
@@ -238,9 +249,8 @@ public class GameRoom implements Drawable {
 		if(!isGameOver)
 			for(GameObject go : getGameObjectsClone())
 				go.draw(g);
-		else {
-			drawString(g, "Lasers In Space! -- and Pong\nPress 's' to start,  'e' to exit\n'p' to toggle single-player\n"+(singlePlayer?"Single-player on!":"Single-player off!"), 0, 0);
-		}
+		else 
+			menuState.draw(g);
 			
 	}
 	
