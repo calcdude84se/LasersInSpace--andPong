@@ -23,13 +23,13 @@ public class ArtificialAirquoteIntelligence extends GameObjectInRoom {
 		this.asshole = asshole;
 		this.facesRight = facesRight;
 		
-		difficulty = r.nextInt(10);
+		
 		
 		if(difficulty < 0 || difficulty >9){
 			throw new RuntimeException("dificulty Out of bounds");
 		}
 		
-		System.out.println(difficulty);
+		
 		
 		this.difficulty = difficulty;
 	}

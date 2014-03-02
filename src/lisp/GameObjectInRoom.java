@@ -6,7 +6,7 @@ public abstract class GameObjectInRoom extends GameObjectABC {
 	
 	public GameRoom room;
 	
-	GameObjectInRoom(GameRoom room){
+	public GameObjectInRoom(GameRoom room){
 		this.room = room;
 	}
 	@Override
