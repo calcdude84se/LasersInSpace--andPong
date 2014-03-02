@@ -3,7 +3,6 @@ package lisp;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ import java.util.Collection;
 
 import javax.swing.JPanel;
 
-import lisp.drawers.AsteroidGeoDrawer;
+import lisp.drawers.AsteroidImageDrawer;
 import lisp.drawers.GameObjectDrawer;
 import lisp.drawers.RailShipGeoDrawer;
 
@@ -37,8 +36,8 @@ public class GameRoom implements Drawable {
 	private Font text = new Font("Helvetica", Font.PLAIN, fontSize);
 	private Color textColor = Color.white;
 	
-	private GameObjectDrawer<AsteroidImp> asteroidDrawer = new IndirectGameObjectDrawer<>(new AsteroidGeoDrawer());
-	private GameObjectDrawer<RailShip> shipDrawer = new IndirectGameObjectDrawer<>(new RailShipGeoDrawer());
+	private GameObjectDrawer<AsteroidImp> asteroidDrawer;
+	private GameObjectDrawer<RailShip> shipDrawer;
 	
 	public GameRoom()
 	{
@@ -99,6 +98,8 @@ public class GameRoom implements Drawable {
 	 * Initializes for one game.
 	 */
 	private void init() {
+		asteroidDrawer = new IndirectGameObjectDrawer<>(new AsteroidImageDrawer());
+		shipDrawer = new IndirectGameObjectDrawer<>(new RailShipGeoDrawer());
 		panel.resetKeys();
 		gameObjects.clear();
 		final int shipY = panel.getHeight() / 2;
