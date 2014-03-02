@@ -267,9 +267,11 @@ public class GameRoom implements Drawable {
 	}
 	
 	public void draw(Graphics2D g) {
-		if(!isGameOver)
+		if(!isGameOver){
+			g.drawImage(background, 0, 0, panel.getWidth(), panel.getHeight(), null);
 			for(GameObject go : getGameObjectsClone())
 				go.draw(g);
+		}
 		else 
 			menuState.draw(g);
 			
