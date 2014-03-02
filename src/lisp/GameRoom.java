@@ -160,7 +160,8 @@ public class GameRoom implements Drawable {
 			for(GameObject go : getGameObjectsClone())
 				go.draw(g);
 		else {
-			g.drawString("Lasers In Space! -- and Pong\nPress 's' to start,  'q' to quit", 0, 0);
+			g.drawString("Lasers In Space! -- and Pong", 0, 12);
+			g.drawString("Press 's' to start,  'q' to quit", 0, 24);
 		}
 			
 	}
