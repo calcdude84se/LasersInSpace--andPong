@@ -10,7 +10,6 @@ public class AsteroidImp extends GameObjectABC implements Asteroid{
 	private double ycenter;
 	private double xvelocity;
 	private double yvelocity;
-	private Drawable drawer;
 	
 	public AsteroidImp(double x, double y, double r, double vx, double vy){
 		this.x = x;

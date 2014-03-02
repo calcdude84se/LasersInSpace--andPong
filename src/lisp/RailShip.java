@@ -28,8 +28,6 @@ public class RailShip extends GameObjectInRoom {
 	public static final int SHIP_HEIGHT = 40;
 	private static final int COOL_DOWN_TIME = 50;
 	
-	private Drawable drawer;
-	
 	public RailShip(double x, double y, boolean facesRight, GameRoom room){
 		super(room);
 		this.x = x;

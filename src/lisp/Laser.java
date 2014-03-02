@@ -38,20 +38,8 @@ public class Laser extends GameObjectInRoom {
 		this.facesRight = facesRight;
 		this.owner = owner;
 		
+		drawer = new LaserDrawer();
 		
-		
-	}
-	@Override
-	public void draw(Graphics2D g) {
-		if(on<5){
-			
-			g.setColor(RAINBOW[on]);
-			g.setStroke(STROKE);
-			
-			for(int i = 0; i<path.length-1; i++){  			
-				g.drawLine( path[i][0], path[i][1], path[i+1][0], path[i+1][1]);
-			}
-		}
 	}
 
 	@Override
@@ -119,7 +107,21 @@ public class Laser extends GameObjectInRoom {
 		
 	}
 	
-	
+	public class LaserDrawer implements Drawable {
+
+		@Override
+		public void draw(Graphics2D g) {
+			if(on<5){
+				
+				g.setColor(RAINBOW[on]);
+				g.setStroke(STROKE);
+				
+				for(int i = 0; i<path.length-1; i++){  			
+					g.drawLine( path[i][0], path[i][1], path[i+1][0], path[i+1][1]);
+				}
+			}
+		}
+	}
 	
 
 }
