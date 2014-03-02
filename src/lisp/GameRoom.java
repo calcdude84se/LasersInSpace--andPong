@@ -122,12 +122,11 @@ public class GameRoom implements Drawable {
 		}
 		
 		private void options(char key) {
-			if(key == mainMenu)
+			if(key == exit)
 				menu = Menu.main;
 		}
 
-		private final char startGame = 's', exit = 'e', toggleSinglePlayer = 'p', options = 'o',
-				mainMenu = 'm';
+		private final char startGame = 's', exit = 'e', toggleSinglePlayer = 'p', options = 'o';
 
 		@Override
 		public void draw(Graphics2D g) {
@@ -136,7 +135,7 @@ public class GameRoom implements Drawable {
 				drawString(g, "Lasers In Space! -- and Pong\nPress '"+startGame+"' to start,  '"+exit+"' to exit\n'"+toggleSinglePlayer+"' to toggle single-player\n'"+options+"' for options\n"+(singlePlayer?"Single-player on!":"Single-player off!"), 0, 0);
 				break;
 			case options:
-				drawString(g, "Options\nPress '"+mainMenu+"' to return to the main menu", 0, 0);
+				drawString(g, "Options\nPress '"+exit+"' to return to the main menu", 0, 0);
 			}
 		}
 	}
