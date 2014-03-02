@@ -1,12 +1,7 @@
 package lisp;
 
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -16,7 +11,7 @@ import javax.swing.JPanel;
 
 public class GameRoom {
 	
-	private JPanel panel;
+	private GamePanel panel;
 	/**
 	 * Step size in milliseconds
 	 */
@@ -25,15 +20,13 @@ public class GameRoom {
 	private ScoreBoard scoreBoard;
 	private AsteroidField asteroidField;
 	private Collection<GameObject> gameObjects = new ArrayList<>();
-	private Set<Integer> keysPressed = new HashSet<>();
-	private Set<Integer> keysReleased = new HashSet<>();
 	private boolean isGameOver;
 	
 	public GameRoom()
 	{
 		stepSize = 10;
 		final int panelWidth = 640, panelHeight = 480;
-		panel = new GamePanel();
+		panel = new GamePanel(this);
 		panel.setPreferredSize(new Dimension(panelWidth, panelHeight));
 	}
 
@@ -65,8 +58,7 @@ public class GameRoom {
 	 * Initializes for one game.
 	 */
 	private void init() {
-		keysPressed.clear();
-		keysReleased.clear();
+		panel.resetPressedKeys();
 		gameObjects.clear();
 		final int shipY = panel.getHeight() / 2;
 		final int shipLeftX = 0, shipLeftY = shipY,
@@ -83,25 +75,19 @@ public class GameRoom {
 	}
 	
 	private void processEvents() {
-		synchronized (keysPressed) {
-			synchronized (keysReleased) {
-				for (int keyCode : keysPressed) {
-					if(keyCode == shipLeftUp)
-						shipLeft.accUp();
-					else if(keyCode == shipLeftLaser)
-						shipLeft.fireLaser();
-					else if(keyCode == shipLeftDown)
-						shipLeft.accDown();
-					else if(keyCode == shipRightUp)
-						shipRight.accUp();
-					else if(keyCode == shipRightLaser)
-						shipRight.fireLaser();
-					else if(keyCode == shipRightDown)
-						shipRight.accDown();
-				}
-				keysPressed.removeAll(keysReleased);
-				keysReleased.clear();
-			}
+		for (int keyCode : panel.receivePressedKeyCodes()) {
+			if(keyCode == shipLeftUp)
+				shipLeft.accUp();
+			else if(keyCode == shipLeftLaser)
+				shipLeft.fireLaser();
+			else if(keyCode == shipLeftDown)
+				shipLeft.accDown();
+			else if(keyCode == shipRightUp)
+				shipRight.accUp();
+			else if(keyCode == shipRightLaser)
+				shipRight.fireLaser();
+			else if(keyCode == shipRightDown)
+				shipRight.accDown();
 		}
 	}
 	
@@ -138,67 +124,12 @@ public class GameRoom {
 		return scoreBoard;
 	}
 	
-	private Collection<GameObject> getGameObjectsClone() {
+	Collection<GameObject> getGameObjectsClone() {
 		return (Collection<GameObject>)((ArrayList)gameObjects).clone();
 	}
 	
 	private final int shipLeftUp = KeyEvent.VK_Q, shipLeftLaser = KeyEvent.VK_A,
 			shipLeftDown = KeyEvent.VK_Z, shipRightUp = KeyEvent.VK_CLOSE_BRACKET,
 			shipRightLaser = KeyEvent.VK_QUOTE, shipRightDown = KeyEvent.VK_SLASH;
-	
-	private class GamePanel extends JPanel {
-		
-		public GamePanel() {
-			addKeyListener(new KeyListener() {
-				
-				@Override
-				public void keyTyped(KeyEvent arg0) {
-					//Does nothing
-				}
-				
-				@Override
-				public void keyReleased(KeyEvent arg0) {
-					synchronized (keysPressed) {
-						synchronized (keysReleased) {
-							keysReleased.add(arg0.getKeyCode());
-						}
-					}
-				}
-				
-				@Override
-				public void keyPressed(KeyEvent arg0) {
-					int keyCode = arg0.getKeyCode();
-					synchronized (keysPressed) {
-						synchronized (keysReleased) {
-							keysPressed.add(keyCode);
-							keysReleased.remove(keyCode);
-						}
-					}
-				}
-			});
-			
-			addFocusListener(new FocusListener() {
-				
-				@Override
-				public void focusLost(FocusEvent arg0) {
-					requestFocusInWindow();
-				}
-				
-				@Override
-				public void focusGained(FocusEvent arg0) {
-					//Do nothing
-				}
-			});
-		}
-		
-		@Override
-		public void paint(Graphics g) {
-			// TODO Auto-generated method stub
-			super.paint(g);
-			Graphics2D g2d = (Graphics2D)g;
-			for(GameObject go : getGameObjectsClone())
-				go.draw(g2d);
-		}
-	}
 
 }
