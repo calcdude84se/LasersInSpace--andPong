@@ -2,11 +2,8 @@ package lisp;
 
 import java.awt.Color;
 import java.awt.Dimension;
-<<<<<<< HEAD
 import java.awt.Font;
 import java.awt.Graphics;
-=======
->>>>>>> f9130fd6392fede64b3d787dd882662b85f4201b
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
