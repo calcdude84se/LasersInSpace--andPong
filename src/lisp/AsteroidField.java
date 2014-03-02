@@ -40,7 +40,7 @@ public class AsteroidField extends GameObjectInRoom {
 		double vx = gen.nextDouble() - (.5);
 		double vy = gen.nextDouble() + .2;
 		int img = (int)Math.round(gen.nextDouble());
-		AsteroidImp jimmy = new AsteroidImp(room, x,y,r,vx,vy,img);
+		AsteroidImp jimmy = new AsteroidImp(room, this, x,y,r,vx,vy,img);
 		return jimmy; 
 	}
 	
@@ -63,8 +63,7 @@ public class AsteroidField extends GameObjectInRoom {
 		
 		for (AsteroidImp asteroid: getAsteroidsClone()){
 			asteroid.step();
-			if (asteroid.getXCenter() > panel.getWidth()
-					|| asteroid.getYCenter() > panel.getHeight()){
+			if (room.isOutOfBounds(asteroid)){
 				asteroids.remove(asteroid);
 				asteroids.add(getRoid(panel.getWidth()/2, 1));
 			}
@@ -115,5 +114,8 @@ public class AsteroidField extends GameObjectInRoom {
 			
 		}
 		return f;
+	}
+	public void removeObject(AsteroidImp asteroidImp) {
+		asteroids.remove(asteroidImp);
 	}
 }

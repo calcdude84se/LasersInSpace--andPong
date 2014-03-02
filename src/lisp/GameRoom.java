@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -350,6 +351,16 @@ public class GameRoom implements Drawable {
 		String[] lines = string.split("\n");
 		for(int i = 0; i < lines.length; i++)
 			g.drawString(lines[i], x, y + (i + 1) * fontSize);
+	}
+	
+	/**
+	 * DOES NOT TEST THE TOP
+	 * @param go position
+	 * @return whether go is in bounds
+	 */
+	public boolean isOutOfBounds(WithPosition go) {
+		Rectangle2D.Double position = go.getPosition();
+		return position.x < 0 || position.x > panel.getWidth() || position.y > panel.getHeight();
 	}
 	
 	private final int shipLeftUp = KeyEvent.VK_W, shipLeftLaser = KeyEvent.VK_D,

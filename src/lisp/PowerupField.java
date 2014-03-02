@@ -25,8 +25,11 @@ public class PowerupField extends GameObjectInRoom {
 	@Override
 	public void step() {
 		Powerup<?> powerup = this.powerup;
-		if(powerup != null)
+		if(powerup != null) {
 			powerup.step();
+			if (room.isOutOfBounds(powerup))
+				powerup.destroy();
+		}
 		else
 			this.powerup = new Unicorn(room, this, r.nextDouble()*room.getPanel().getWidth(), 0,
 					r.nextDouble()*4-2, r.nextDouble()*3+1, r.nextDouble()*30+30, r.nextInt(2));

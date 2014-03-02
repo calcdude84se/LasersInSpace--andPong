@@ -7,14 +7,13 @@ import lisp.GameRoom;
 import lisp.PowerupField;
 import lisp.RailShip;
 import lisp.WithId;
-import lisp.WithPosition;
 import lisp.drawers.AsteroidUnicornDrawer;
 import lisp.drawers.GameObjectDrawer;
 import lisp.drawers.IndirectGameObjectDrawer;
 import lisp.drawers.RailShipBodyUnicornDrawer;
 import lisp.drawers.UnicornImageDrawer;
 
-public class Unicorn extends Powerup<Unicorn> implements WithId, WithPosition {
+public class Unicorn extends Powerup<Unicorn> implements WithId {
 	
 	private int life = 200;
 	private GameObjectDrawer<AsteroidImp> oldAsteroidDrawer;

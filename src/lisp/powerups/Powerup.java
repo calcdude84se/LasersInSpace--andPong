@@ -4,8 +4,9 @@ import java.awt.Graphics2D;
 
 import lisp.GameObjectABC;
 import lisp.PowerupField;
+import lisp.WithPosition;
 
-public abstract class Powerup<T extends GameObjectABC<T>> extends GameObjectABC<T> {
+public abstract class Powerup<T extends GameObjectABC<T>> extends GameObjectABC<T> implements WithPosition {
 	
 	private PowerupField puField;
 	public double x, y, r;

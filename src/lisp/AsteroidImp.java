@@ -10,6 +10,7 @@ public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid,
 	public double y;
 	public double r;
 	private GameRoom room;
+	private AsteroidField aField;
 	private double xcenter;
 	private double ycenter;
 	private double xvelocity;
@@ -18,8 +19,9 @@ public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid,
 	private int health;
 
 	
-	public AsteroidImp(GameRoom room, double x, double y, double r, double vx, double vy, int img){
+	public AsteroidImp(GameRoom room, AsteroidField aField, double x, double y, double r, double vx, double vy, int img){
 		this.room = room;
+		this.aField = aField;
 		this.x = x;
 		this.y = y;
 		this.xcenter = (x+ r);
@@ -61,7 +63,7 @@ public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid,
 		return !((Math.pow((x1 - xcenter), 2) + Math.pow((y1 - ycenter), 2)) <= Math.pow(r, 2));
 	}
 	public void destroy(){
-		//nothing to do here.
+		aField.removeObject(this);
 	}
 
 	@Override
