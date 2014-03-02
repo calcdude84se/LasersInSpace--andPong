@@ -205,14 +205,14 @@ public class GameRoom implements Drawable {
 			case gameOver:
 				g.drawImage(gameover, panel.getWidth()/2 - gameover.getWidth()/2, 0, gameover.getWidth(), gameover.getHeight(), null);
 				if (shipLeft.getLives()>shipRight.getLives())
-					drawString(g, "Player 1 has won!", 100, gameover.getHeight());
+					drawString(g, "Player 1 has won!", 180, gameover.getHeight());
 				else if(shipLeft.getLives()<shipRight.getLives())
-					drawString(g, "Player 2 has won!",100, gameover.getHeight());
+					drawString(g, "Player 2 has won!",180, gameover.getHeight());
 				else if(shipLeft.getHealth()>shipRight.getHealth())
-					drawString(g, "Player 1 has won!",100, gameover.getHeight());
+					drawString(g, "Player 1 has won!",180, gameover.getHeight());
 				else if(shipLeft.getHealth()<shipRight.getHealth())
-					drawString(g, "Player 2 has won!", 100, gameover.getHeight());
-				else drawString(g, "Player 2 and Player 1 have tied!", 100, gameover.getHeight());
+					drawString(g, "Player 2 has won!", 180, gameover.getHeight());
+				else drawString(g, "Player 2 and Player 1 have tied!", gameover.getWidth()/4, gameover.getHeight());
 			}
 		}
 	}
