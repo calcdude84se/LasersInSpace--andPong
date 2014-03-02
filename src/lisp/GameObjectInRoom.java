@@ -4,7 +4,7 @@ package lisp;
 public abstract class GameObjectInRoom extends GameObjectABC {
 	
 	
-	protected GameRoom room;
+	public GameRoom room;
 	
 	GameObjectInRoom(GameRoom room){
 		this.room = room;

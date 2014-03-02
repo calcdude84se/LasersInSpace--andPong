@@ -1,16 +1,12 @@
 package lisp;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
+import lisp.drawers.AsteroidGeoDrawer;
 
-public class AsteroidImp extends GameObjectABC implements Asteroid{
+public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid{
 	
-	private double x;
-	private double y;
-	private double r;
+	public double x;
+	public double y;
+	public double r;
 	private double xcenter;
 	private double ycenter;
 	private double xvelocity;
@@ -59,26 +55,5 @@ public class AsteroidImp extends GameObjectABC implements Asteroid{
 	}
 	public void destroy(){
 		//nothing to do here.
-	}
-
-	public class AsteroidGeoDrawer implements Drawable {
-
-		public void draw(Graphics2D g) {
-		//	g.drawOval(x, y, r, r); Commented out for science.  Swap these for outline vs. solid.
-			g.fillOval((int)x, (int)y, (int)(2*r), (int)(2*r));
-		}
-	}
-	public class AsteroidImageDrawer implements Drawable {
-		@Override
-		public void draw(Graphics2D g) {
-			String path = "images/asteroid.png";
-			BufferedImage image = null;
-	        try {image = ImageIO.read(new File(path));
-	        } catch (IOException e){
-	        }
-	        g.drawImage(image,
-	        		(int)x,(int)y,(int)(2*r),(int)(2*r),
-	        		null);
-		}
 	}
 }
