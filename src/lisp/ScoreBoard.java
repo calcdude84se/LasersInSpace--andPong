@@ -36,7 +36,7 @@ public class ScoreBoard extends GameObjectInRoom {
 	private void drawScore(Graphics2D g) {
 		String left = shipLeft + "";
 		String right = shipRight + "";
-		g.setFont(new Font("Helvetica", Font.PLAIN, 30));
+		g.setFont(GameRoom.getText());
 		g.drawString(left, width/2-INDENT, height/2+10);
 		g.drawString(right, width/2+INDENT, height/2+10);
 	}

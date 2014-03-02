@@ -2,6 +2,8 @@ package lisp;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ public class GameRoom implements Drawable {
 	private Collection<GameObject> gameObjects = new ArrayList<>();
 	private boolean isGameOver;
 	private boolean done;
+	
+	private static Font text = new Font("Helvetica", Font.PLAIN, 30);
 	
 	public GameRoom()
 	{
@@ -154,6 +158,10 @@ public class GameRoom implements Drawable {
 		return scoreBoard;
 	}
 	
+	public static Font getText() {
+		return text;
+	}
+
 	private Collection<GameObject> getGameObjectsClone() {
 		return CollectionUtilities.cloneArrayList(gameObjects);
 	}
