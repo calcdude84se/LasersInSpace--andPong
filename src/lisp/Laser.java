@@ -74,8 +74,8 @@ public class Laser extends GameObjectInRoom {
 		double dist;
 		
 		while(field.isFree(r[0], r[1]) && 
-			  ship1.testLazerFree(r[0], r[1]) &&
-			  ship2.testLazerFree(r[0], r[1]) &&
+			  ship1.testLazerFree(r[0], r[1], false) &&
+			  ship2.testLazerFree(r[0], r[1], false) &&
 			  r[0]>0 && r[0]<room.getPanel().getWidth() && 
 			  r[1]>0 && r[1]< room.getPanel().getHeight()){
 			

@@ -28,8 +28,8 @@ public class Missile extends GameObjectInRoom {
 	public void step(){
 		
 		if(!(     room.getAsteroidField().isFree(r[0], r[1]) && 
-				  ship1.testLazerFree(r[0], r[1]) &&
-				  ship2.testLazerFree(r[0], r[1]) &&
+				  ship1.testLazerFree(r[0], r[1], true) &&
+				  ship2.testLazerFree(r[0], r[1], true) &&
 				  r[0]>0 && r[0]<room.getPanel().getWidth() && 
 				  r[1]>0 && r[1]< room.getPanel().getHeight())){
 			this.destroy();
