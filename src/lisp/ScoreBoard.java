@@ -4,13 +4,15 @@ import java.awt.Font;
 
 import javax.swing.JPanel;
 
+import lisp.drawers.ScoreBoardDrawer;
+
 public class ScoreBoard extends GameObjectInRoom {
 	
-	static int INDENT = 200;
-	int height;
-	int width;
-	int shipLeft;
-	int shipRight;
+	public static int INDENT = 200;
+	public int height;
+	public int width;
+	public int shipLeft;
+	public int shipRight;
 
 	public ScoreBoard(GameRoom room){
 		super(room);

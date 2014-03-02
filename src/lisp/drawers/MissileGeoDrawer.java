@@ -1,7 +1,9 @@
-package lisp;
+package lisp.drawers;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+
+import lisp.Missile;
 
 public class MissileGeoDrawer implements GameObjectDrawer<Missile> {
 

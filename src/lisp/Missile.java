@@ -4,9 +4,11 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import lisp.drawers.MissileGeoDrawer;
+
 public class Missile extends GameObjectInRoom {
 	
-	double[] r;
+	public double[] r;
 	private int thrusting = 10;
 	private GameRoom room;
 	private RailShip ship1, ship2; 

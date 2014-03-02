@@ -6,19 +6,21 @@ import java.awt.Stroke;
 import java.awt.geom.Ellipse2D;
 import java.util.Random;
 
+import lisp.drawers.RailShipGeoDrawer;
+
 public class RailShip extends GameObjectInRoom {
 	
 
-	double x;
-	double y;
+	public double x;
+	public double y;
 	private double y_speed = 0;
 	private boolean facesRight;
 	private int lazerCoolDown=0;
 	private int missileCoolDown=0;
-	int thrustingUp = 0;
-	int thrustingDown = 0;
+	public int thrustingUp = 0;
+	public int thrustingDown = 0;
 	
-	Random r = new Random();
+	public Random r = new Random();
 	
 	private GameRoom room;
 	public static final Stroke STROKE = new BasicStroke(2);

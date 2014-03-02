@@ -1,15 +1,17 @@
 package lisp;
 import java.awt.Color;
 
+import lisp.drawers.ExplosionGeoDrawer;
+
 
 public class Explosion extends GameObjectInRoom{
 	
-	double x;
-	double y;
-	double radius;
-	int life = 0;
+	public double x;
+	public double y;
+	public double radius;
+	public int life = 0;
 	GameRoom room;
-	Color color;
+	public Color color;
 	
 	Explosion(double x, double y, GameRoom room, double radius, Color color){
 		super(room);

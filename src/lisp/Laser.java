@@ -6,14 +6,16 @@ import java.awt.Stroke;
 import java.util.ArrayList;
 import java.util.List;
 
+import lisp.drawers.LaserDrawer;
+
 public class Laser extends GameObjectInRoom {
-	int [][] path;
-	int on = 5;
-	int life = 10;
-	GameRoom room;
-	RailShip ship1;
-	RailShip ship2;
-	RailShip owner;
+	public int [][] path;
+	public int on = 5;
+	public int life = 10;
+	public GameRoom room;
+	public RailShip ship1;
+	public RailShip ship2;
+	public RailShip owner;
 	
 	private double init_x;
 	private double init_y;
@@ -21,9 +23,9 @@ public class Laser extends GameObjectInRoom {
 	
 	private static final double STEPSIZE_GOAL = 5; 
 	
-	static final Stroke STROKE = new BasicStroke(2);
+	public static final Stroke STROKE = new BasicStroke(2);
 	
-	static final Color[] RAINBOW = {Color.RED,Color.ORANGE,Color.YELLOW,Color.GREEN,Color.BLUE,new Color(200, 0, 200)};
+	public static final Color[] RAINBOW = {Color.RED,Color.ORANGE,Color.YELLOW,Color.GREEN,Color.BLUE,new Color(200, 0, 200)};
 	
 	Laser(double init_x, double init_y, boolean facesRight, RailShip owner, GameRoom room){
 		super(room);

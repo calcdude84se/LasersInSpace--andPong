@@ -1,6 +1,8 @@
-package lisp;
+package lisp.drawers;
 
 import java.awt.Graphics2D;
+
+import lisp.AsteroidImp;
 
 public class AsteroidGeoDrawer implements GameObjectDrawer<AsteroidImp> {
 

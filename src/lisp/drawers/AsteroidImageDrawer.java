@@ -1,4 +1,4 @@
-package lisp;
+package lisp.drawers;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
+import lisp.AsteroidImp;
 
 public class AsteroidImageDrawer implements GameObjectDrawer<AsteroidImp> {
 
