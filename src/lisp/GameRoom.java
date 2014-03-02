@@ -101,6 +101,10 @@ public class GameRoom implements Drawable {
 			switch(menu) {
 			case main:
 				main(key);
+				break;
+			case options:
+				options(key);
+				break;
 			}
 		}
 		
@@ -112,10 +116,18 @@ public class GameRoom implements Drawable {
 				done = true;
 			} else if(key == toggleSinglePlayer){
 				singlePlayer = !singlePlayer;
+			} else if(key == options) {
+				menu = Menu.options;
 			}
 		}
+		
+		private void options(char key) {
+			if(key == mainMenu)
+				menu = Menu.main;
+		}
 
-		private final char startGame = 's', exit = 'e', toggleSinglePlayer = 'p';
+		private final char startGame = 's', exit = 'e', toggleSinglePlayer = 'p', options = 'o',
+				mainMenu = 'm';
 	}
 
 	/**
