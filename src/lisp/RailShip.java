@@ -23,7 +23,7 @@ public class RailShip extends GameObjectInRoom implements GameObject {
 	private static final Stroke STROKE = new BasicStroke(2);
 	private static double PER_STEP_ACC = .03;
 	public static final int SHIP_WIDTH = 20;
-	private static final int SHIP_HEIGHT = 40;
+	public static final int SHIP_HEIGHT = 40;
 	private static final int COOL_DOWN_TIME = 50;
 	
 	Random r;
@@ -41,10 +41,12 @@ public class RailShip extends GameObjectInRoom implements GameObject {
 	
 	public void step(){
 		
-		if(y<0||y>room.getPanel().getHeight()-SHIP_HEIGHT){
-			y_speed = -.5*y_speed;
+		if(y<0){
+			y_speed = .5*Math.abs(y_speed);
 			y+=y_speed;
-			
+		}
+		if(y>room.getPanel().getHeight()-SHIP_HEIGHT){
+			y_speed = -.5*Math.abs(y_speed);
 		}
 		
 		y += y_speed;
@@ -99,7 +101,7 @@ public class RailShip extends GameObjectInRoom implements GameObject {
 	public void fireLaser(){
 		if(lazerCoolDown<0){
 			
-			room.addObject(new Laser(x+(facesRight?SHIP_WIDTH+1:-1) , y+SHIP_HEIGHT/2, facesRight, room));
+			room.addObject(new Laser(x+(facesRight?SHIP_WIDTH+1:-1) , y+SHIP_HEIGHT/2, facesRight, this, room));
 			lazerCoolDown = COOL_DOWN_TIME;
 		}
 		
@@ -134,5 +136,8 @@ public class RailShip extends GameObjectInRoom implements GameObject {
 			}
 			
 		}
+	}
+	public double getY(){
+		return y;
 	}
 }
