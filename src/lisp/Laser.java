@@ -7,10 +7,10 @@ import java.awt.Stroke;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Laser implements GameObject {
+public class Laser extends GameObjectInRoom {
 	int [][] path;
 	int on = 5;
-	int life;
+	int life = 30;
 	GameRoom room;
 	RailShip ship1;
 	RailShip ship2;
@@ -22,11 +22,11 @@ public class Laser implements GameObject {
 	private static final Color[] RAINBOW = {Color.RED,Color.ORANGE,Color.YELLOW,Color.GREEN,Color.BLUE,new Color(200, 0, 200)};
 	
 	Laser(double init_x, double init_y, boolean facesRight, GameRoom room){
+		super(room);
 		ship1 = room.getShipLeft();
 		ship2 = room.getShipRight();
 		this.room = room;
 		path = integrate(init_x, init_y, facesRight);
-		life = 30;
 		
 		
 		

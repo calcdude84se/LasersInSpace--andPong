@@ -21,7 +21,7 @@ public class AsteroidField implements GameObject{
 		 */
 		for (int i=0; i<=asteroidNum; i++){
 		int[] a = getCoords(room);
-		asteroids.add(new AsteroidImp(a[0],a[1],a[2]));
+		asteroids.add(new AsteroidImp(a[0],a[1],a[2],a[3],a[4]));
 		}
 	}
 	/*
@@ -35,7 +35,9 @@ public class AsteroidField implements GameObject{
 		int x = gen.nextInt(x1-120)+ 60;
 		int y = gen.nextInt(y1-120) + 60;
 		int r = gen.nextInt(20) + 15;
-		int[] a = new int[] {x,y,r};
+		int vx = gen.nextInt(4) - 2;
+		int vy = gen.nextInt(4)+1;
+		int[] a = new int[] {x,y,r,vx,vy};
 		return a; 
 	}
 
@@ -50,7 +52,9 @@ public class AsteroidField implements GameObject{
 
 	@Override
 	public void step() {
-		//Dont Step the feild yet.  THX.
+		for (AsteroidImp asteroid: asteroids){
+			asteroid.step();
+		}
 	}
 	
 	public Collection<AsteroidImp> getAsteroids(){
