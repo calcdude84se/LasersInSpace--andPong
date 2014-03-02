@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-public class ScoreBoard implements GameObject {
+public class ScoreBoard extends GameObjectInRoom {
 	
 	private static int INDENT = 100;
 	private int height;
@@ -14,6 +14,7 @@ public class ScoreBoard implements GameObject {
 	private int shipRight;
 
 	public ScoreBoard(GameRoom room){
+		super(room);
 		JPanel panel = room.getPanel();
 		this.width = panel.getWidth();
 		this.height = 60;
