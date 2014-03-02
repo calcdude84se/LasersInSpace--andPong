@@ -1,5 +1,7 @@
 package lisp;
 
+import java.awt.Color;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D.Double;
 
 public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid, WithId, WithPosition {
@@ -7,14 +9,17 @@ public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid,
 	public double x;
 	public double y;
 	public double r;
+	private GameRoom room;
 	private double xcenter;
 	private double ycenter;
 	private double xvelocity;
 	private double yvelocity;
 	private int id;
+	private int health;
 
 	
 	public AsteroidImp(GameRoom room, double x, double y, double r, double vx, double vy, int img){
+		this.room = room;
 		this.x = x;
 		this.y = y;
 		this.xcenter = (x+ r);
@@ -22,6 +27,7 @@ public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid,
 		this.xvelocity = vx;
 		this.yvelocity = vy;
 		this.r = r;
+		health = (int) r;
 		id = img;
 		this.drawer = room.getAsteroidDrawer();
 	}
@@ -66,5 +72,22 @@ public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid,
 	@Override
 	public int getId() {
 		return id;
+	}
+	
+	public void removeLife(){
+		health--;
+		if(health<0){
+			room.addObject(new Explosion(getXCenter(),getYCenter(),room, Color.RED));
+			room.removeObject(this);
+	}
+	}
+		
+	public boolean testLazerFree(double xshot, double yshot, boolean isMissile){
+		if(xshot < x || xshot > x+2*xcenter || yshot < y || yshot> y + 2*ycenter){
+			return true;
+		}
+		removeLife();
+		return false;
+			
 	}
 }
