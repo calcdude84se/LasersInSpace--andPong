@@ -69,7 +69,7 @@ public class GameRoom implements Drawable {
 		if(key == startGame) {
 			isGameOver = false;
 			init();
-		} else if(key == quit) {
+		} else if(key == exit) {
 			done = true;
 		}
 	}
@@ -108,7 +108,7 @@ public class GameRoom implements Drawable {
 				shipRight.fireLaser();
 			else if(keyCode == shipRightDown)
 				shipRight.accDown();
-			else if(keyCode == quitGame)
+			else if(keyCode == exitGame)
 				gameOver();
 		}
 	}
@@ -162,7 +162,7 @@ public class GameRoom implements Drawable {
 				go.draw(g);
 		else {
 			g.drawString("Lasers In Space! -- and Pong", 0, 12);
-			g.drawString("Press 's' to start,  'q' to quit", 0, 24);
+			g.drawString("Press 's' to start,  'e' to exit", 0, 24);
 		}
 			
 	}
@@ -170,7 +170,7 @@ public class GameRoom implements Drawable {
 	private final int shipLeftUp = KeyEvent.VK_Q, shipLeftLaser = KeyEvent.VK_A,
 			shipLeftDown = KeyEvent.VK_Z, shipRightUp = KeyEvent.VK_CLOSE_BRACKET,
 			shipRightLaser = KeyEvent.VK_QUOTE, shipRightDown = KeyEvent.VK_SLASH,
-			quitGame = KeyEvent.VK_Q;
-	private final char startGame = 's', quit = 'q';
+			exitGame = KeyEvent.VK_E;
+	private final char startGame = 's', exit = 'e';
 
 }
