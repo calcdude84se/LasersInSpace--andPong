@@ -36,4 +36,8 @@ public class PowerupField extends GameObjectInRoom {
 		return Utilities.cloneArrayList(powerups);
 	}
 
+	public void removeObject(Powerup powerup) {
+		powerups.remove(powerup);
+	}
+
 }
