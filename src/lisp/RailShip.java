@@ -53,7 +53,7 @@ public class RailShip extends GameObjectInRoom implements GameObject {
 		lazerCoolDown--;
 		thrustingUp--;
 		thrustingDown--;
-		//fireLaser();
+		missileCoolDown--;
 	}
 	
 	public void draw(Graphics2D g){
