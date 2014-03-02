@@ -15,7 +15,7 @@ import lisp.drawers.UnicornImageDrawer;
 
 public class Unicorn extends Powerup<Unicorn> implements WithId {
 	
-	private int life = 200;
+	private int life = 1000;
 	private GameObjectDrawer<AsteroidImp> oldAsteroidDrawer;
 	private GameObjectDrawer<RailShip> oldShipBodyDrawer;
 	private IndirectGameObjectDrawer<AsteroidImp> asteroidDrawer;
