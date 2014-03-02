@@ -53,10 +53,10 @@ public class ArtificialAirquoteIntelligence extends GameObjectInRoom {
 			me.accDown();
 		}
 		
-		if(r.nextInt(100)==0){
+		if(r.nextInt(200 - 12*difficulty)==0){
 			movingUp = 25;
 		}
-		if(r.nextInt(100)==0){
+		if(r.nextInt(200 - 12*difficulty)==0){
 			movingDown = 25;
 		}
 		if(r.nextInt(300 - 25*difficulty)==0){
