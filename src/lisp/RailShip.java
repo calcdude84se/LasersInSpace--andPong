@@ -64,7 +64,7 @@ public class RailShip extends GameObjectInRoom {
 		}
 		if(health<0){
 			removeLife();
-			health = 20;
+			
 		}
 		if(lives <0){
 			room.gameOver();
@@ -128,6 +128,7 @@ public class RailShip extends GameObjectInRoom {
 	}
 	void removeLife(){
 		lives--;
+		health = 20;
 	}
 	public double getHealth(){
 		return health;

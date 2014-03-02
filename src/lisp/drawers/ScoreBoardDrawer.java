@@ -11,7 +11,7 @@ public class ScoreBoardDrawer implements GameObjectDrawer<ScoreBoard> {
 	@Override
 	public void draw(ScoreBoard scoreBoard, Graphics2D g) {
 		g.setColor(Color.white);
-		g.drawRect(0, 0, scoreBoard.width, scoreBoard.height);
+		//g.drawRect(0, 0, scoreBoard.width, scoreBoard.height);
 		drawLives(scoreBoard, g);
 		drawHealth(scoreBoard, scoreBoard.shipLeft, 0, g);
 		drawHealth(scoreBoard, scoreBoard.shipRight, scoreBoard.width/2, g);
@@ -26,7 +26,7 @@ public class ScoreBoardDrawer implements GameObjectDrawer<ScoreBoard> {
 	
 	}
 	private void drawHealth(ScoreBoard s, RailShip ship, double x, Graphics2D g){
-		g.setColor(Color.GREEN);
-		g.drawRect((int)x, s.height-14, (int)ship.getHealth()*s.width/40, 10);
+		g.setColor(ship.getHealth()>4?Color.CYAN:Color.RED);
+		g.drawRect((x>0)? s.width-(int)ship.getHealth()*s.width/20:0, s.height-14, (int)ship.getHealth()*s.width/20, 10);
 	}
 }
