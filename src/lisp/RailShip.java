@@ -7,7 +7,7 @@ import java.awt.Stroke;
 import java.awt.geom.Ellipse2D;
 import java.util.Random;
 
-public class RailShip extends GameObjectInRoom implements GameObject {
+public class RailShip extends GameObjectInRoom {
 	
 
 	private double x;
@@ -56,10 +56,6 @@ public class RailShip extends GameObjectInRoom implements GameObject {
 		thrustingUp--;
 		thrustingDown--;
 		missileCoolDown--;
-	}
-	
-	public void draw(Graphics2D g){
-		drawer.draw(g);
 	}
 	
 	public void accUp(){

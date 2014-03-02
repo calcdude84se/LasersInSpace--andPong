@@ -1,7 +1,7 @@
 package lisp;
 import java.awt.Graphics2D;
 
-public class AsteroidImp implements Asteroid{
+public class AsteroidImp extends GameObjectABC implements Asteroid{
 	
 	private double x;
 	private double y;
@@ -22,10 +22,6 @@ public class AsteroidImp implements Asteroid{
 		this.r = r;
 		
 		this.drawer = new AsteroidGeoDrawer();
-	}
-
-	public void draw(Graphics2D g) {
-		drawer.draw(g);
 	}
 
 	public void step() {
