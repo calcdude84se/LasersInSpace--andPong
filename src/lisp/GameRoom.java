@@ -5,9 +5,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import lisp.drawers.AsteroidGeoDrawer;
@@ -46,6 +50,15 @@ public class GameRoom implements Drawable {
 	private GameObjectDrawer<RailShip> shipBodyDrawer, shipDrawer;
 	
 	private MenuState menuState;
+	
+	private BufferedImage background;
+	{
+		try {
+			background = ImageIO.read(new File("images/space.png"));
+		} catch (IOException e) {
+			
+		}
+	}
 	
 	public GameRoom()
 	{
