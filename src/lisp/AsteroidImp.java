@@ -78,12 +78,13 @@ public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid,
 		health--;
 		if(health<0){
 			room.addObject(new Explosion(getXCenter(),getYCenter(),room, Color.RED));
+			room.addObject(new Explosion(getXCenter(),getYCenter(),room, Color.GREEN));
 			room.getAsteroidField().replaceRoid(this);
 	}
 	}
 		
 	public boolean testLazerFree(double xshot, double yshot){
-		if(xshot < x || xshot > x+xcenter || yshot < y || yshot> y + ycenter){
+		if(xshot < x || xshot > xcenter+r || yshot < y || yshot> r+ycenter){
 			return true;
 		}
 		removeLife();
