@@ -32,11 +32,11 @@ public class PowerupField extends GameObjectInRoom {
 				powerup.destroy();
 		}
 		else {
-			double x = r.nextDouble()*room.getPanel().getWidth();
+			double x = r.nextDouble()*120 + (room.getPanel().getWidth()/2-100);
 			double y = 0;
 			double vx = r.nextDouble()*4-2;
 			double vy = r.nextDouble()*3+1;
-			double rad = r.nextDouble()*30+30;
+			double rad = r.nextDouble()*20 + 15;
 			if(r.nextInt(2) != 0)
 				this.powerup = new Unicorn(room, this, x, y,
 						vx, vy, rad, r.nextInt(2));

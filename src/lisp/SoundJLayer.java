@@ -1,5 +1,12 @@
 package lisp;
 import javazoom.jl.player.advanced.*;
+/*
+ * HEY YOU!!
+ * HEY!
+ * 
+ * 
+ * You have to add the included .jar to the build path!  Sound requires jl1.0.1.jar
+ */
 
 class SoundJLayer extends PlaybackListener implements Runnable
 {
