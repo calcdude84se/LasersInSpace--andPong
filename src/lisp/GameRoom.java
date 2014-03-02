@@ -68,7 +68,7 @@ public class GameRoom implements Drawable {
 		if(key == startGame) {
 			isGameOver = false;
 			init();
-		} else if(key == quitGame) {
+		} else if(key == quit) {
 			done = true;
 		}
 	}
@@ -107,9 +107,17 @@ public class GameRoom implements Drawable {
 				shipRight.fireLaser();
 			else if(keyCode == shipRightDown)
 				shipRight.accDown();
+			else if(keyCode == quitGame)
+				gameOver();
 		}
 	}
 	
+	public void gameOver() {
+		isGameOver = true;
+		panel.resetKeys();
+		panel.repaint();
+	}
+
 	/**
 	 * Gets run after the game has ended
 	 */
@@ -159,7 +167,8 @@ public class GameRoom implements Drawable {
 	
 	private final int shipLeftUp = KeyEvent.VK_Q, shipLeftLaser = KeyEvent.VK_A,
 			shipLeftDown = KeyEvent.VK_Z, shipRightUp = KeyEvent.VK_CLOSE_BRACKET,
-			shipRightLaser = KeyEvent.VK_QUOTE, shipRightDown = KeyEvent.VK_SLASH;
-	private final char startGame = 's', quitGame = 'q';
+			shipRightLaser = KeyEvent.VK_QUOTE, shipRightDown = KeyEvent.VK_SLASH,
+			quitGame = KeyEvent.VK_Q;
+	private final char startGame = 's', quit = 'q';
 
 }
