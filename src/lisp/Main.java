@@ -1,19 +1,29 @@
 package lisp;
 
-import javax.swing.JFrame;
-import javax.swing.WindowConstants;
+import javax.swing.JApplet;
+import javax.swing.JPanel;
 
-public abstract class Main {
+public class Main extends JApplet {
+	
+	GameRoom gameRoom;
 
-	public static void main(String[] args) {
-		JFrame gameFrame = new JFrame("Lasers In Space! -- and Pong");
-		gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		GameRoom gameRoom = new GameRoom();
-		gameFrame.add(gameRoom.getPanel());
-		gameFrame.pack();
-		gameFrame.setVisible(true);
-		gameRoom.getPanel().requestFocusInWindow();
-		gameRoom.startGame();
+	@Override
+	public void init() {
+		gameRoom = new GameRoom();
+		JPanel gamePanel = gameRoom.getPanel();
+		gamePanel.requestFocusInWindow();
+		setContentPane(gamePanel);
+	}
+	
+	@Override
+	public void start() {
+		(new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				gameRoom.startGame();
+			}
+		})).start();
 	}
 
 }
