@@ -99,12 +99,16 @@ public class RailShip extends GameObjectInRoom {
 		
 	}
 	
-	public boolean testLazerFree(double xshot, double yshot){
+	public boolean testLazerFree(double xshot, double yshot, boolean isMissile){
 		if(xshot < x || xshot > x+SHIP_WIDTH || yshot < y || yshot> y + SHIP_HEIGHT){
 			return true;
 		}
 		room.addObject(new Explosion(xshot, yshot, room, Color.RED));
-		health--;
+		if(isMissile){
+			removeLife();
+		} else {
+			health--;
+		}
 		return false;
 		
 	}
