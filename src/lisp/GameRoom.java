@@ -64,7 +64,8 @@ public class GameRoom implements Drawable {
 	private BufferedImage c = Utilities.loadImage("images/c.png");
 	private BufferedImage keys = Utilities.loadImage("images/keys.png");
 	public BufferedImage on = Utilities.loadImage("images/on.png");
-	public BufferedImage off = Utilities.loadImage("images/off.png");	
+	public BufferedImage off = Utilities.loadImage("images/off.png");
+	public BufferedImage gameover = Utilities.loadImage("images/gameover.png");
 	public GameRoom()
 	{
 		stepSize = 10;
@@ -202,16 +203,16 @@ public class GameRoom implements Drawable {
 				drawString(g,"Controls\n\nPlayer 1:\n's': shoot missile\n'a': shoot laser\n'q': go up\n'z': go down\n\nPlayer 2:\n':':shoot missile\n'\"': shoot laser\n'}':go up\n'/': go down\n'"+exit+"' to return to the main menu",0,0);
 				break;
 			case gameOver:
-				if(shipLeft.getLives()>shipRight.getLives())
-				drawString(g, "Game over!\nPlayer 1 has won!\nPress 'e' to return to main menu.", 0, 0);
+				g.drawImage(gameover, panel.getWidth()/2 - gameover.getWidth()/2, 0, gameover.getWidth(), gameover.getHeight(), null);
+				if (shipLeft.getLives()>shipRight.getLives())
+					drawString(g, "Player 1 has won!", 100, gameover.getHeight());
 				else if(shipLeft.getLives()<shipRight.getLives())
-					drawString(g, "Game over!\nPlayer 2 has won!\nPress 'e' to return to main menu.", 0, 0);
+					drawString(g, "Player 2 has won!",100, gameover.getHeight());
 				else if(shipLeft.getHealth()>shipRight.getHealth())
-					drawString(g, "Game over!\nPlayer 1 has won!\nPress 'e' to return to main menu.", 0, 0);
+					drawString(g, "Player 1 has won!",100, gameover.getHeight());
 				else if(shipLeft.getHealth()<shipRight.getHealth())
-					drawString(g, "Game over!\nPlayer 2 has won!\nPress 'e' to return to main menu.", 0, 0);
-				else
-					drawString(g, "Game over!\nPlayer 2 and Player 1 have tied!\nPress 'e' to return to main menu.", 0, 0);
+					drawString(g, "Player 2 has won!", 100, gameover.getHeight());
+				else drawString(g, "Player 2 and Player 1 have tied!", 100, gameover.getHeight());
 			}
 		}
 	}
