@@ -3,12 +3,16 @@ package lisp;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ArtificialAirquoteIntelligence extends GameObjectInRoom {
 	RailShip me;
 	RailShip asshole;
 	private static double STEPSIZE_GOAL = 5;
 	private boolean facesRight;
+	private int movingUp = 0;
+	private int movingDown = 0;
+	Random r = new Random();
 	
 	ArtificialAirquoteIntelligence(RailShip me, RailShip asshole, boolean facesRight, GameRoom room){
 		super(room);
@@ -20,12 +24,34 @@ public class ArtificialAirquoteIntelligence extends GameObjectInRoom {
 	
 	@Override
 	public void draw(Graphics2D g) {
-		//this space intentionaly left blank
+		//this space intentionally left blank
 	}
 
 	@Override
 	public void step() {
+		movingUp--;
+		movingDown--;
+		if(checkShot(me.getX()+RailShip.SHIP_WIDTH/2, me.getY()+RailShip.SHIP_HEIGHT/2, facesRight )){
+			me.fireLaser();
+		}
+		if(movingUp>0){
+			me.accUp();
+		} else if(movingDown > 0){
+			me.accDown();
+		}
 		
+		if(r.nextInt(100)==0){
+			movingUp = 25;
+		}
+		if(r.nextInt(100)==0){
+			movingDown = 25;
+		}
+		if(r.nextInt(100)==0){
+			me.fireMissile();
+		}
+		if(r.nextInt(100)==0){
+			me.fireLaser();
+		}
 	}
 	
 	public boolean checkShot(double init_x, double init_y, boolean facesRight){
@@ -46,9 +72,7 @@ public class ArtificialAirquoteIntelligence extends GameObjectInRoom {
 		
 		double dist;
 		
-		while(field.isFree(r[0], r[1]) && 
-			  me.testLazerFree(r[0], r[1]) &&
-			  asshole.testLazerFree(r[0], r[1]) &&
+		while(field.isFree(r[0], r[1]) &&  
 			  r[0]>0 && r[0]<room.getPanel().getWidth() && 
 			  r[1]>0 && r[1]< room.getPanel().getHeight()){
 			
