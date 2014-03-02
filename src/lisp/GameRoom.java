@@ -11,10 +11,12 @@ import java.util.Collection;
 import javax.swing.JPanel;
 
 import lisp.drawers.AsteroidImageDrawer;
+import lisp.drawers.ComboGameObjectDrawer;
 import lisp.drawers.GameObjectDrawer;
 import lisp.drawers.IndirectGameObjectDrawer;
-import lisp.drawers.RailShipGeoDrawer;
-import lisp.drawers.RailShipImageDrawer;
+import lisp.drawers.RailShipBodyGeoDrawer;
+import lisp.drawers.RailShipBodyImageDrawer;
+import lisp.drawers.RailShipFlareGeoDrawer;
 
 public class GameRoom implements Drawable {
 	
@@ -39,7 +41,7 @@ public class GameRoom implements Drawable {
 	private Color textColor = Color.white;
 	
 	private GameObjectDrawer<AsteroidImp> asteroidDrawer;
-	private GameObjectDrawer<RailShip> shipDrawer;
+	private GameObjectDrawer<RailShip> shipBodyDrawer, shipDrawer;
 	
 	public GameRoom()
 	{
@@ -101,7 +103,8 @@ public class GameRoom implements Drawable {
 	 */
 	private void init() {
 		asteroidDrawer = new IndirectGameObjectDrawer<>(new AsteroidImageDrawer());
-		shipDrawer = new IndirectGameObjectDrawer<>(new RailShipImageDrawer());
+		shipBodyDrawer = new IndirectGameObjectDrawer<>(new RailShipBodyImageDrawer());
+		shipDrawer = new ComboGameObjectDrawer<>(shipBodyDrawer, new RailShipFlareGeoDrawer());
 		panel.resetKeys();
 		gameObjects.clear();
 		final int shipY = panel.getHeight() / 2;
