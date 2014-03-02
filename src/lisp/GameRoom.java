@@ -20,6 +20,7 @@ public class GameRoom implements Drawable {
 	private AsteroidField asteroidField;
 	private Collection<GameObject> gameObjects = new ArrayList<>();
 	private boolean isGameOver;
+	private boolean done;
 	
 	public GameRoom()
 	{
@@ -34,25 +35,34 @@ public class GameRoom implements Drawable {
 	}
 
 	public void startGame() {
-		init();
+		done = isGameOver = true;
 		//Run the event loop
-		while(!isGameOver)
+		while(!done)
 		{
-			//Process all game events, step all objects, wait one step, and continue
-			processEvents();
-			panel.repaint();
-			for(GameObject go : getGameObjectsClone())
-				go.step();
-			try {
-				Thread.sleep(stepSize);
-			} catch (InterruptedException e) {
-				System.out.println("Sleep was interrupted! Oh noes!");
-				e.printStackTrace();
+			if(!isGameOver) {
+				//Process all game events, step all objects, wait one step, and continue
+				processEvents();
+				panel.repaint();
+				for(GameObject go : getGameObjectsClone())
+					go.step();
+				try {
+					Thread.sleep(stepSize);
+				} catch (InterruptedException e) {
+					System.out.println("Sleep was interrupted! Oh noes!");
+					e.printStackTrace();
+				}
+			} else {
+				processKey(panel.getKey());
 			}
 		}
 		deinit();
 	}
 	
+	private void processKey(char key) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * Initializes for one game.
 	 */
