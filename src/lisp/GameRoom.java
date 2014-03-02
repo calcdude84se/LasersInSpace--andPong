@@ -197,22 +197,22 @@ public class GameRoom implements Drawable {
 				else g.drawImage(on, BUFFER + s.getWidth()+ keys.getWidth(), (int)(logo.getHeight()+s.getHeight()*3.25*scale), on.getWidth(), on.getHeight(), null);
 				break;
 			case options:
-				drawString(g, "Options\nPress '"+toggleRetro+"' to toggle retro mode: "+booleanToString(retro)+"\n'"+increaseDiff+"' to increase difficulty\n'"+decreaseDiff+"' to decrease difficulty\nDifficulty currently "+difficulty+"\nPress '"+exit+"' to return to the main menu", 0, 0);
+				drawString(g, "Options\n\nPress '"+toggleRetro+"' to toggle retro mode: "+booleanToString(retro)+"\n\n'"+increaseDiff+"' to increase difficulty\n'"+decreaseDiff+"' to decrease difficulty\nCurrent Difficulty: "+difficulty+"\n\nPress '"+exit+"' to return to the main menu", 0, 0);
 				break;
 			case controls:
-				drawString(g,"Controls\n\nPlayer 1:\n's': shoot missile\n'a': shoot laser\n'q': go up\n'z': go down\n\nPlayer 2:\n':':shoot missile\n'\"': shoot laser\n'}':go up\n'/': go down\n'"+exit+"' to return to the main menu",0,0);
+				drawString(g,"Controls\n\nPlayer 1:\n'a': shoot missile\n'd': shoot laser\n'w': go up\n's': go down\n\nPlayer 2:\n'l':shoot missile\n'\'': shoot laser\n'p':go up\n';': go down\n\n'"+exit+"' to return to the main menu",0,0);
 				break;
 			case gameOver:
 				g.drawImage(gameover, panel.getWidth()/2 - gameover.getWidth()/2, 0, gameover.getWidth(), gameover.getHeight(), null);
 				if (shipLeft.getLives()>shipRight.getLives())
-					drawString(g, "Player 1 has won!", 100, gameover.getHeight());
+					drawString(g, "Player 1 has won!", 180, gameover.getHeight());
 				else if(shipLeft.getLives()<shipRight.getLives())
-					drawString(g, "Player 2 has won!",100, gameover.getHeight());
+					drawString(g, "Player 2 has won!",180, gameover.getHeight());
 				else if(shipLeft.getHealth()>shipRight.getHealth())
-					drawString(g, "Player 1 has won!",100, gameover.getHeight());
+					drawString(g, "Player 1 has won!",180, gameover.getHeight());
 				else if(shipLeft.getHealth()<shipRight.getHealth())
-					drawString(g, "Player 2 has won!", 100, gameover.getHeight());
-				else drawString(g, "Player 2 and Player 1 have tied!", 100, gameover.getHeight());
+					drawString(g, "Player 2 has won!", 180, gameover.getHeight());
+				else drawString(g, "Player 2 and Player 1 have tied!", gameover.getWidth()/4, gameover.getHeight());
 			}
 		}
 	}
@@ -231,11 +231,8 @@ public class GameRoom implements Drawable {
 		panel.resetKeys();
 		gameObjects.clear();
 		final int shipY = panel.getHeight() / 2;
-		final int shipLeftX = 0, shipLeftY = shipY,
-				shipRightX = panel.getWidth() - RailShip.SHIP_WIDTH,
-				shipRightY = shipY;
-		shipLeft = new RailShip(shipLeftX, shipLeftY, true, this);
-		shipRight = new RailShip(shipRightX, shipRightY, false, this);
+		shipLeft = new RailShip(shipY, true, this);
+		shipRight = new RailShip(shipY, false, this);
 		scoreBoard = new ScoreBoard(this);
 		asteroidField = new AsteroidField(this);
 		powerupField = new PowerupField(this);

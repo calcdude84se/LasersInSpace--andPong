@@ -2,8 +2,6 @@ package lisp.powerups;
 
 import lisp.GameObjectInRoom;
 import lisp.GameRoom;
-import lisp.RailShip;
-import lisp.drawers.PongBallGeoDrawer;
 
 public class PongBall extends GameObjectInRoom {
 	public double x, y, h, v;
@@ -15,7 +13,6 @@ public class PongBall extends GameObjectInRoom {
 		this.y = y;
 		this.h = h;
 		this.v = v;
-		drawer = new PongBallGeoDrawer();
 	}
 	
 	public void step(){
@@ -24,22 +21,22 @@ public class PongBall extends GameObjectInRoom {
 			y+=v;
 		}
 		if(y>room.getPanel().getHeight()-DIM){
-			v = -Math.abs(v);
+			v = -.5*Math.abs(v);
 		}
 		
-		if(x<RailShip.SHIP_WIDTH){
+		if(x<room.getShipLeft().getWidth()){
 			h = Math.abs(h);
 			x+=h;
-			if(room.getShipLeft().getY()>y||room.getShipLeft().getY()+RailShip.SHIP_HEIGHT<y){
+			if(room.getShipLeft().getY()>y||room.getShipLeft().getY()+room.getShipLeft().getHeight()<y){
 				room.getShipLeft().removeLife();
 				y = 100000;
 				x = 30;
 				h = 0;
 			}
 		}
-		if(x>room.getPanel().getWidth()-DIM - RailShip.SHIP_WIDTH){
-			h = -Math.abs(h);
-			if(room.getShipRight().getY()>y||room.getShipRight().getY()+RailShip.SHIP_HEIGHT<y){
+		if(x>room.getPanel().getWidth()-DIM - room.getShipRight().getWidth()){
+			x = -.5*Math.abs(h);
+			if(room.getShipRight().getY()>y||room.getShipRight().getY()+room.getShipRight().getHeight()<y){
 				room.getShipRight().removeLife();
 			}
 			y = 100000;
