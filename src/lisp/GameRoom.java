@@ -144,6 +144,10 @@ public class GameRoom implements Drawable {
 				menu = Menu.options;
 			} else if(key == controls) {
 				menu = Menu.controls;
+			} else if (key == increaseDiff){
+				difficulty++;
+			} else if (key == decreaseDiff){
+				difficulty--;
 			}
 		}
 		
@@ -152,6 +156,11 @@ public class GameRoom implements Drawable {
 				menu = Menu.main;
 			else if(key == toggleRetro)
 				retro ^= true;
+			else if (key == increaseDiff){
+				if (difficulty < 9)difficulty++;
+			} else if (key == decreaseDiff){
+				if (difficulty > 0)difficulty--;
+			}
 		}
 		
 		private void controls(char key) {
@@ -164,7 +173,7 @@ public class GameRoom implements Drawable {
 		}
 
 		private final char startGame = 's', exit = 'e', toggleSinglePlayer = 'p', options = 'o', controls = 'c',
-				toggleRetro = 'r';
+				toggleRetro = 'r', increaseDiff = '+', decreaseDiff = '-';
 
 		@Override
 		public void draw(Graphics2D g) {
@@ -180,12 +189,12 @@ public class GameRoom implements Drawable {
 				g.drawImage(c, BUFFER, (int)(logo.getHeight()+s.getHeight()*4*scale), (int)(s.getWidth()/(1.5)), (int)(s.getHeight()/1.5), null);
 				g.drawImage(keys, BUFFER + s.getWidth(), logo.getHeight(), keys.getWidth(), keys.getHeight(), null);
 				if (!singlePlayer) {
-					g.drawImage(off, BUFFER + s.getWidth()+ keys.getWidth(), (int)(logo.getHeight()+s.getHeight()*3.25*scale), on.getWidth(), on.getHeight(), null);
+					g.drawImage(off, BUFFER + s.getWidth()+ keys.getWidth(), (int)(logo.getHeight()+s.getHeight()*3.25*scale), off.getWidth(), off.getHeight(), null);
 				}
-				else g.drawImage(on, BUFFER + s.getWidth()+ keys.getWidth(), (int)(logo.getHeight()+s.getHeight()*3.25*scale), off.getWidth(), off.getHeight(), null);
+				else g.drawImage(on, BUFFER + s.getWidth()+ keys.getWidth(), (int)(logo.getHeight()+s.getHeight()*3.25*scale), on.getWidth(), on.getHeight(), null);
 				break;
 			case options:
-				drawString(g, "Options\nPress '"+toggleRetro+"' to toggle retro mode: "+booleanToString(retro)+"\nPress '"+exit+"' to return to the main menu", 0, 0);
+				drawString(g, "Options\nPress '"+toggleRetro+"' to toggle retro mode: "+booleanToString(retro)+"\n'"+increaseDiff+"' to increase difficulty\n'"+decreaseDiff+"' to decrease difficulty\nDifficulty currently "+difficulty+"\nPress '"+exit+"' to return to the main menu", 0, 0);
 				break;
 			case controls:
 				drawString(g,"Controls\nPlayer 1:\n's': shoot missile\n'a': shoot laser\n'q': go up\n'z': go down\nPlayer 2:\n':':shoot missile\n'\"': shoot laser\n'}':go up\n'/': go down\n'"+exit+"' to return to the main menu",0,0);
