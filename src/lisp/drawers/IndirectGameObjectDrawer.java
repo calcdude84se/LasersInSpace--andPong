@@ -1,8 +1,8 @@
-package lisp;
+package lisp.drawers;
 
 import java.awt.Graphics2D;
 
-import lisp.drawers.GameObjectDrawer;
+import lisp.GameObject;
 
 public class IndirectGameObjectDrawer<T extends GameObject> implements GameObjectDrawer<T> {
 

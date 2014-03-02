@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import lisp.drawers.AsteroidImageDrawer;
 import lisp.drawers.GameObjectDrawer;
+import lisp.drawers.IndirectGameObjectDrawer;
 import lisp.drawers.RailShipGeoDrawer;
 
 public class GameRoom implements Drawable {
