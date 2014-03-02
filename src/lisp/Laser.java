@@ -10,7 +10,7 @@ import java.util.List;
 public class Laser extends GameObjectInRoom {
 	int [][] path;
 	int on = 5;
-	int life = 30;
+	int life = 10;
 	GameRoom room;
 	RailShip ship1;
 	RailShip ship2;

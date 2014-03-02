@@ -21,7 +21,7 @@ public class RailShip extends GameObjectInRoom implements GameObject {
 	
 	private GameRoom room;
 	private static final Stroke STROKE = new BasicStroke(2);
-	private static double PER_STEP_ACC = .03;
+	private static double PER_STEP_ACC = .06;
 	public static final int SHIP_WIDTH = 20;
 	public static final int SHIP_HEIGHT = 40;
 	private static final int COOL_DOWN_TIME = 50;
