@@ -27,6 +27,7 @@ public class GameRoom implements Drawable {
 	
 	private int fontSize = 30;
 	private Font text = new Font("Helvetica", Font.PLAIN, fontSize);
+	private Color textColor = Color.white;
 	
 	public GameRoom()
 	{
@@ -176,6 +177,14 @@ public class GameRoom implements Drawable {
 			g.drawString("Press 's' to start,  'e' to exit", 0, 24);
 		}
 			
+	}
+	
+	public void drawString(Graphics2D g, String string, int x, int y) {
+		g.setColor(textColor);
+		g.setFont(text);
+		String[] lines = string.split("\n");
+		for(int i = 0; i < lines.length; i++)
+			g.drawString(lines[i], x, y + i * fontSize);
 	}
 	
 	private final int shipLeftUp = KeyEvent.VK_Q, shipLeftLaser = KeyEvent.VK_A,
