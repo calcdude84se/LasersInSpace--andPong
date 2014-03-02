@@ -8,13 +8,17 @@ public class AsteroidImp implements Asteroid{
 	private int r;
 	private double xcenter;
 	private double ycenter;
+	private int xvelocity;
+	private int yvelocity;
 	
-	public AsteroidImp(int x, int y, int r){
+	public AsteroidImp(int x, int y, int r, int vx,int vy){
 		this.x = x;
 		this.y = y;
 		this.xcenter = (x+ r);
 		this.ycenter = (y+ r);
-		this.r = r; //radius of asteroid
+		this.xvelocity = vx;
+		this.yvelocity = vy;
+		this.r = r;
 	}
 
 	public void draw(Graphics2D g) {
@@ -23,7 +27,10 @@ public class AsteroidImp implements Asteroid{
 	}
 
 	public void step() {
-		//Don't step this yet.  These are static.
+		this.x += xvelocity;
+		this.y += yvelocity;
+		this.xcenter = (x+ r);
+		this.ycenter = (y+ r);
 	}
 	@Override
 	public double getMass(){
