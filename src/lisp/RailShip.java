@@ -29,8 +29,9 @@ public class RailShip extends GameObjectInRoom {
 	public static final int SHIP_HEIGHT = 40;
 	private static final int COOL_DOWN_TIME = 50;
 	
-	private double health = 20;
-	private int lives = 10;
+	
+	private double health = 10;
+	private int lives = 5;
 	
 	public RailShip(double x, double y, boolean facesRight, GameRoom room){
 		super(room);
@@ -58,7 +59,7 @@ public class RailShip extends GameObjectInRoom {
 		thrustingUp--;
 		thrustingDown--;
 		missileCoolDown--;
-		if(health<20){
+		if(health<10){
 			health+=.01;
 		}
 		if(health<0){
@@ -127,5 +128,11 @@ public class RailShip extends GameObjectInRoom {
 	}
 	void removeLife(){
 		lives--;
+	}
+	public double getHealth(){
+		return health;
+	}
+	public int getLives(){
+		return lives;
 	}
 }
