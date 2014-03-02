@@ -15,7 +15,7 @@ public class RailShip implements GameObject {
 	
 	private GameRoom room;
 	private static final Stroke STROKE = new BasicStroke(2);
-	private static double PER_STEP_ACC = .1;
+	private static double PER_STEP_ACC = .03;
 	public static final int SHIP_WIDTH = 20;
 	private static final int SHIP_HEIGHT = 40;
 	
@@ -24,8 +24,8 @@ public class RailShip implements GameObject {
 		this.x = x;
 		this.y = y;
 		this.facesRight = facesRight;
-		//this.y_speed = 1;
 		this.room = room;
+		//y_speed = .5;
 		
 	}
 	
@@ -42,11 +42,11 @@ public class RailShip implements GameObject {
 	}
 	
 	public void accUp(){
-		y_speed+= PER_STEP_ACC;
+		y_speed-= PER_STEP_ACC;
 	}
 	
 	public void accDown(){
-		y_speed-= PER_STEP_ACC;
+		y_speed+= PER_STEP_ACC;
 	}
 	
 	public void fireLaser(){
@@ -56,5 +56,9 @@ public class RailShip implements GameObject {
 			lazerCoolDown = 30;
 		}
 		
+	}
+	
+	public boolean isFree(){
+		return true;
 	}
 }
