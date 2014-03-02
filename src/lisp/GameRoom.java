@@ -35,7 +35,8 @@ public class GameRoom implements Drawable {
 	}
 
 	public void startGame() {
-		done = isGameOver = true;
+		isGameOver = true;
+		done = false;
 		//Run the event loop
 		while(!done)
 		{
