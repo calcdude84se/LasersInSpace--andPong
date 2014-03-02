@@ -13,6 +13,10 @@ import javax.swing.JPanel;
 
 public class GameRoom implements Drawable {
 	
+	//Gametype flags changeable in menu
+	private boolean singlePlayer = false;
+	
+	
 	private KeyPanel panel;
 	/**
 	 * Step size in milliseconds
@@ -79,6 +83,8 @@ public class GameRoom implements Drawable {
 			init();
 		} else if(key == exit) {
 			done = true;
+		} else if(key == toggleSinglePlayer){
+			singlePlayer = !singlePlayer;
 		}
 	}
 
@@ -100,6 +106,9 @@ public class GameRoom implements Drawable {
 		gameObjects.add(shipRight);
 		gameObjects.add(scoreBoard);
 		gameObjects.add(asteroidField);
+		if(singlePlayer){
+			gameObjects.add(new ArtificialAirquoteIntelligence(shipRight, shipLeft, false, this));
+		}
 	}
 	
 	private void processEvents() {
@@ -177,7 +186,7 @@ public class GameRoom implements Drawable {
 			for(GameObject go : getGameObjectsClone())
 				go.draw(g);
 		else {
-			drawString(g, "Lasers In Space! -- and Pong\nPress 's' to start,  'e' to exit", 0, 0);
+			drawString(g, "Lasers In Space! -- and Pong\nPress 's' to start,  'e' to exit\n'p' to toggle single-player\n"+(singlePlayer?"Single-player on!":"Single-player off!"), 0, 0);
 		}
 			
 	}
@@ -195,6 +204,6 @@ public class GameRoom implements Drawable {
 			shipRightUp = KeyEvent.VK_CLOSE_BRACKET, shipRightLaser = KeyEvent.VK_QUOTE,
 			shipRightMissile = KeyEvent.VK_SEMICOLON, shipRightDown = KeyEvent.VK_SLASH,
 			exitGame = KeyEvent.VK_E;
-	private final char startGame = 's', exit = 'e';
+	private final char startGame = 's', exit = 'e', toggleSinglePlayer = 'p';
 
 }
