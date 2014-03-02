@@ -89,6 +89,5 @@ public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid,
 		}
 		removeLife();
 		return false;
-			
 	}
 }
