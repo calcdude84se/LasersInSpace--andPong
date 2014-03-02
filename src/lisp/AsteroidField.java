@@ -15,6 +15,7 @@ public class AsteroidField implements GameObject{
 	private int asteroidNum = gen.nextInt(4) + 5;
 	private Collection<AsteroidImp> asteroids = new ArrayList<>();
 	private JPanel panel;
+	private GameRoom room;
 	
 	public AsteroidField(GameRoom room){
 		/*
@@ -22,6 +23,7 @@ public class AsteroidField implements GameObject{
 		 * Based on a 480 X 620 sized room
 		 */
 		panel = room.getPanel();
+		this.room = room;
 		int x1 = panel.getWidth() - 120;
 		int y1 = panel.getHeight() - 120;
 		for (int i=0; i<=asteroidNum; i++){
@@ -38,7 +40,7 @@ public class AsteroidField implements GameObject{
 		int r = gen.nextInt(20) + 15;
 		double vx = gen.nextDouble() - (.5);
 		double vy = gen.nextDouble() + .2;
-		AsteroidImp jimmy = new AsteroidImp(x,y,r,vx,vy);
+		AsteroidImp jimmy = new AsteroidImp(room, x,y,r,vx,vy);
 		return jimmy; 
 	}
 
