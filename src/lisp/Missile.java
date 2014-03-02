@@ -36,8 +36,10 @@ public class Missile extends GameObjectInRoom {
 			room.addObject(new Explosion(r[0], r[1], room, 15,Color.BLUE ));
 			
 			
-			
 		}
+		
+		room.doPowerupAt(r[0], r[1]);
+		
 		
 		
 		List<double[]> AsteroidList = new ArrayList<>();

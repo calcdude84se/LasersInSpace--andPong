@@ -79,7 +79,7 @@ public class Laser extends GameObjectInRoom {
 			  r[0]>0 && r[0]<room.getPanel().getWidth() && 
 			  r[1]>0 && r[1]< room.getPanel().getHeight()){
 			
-			
+			room.doPowerupAt(r[0], r[1]);
 			
 			int[] e = {(int) r[0], (int) r[1], (int) r[2], (int) r[3]};
 			rList.add(e);
