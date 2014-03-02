@@ -58,9 +58,18 @@ public class GameRoom implements Drawable {
 		deinit();
 	}
 	
+	/**
+	 * Process a key in menu mode
+	 * @param key the key to be processed.
+	 */
 	private void processKey(char key) {
 		// TODO Auto-generated method stub
-		
+		if(key == startGame) {
+			isGameOver = false;
+			init();
+		} else if(key == quitGame) {
+			done = true;
+		}
 	}
 
 	/**
@@ -145,5 +154,6 @@ public class GameRoom implements Drawable {
 	private final int shipLeftUp = KeyEvent.VK_Q, shipLeftLaser = KeyEvent.VK_A,
 			shipLeftDown = KeyEvent.VK_Z, shipRightUp = KeyEvent.VK_CLOSE_BRACKET,
 			shipRightLaser = KeyEvent.VK_QUOTE, shipRightDown = KeyEvent.VK_SLASH;
+	private final char startGame = 's', quitGame = 'q';
 
 }
