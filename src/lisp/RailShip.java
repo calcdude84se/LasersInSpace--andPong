@@ -11,8 +11,6 @@ import lisp.drawers.RailShipBodyGeoDrawer;
 
 public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	
-
-	public double x;
 	public double y;
 	private double y_speed = 0;
 	private boolean facesRight;
@@ -34,9 +32,8 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	private double health = 10;
 	private int lives = 3;
 	
-	public RailShip(double x, double y, boolean facesRight, GameRoom room){
+	public RailShip(double y, boolean facesRight, GameRoom room){
 		super(room);
-		this.x = x;
 		this.y = y;
 		this.facesRight = facesRight;
 		this.room = room;
@@ -85,7 +82,7 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	public void fireLaser(){
 		if(lazerCoolDown<0){
 			
-			room.addObject(new Laser(x+(facesRight?SHIP_WIDTH+1:-1) , y+SHIP_HEIGHT/2, facesRight, this, room));
+			room.addObject(new Laser(getX()+(facesRight?SHIP_WIDTH+1:-1) , y+SHIP_HEIGHT/2, facesRight, this, room));
 			lazerCoolDown = COOL_DOWN_TIME;
 		}
 		
@@ -94,14 +91,14 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	public void fireMissile(){
 		if(missileCoolDown<0){
 			
-			room.addObject(new Missile(x+(facesRight?SHIP_WIDTH+1:-1) , y+SHIP_HEIGHT/2, facesRight, room));
+			room.addObject(new Missile(getX()+(facesRight?SHIP_WIDTH+1:-1) , y+SHIP_HEIGHT/2, facesRight, room));
 			missileCoolDown = COOL_DOWN_TIME;
 		}
 		
 	}
 	
 	public boolean testLazerFree(double xshot, double yshot, boolean isMissile){
-		if(xshot < x || xshot > x+SHIP_WIDTH || yshot < y || yshot> y + SHIP_HEIGHT){
+		if(xshot < getX() || xshot > getX() +SHIP_WIDTH || yshot < y || yshot> y + SHIP_HEIGHT){
 			return true;
 		}
 		room.addObject(new Explosion(xshot, yshot, room, Color.RED));
@@ -117,7 +114,7 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	public void collideAsteroids(){
 		for(AsteroidImp ast : Utilities.cloneArrayList(room.getAsteroidField().getAsteroids())){
 			Ellipse2D asteroid = new Ellipse2D.Double(ast.getXCenter() - ast.getR(), ast.getYCenter()-ast.getR(), 2*ast.getR(), 2*ast.getR());
-			if(asteroid.intersects(x, y, SHIP_WIDTH, SHIP_HEIGHT)){			
+			if(asteroid.intersects(getX(), y, SHIP_WIDTH, SHIP_HEIGHT)){			
 				room.addObject(new Explosion(ast.getXCenter(), ast.getYCenter(), room, Color.BLUE));
 				removeLife();
 				ast.destroy();
@@ -126,7 +123,7 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 		}
 	}
 	public double getX(){
-		return x;
+		return facesRight ? 0 : room.getPanel().getWidth() - SHIP_WIDTH;
 	}
 	public double getY(){
 		return y;
@@ -134,7 +131,7 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	public void removeLife(){
 		lives--;
 		health = 10;
-		room.addObject(new CircularExplosion(x, y, room, 180, Color.CYAN));
+		room.addObject(new CircularExplosion(getX(), y, room, 180, Color.CYAN));
 	}
 	public double getHealth(){
 		return health;
@@ -150,6 +147,6 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 
 	@Override
 	public Double getPosition() {
-		return new Double(x, y, SHIP_WIDTH, SHIP_HEIGHT);
+		return new Double(getX(), y, SHIP_WIDTH, SHIP_HEIGHT);
 	}
 }

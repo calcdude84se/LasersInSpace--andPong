@@ -15,12 +15,14 @@ public class RailShipFlareGeoDrawer implements GameObjectDrawer<RailShip> {
 		
 		//Engines
 		
+		double x = railShip.getX();
+		
 		g.setColor(Color.RED);
 		if(railShip.thrustingDown>0){
 			for(int i = 0; i<12; i++){
-				g.drawLine((int) Math.round(railShip.x+RailShip.SHIP_WIDTH/2), 
+				g.drawLine((int) Math.round(x+RailShip.SHIP_WIDTH/2), 
 						   (int) Math.round(railShip.y), 
-						   (int) Math.round(railShip.x+RailShip.SHIP_WIDTH*railShip.r.nextDouble()), 
+						   (int) Math.round(x+RailShip.SHIP_WIDTH*railShip.r.nextDouble()), 
 						   (int) Math.round(railShip.y - RailShip.SHIP_HEIGHT*.5*railShip.r.nextDouble()));
 		
 			}
@@ -28,9 +30,9 @@ public class RailShipFlareGeoDrawer implements GameObjectDrawer<RailShip> {
 		
 		else if(railShip.thrustingUp>0){
 			for(int i = 0; i<12; i++){
-				g.drawLine((int) Math.round(railShip.x+RailShip.SHIP_WIDTH/2), 
+				g.drawLine((int) Math.round(x+RailShip.SHIP_WIDTH/2), 
 						   (int) Math.round(railShip.y+RailShip.SHIP_HEIGHT), 
-						   (int) Math.round(railShip.x+RailShip.SHIP_WIDTH*railShip.r.nextDouble()), 
+						   (int) Math.round(x+RailShip.SHIP_WIDTH*railShip.r.nextDouble()), 
 						   (int) Math.round(railShip.y + RailShip.SHIP_HEIGHT*(1+.5*railShip.r.nextDouble())));
 		
 			}
