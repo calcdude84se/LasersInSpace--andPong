@@ -1,5 +1,6 @@
 package lisp;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -35,6 +36,7 @@ public class GameRoom {
 		final int panelWidth = 640, panelHeight = 480;
 		panel = new GamePanel();
 		panel.setPreferredSize(new Dimension(panelWidth, panelHeight));
+		panel.setBackground(Color.black);
 	}
 
 	public JPanel getPanel() {
