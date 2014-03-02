@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import lisp.powerups.Powerup;
+
 public class PowerupField extends GameObjectInRoom {
 	
 	private Collection<Powerup> powerups = new ArrayList<>();
@@ -32,6 +34,10 @@ public class PowerupField extends GameObjectInRoom {
 	
 	private Collection<Powerup> getPowerupsClone() {
 		return Utilities.cloneArrayList(powerups);
+	}
+
+	public void removeObject(Powerup powerup) {
+		powerups.remove(powerup);
 	}
 
 }
