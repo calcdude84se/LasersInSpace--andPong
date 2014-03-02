@@ -180,9 +180,9 @@ public class GameRoom implements Drawable {
 				g.drawImage(c, BUFFER, (int)(logo.getHeight()+s.getHeight()*4*scale), (int)(s.getWidth()/(1.5)), (int)(s.getHeight()/1.5), null);
 				g.drawImage(keys, BUFFER + s.getWidth(), logo.getHeight(), keys.getWidth(), keys.getHeight(), null);
 				if (!singlePlayer) {
-					g.drawImage(on, BUFFER + s.getWidth()+ keys.getWidth(), (int)(logo.getHeight()+s.getHeight()*3.25*scale), on.getWidth(), on.getHeight(), null);
+					g.drawImage(off, BUFFER + s.getWidth()+ keys.getWidth(), (int)(logo.getHeight()+s.getHeight()*3.25*scale), on.getWidth(), on.getHeight(), null);
 				}
-				else g.drawImage(off, BUFFER + s.getWidth()+ keys.getWidth(), (int)(logo.getHeight()+s.getHeight()*3.25*scale), off.getWidth(), off.getHeight(), null);
+				else g.drawImage(on, BUFFER + s.getWidth()+ keys.getWidth(), (int)(logo.getHeight()+s.getHeight()*3.25*scale), off.getWidth(), off.getHeight(), null);
 				break;
 			case options:
 				drawString(g, "Options\nPress '"+toggleRetro+"' to toggle retro mode: "+booleanToString(retro)+"\nPress '"+exit+"' to return to the main menu", 0, 0);
