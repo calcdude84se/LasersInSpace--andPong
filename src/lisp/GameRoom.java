@@ -40,6 +40,7 @@ public class GameRoom implements Drawable {
 	private RailShip shipLeft, shipRight;
 	private ScoreBoard scoreBoard;
 	private AsteroidField asteroidField;
+	private PowerupField powerupField;
 	private Collection<GameObject> gameObjects = new ArrayList<>();
 	private boolean isGameOver;
 	private boolean done;
@@ -198,10 +199,12 @@ public class GameRoom implements Drawable {
 		shipRight = new RailShip(shipRightX, shipRightY, false, this);
 		scoreBoard = new ScoreBoard(this);
 		asteroidField = new AsteroidField(this);
+		powerupField = new PowerupField(this);
 		gameObjects.add(shipLeft);
 		gameObjects.add(shipRight);
 		gameObjects.add(scoreBoard);
 		gameObjects.add(asteroidField);
+		gameObjects.add(powerupField);
 		if(singlePlayer){
 			gameObjects.add(new ArtificialAirquoteIntelligence(shipRight, shipLeft, false, difficulty, this));
 		}
@@ -252,6 +255,10 @@ public class GameRoom implements Drawable {
 	public void removeObject(GameObject go)
 	{
 		gameObjects.remove(go);
+	}
+
+	public void doPowerupAt(double x, double y) {
+		powerupField.doPowerupAt(x, y);
 	}
 	
 	public AsteroidField getAsteroidField() {
