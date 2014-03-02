@@ -1,5 +1,7 @@
 package lisp.powerups;
 
+import java.awt.geom.Rectangle2D;
+
 import lisp.GameRoom;
 import lisp.PowerupField;
 
@@ -30,4 +32,8 @@ public class PongPowerUp extends Powerup{
 		}
 	}
 
+	
+	public Rectangle2D getPosition(){
+		return new Rectangle2D.Double(x, y, PongBall.DIM, PongBall.DIM);
+	}
 }
