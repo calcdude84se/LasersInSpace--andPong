@@ -6,7 +6,7 @@ import javax.swing.WindowConstants;
 public abstract class Main {
 
 	public static void main(String[] args) {
-		JFrame gameFrame = new JFrame("Lasers In Space! -- and Pong");
+		JFrame gameFrame = new JFrame(GameRoom.NAME);
 		gameFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		GameRoom gameRoom = new GameRoom();
 		gameFrame.add(gameRoom.getPanel());

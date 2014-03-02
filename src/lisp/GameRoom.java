@@ -30,7 +30,7 @@ public class GameRoom implements Drawable {
 	private boolean retro = false;
 	private int difficulty = 0;
 	
-	private static final String NAME = "Laser Space Pong -- In Spaaaace";
+	public static final String NAME = "Laser Space Pong -- In Spaaaace";
 	
 	private KeyPanel panel;
 	/**
@@ -54,7 +54,7 @@ public class GameRoom implements Drawable {
 	private MenuState menuState;
 	
 	private BufferedImage background = Utilities.loadImage("images/space.png");
-	private BufferedImage logo = Utilities.loadImage("images/logo.png");
+	private BufferedImage logo = Utilities.loadImage("images/title.png");
 	
 	public GameRoom()
 	{
@@ -162,7 +162,8 @@ public class GameRoom implements Drawable {
 		public void draw(Graphics2D g) {
 			switch(menu) {
 			case main:
-				drawString(g, NAME + "\nPress '"+startGame+"' to start,  '"+exit+"' to exit\n'"+toggleSinglePlayer+"' to toggle single-player\n'"+options+"' for options\n'"+controls+"' for controls\n"+"Single-player "+booleanToString(singlePlayer)+"!", 0, 0);
+				drawString(g, "Press '"+startGame+"' to start,  '"+exit+"' to exit\n'"+toggleSinglePlayer+"' to toggle single-player\n'"+options+"' for options\n'"+controls+"' for controls\n"+"Single-player "+booleanToString(singlePlayer)+"!", 0, logo.getHeight());
+				g.drawImage(logo, panel.getWidth()/2-logo.getWidth()/2, 0, logo.getWidth(), logo.getHeight(), null);
 				break;
 			case options:
 				drawString(g, "Options\nPress '"+toggleRetro+"' to toggle retro mode: "+booleanToString(retro)+"\nPress '"+exit+"' to return to the main menu", 0, 0);
