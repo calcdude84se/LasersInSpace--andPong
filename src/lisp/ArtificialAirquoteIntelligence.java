@@ -13,7 +13,7 @@ public class ArtificialAirquoteIntelligence extends GameObjectInRoom {
 	
 	@Override
 	public void draw(Graphics2D g) {
-		
+		//this space intentionaly left blank
 	}
 
 	@Override

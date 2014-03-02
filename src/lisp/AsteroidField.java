@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.JPanel;
@@ -79,5 +80,26 @@ public class AsteroidField implements GameObject{
 	public void destroy() {
 		//Not sure what to do here yet....
 	}
-
+	
+	public double[] getAcceleration(double x, double y){
+		double[] f = {0.0, 0.0};
+		
+		List<double[]> AsteroidList = new ArrayList<>();
+		
+		for(Asteroid ast : getAsteroids()){
+			double[] n = {ast.getXCenter(), ast.getYCenter(), ast.getMass()/2000}; 
+			AsteroidList.add(n);
+		}
+	
+	
+		for(double[] ast : AsteroidList){
+		
+			double dist = -Math.sqrt((x-ast[0])*(x-ast[0])+(y-ast[1])*(y-ast[1]));
+		
+			f[0] += ast[2]*(x-ast[0])/(dist*dist*dist);
+			f[1] += ast[2]*(y-ast[1])/(dist*dist*dist);
+			
+		}
+		return f;
+	}
 }
