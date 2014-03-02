@@ -40,7 +40,8 @@ public class AsteroidField implements GameObject{
 		int r = gen.nextInt(20) + 15;
 		double vx = gen.nextDouble() - (.5);
 		double vy = gen.nextDouble() + .2;
-		AsteroidImp jimmy = new AsteroidImp(room, x,y,r,vx,vy);
+		int img = (int)Math.round(gen.nextDouble());
+		AsteroidImp jimmy = new AsteroidImp(room, x,y,r,vx,vy,img);
 		return jimmy; 
 	}
 

@@ -2,7 +2,13 @@ package lisp;
 
 import lisp.drawers.AsteroidGeoDrawer;
 
-public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid{
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid, WithImage{
 	
 	public double x;
 	public double y;
@@ -11,9 +17,10 @@ public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid{
 	private double ycenter;
 	private double xvelocity;
 	private double yvelocity;
+	private BufferedImage image;
 
 	
-	public AsteroidImp(GameRoom room, double x, double y, double r, double vx, double vy){
+	public AsteroidImp(GameRoom room, double x, double y, double r, double vx, double vy, int img){
 		this.x = x;
 		this.y = y;
 		this.xcenter = (x+ r);
@@ -21,7 +28,13 @@ public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid{
 		this.xvelocity = vx;
 		this.yvelocity = vy;
 		this.r = r;
-		
+		String path = "images/asteroid" + img + ".png";
+		image = null;
+		{
+	        try {image = ImageIO.read(new File(path));
+	        } catch (IOException e){
+	        }
+		}
 		this.drawer = room.getAsteroidDrawer();
 	}
 
@@ -55,5 +68,32 @@ public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid{
 	}
 	public void destroy(){
 		//nothing to do here.
+	}
+	public BufferedImage getImage(){
+		return image;
+	}
+
+	@Override
+	public double getX() {
+		// TODO Auto-generated method stub
+		return x;
+	}
+
+	@Override
+	public double getY() {
+		// TODO Auto-generated method stub
+		return y;
+	}
+
+	@Override
+	public double getWidth() {
+		// TODO Auto-generated method stub
+		return 2*r;
+	}
+
+	@Override
+	public double getHeight() {
+		// TODO Auto-generated method stub
+		return 2*r;
 	}
 }
