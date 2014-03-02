@@ -11,14 +11,17 @@ public class ScoreBoard extends GameObjectInRoom {
 	public static int INDENT = 200;
 	public int height;
 	public int width;
-	public int shipLeft;
-	public int shipRight;
+	public RailShip shipLeft;
+	public RailShip shipRight;
 
 	public ScoreBoard(GameRoom room){
 		super(room);
 		JPanel panel = room.getPanel();
 		this.width = panel.getWidth();
 		this.height = 60;
+		
+		this.shipLeft = room.getShipLeft();
+		this.shipRight = room.getShipRight();
 		
 		drawer = new ScoreBoardDrawer();
 	}
@@ -28,9 +31,5 @@ public class ScoreBoard extends GameObjectInRoom {
 		//Don't step this.
 	}
 	
-	public void setScore(int bit){
-		if (bit == 0) shipLeft += 1;
-		else shipRight += 1;
-	}
-	
+		
 }
