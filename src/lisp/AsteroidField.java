@@ -44,6 +44,11 @@ public class AsteroidField implements GameObject{
 		AsteroidImp jimmy = new AsteroidImp(room, x,y,r,vx,vy,img);
 		return jimmy; 
 	}
+	
+	public void replaceRoid(AsteroidImp asteroid){
+		asteroids.remove(asteroid);
+		asteroids.add(getRoid(panel.getWidth()/2,1));
+	}
 
 	@Override
 	public void draw(Graphics2D g) {
@@ -79,7 +84,7 @@ public class AsteroidField implements GameObject{
 	 */
 	public boolean isFree(double x, double y){
 		for (AsteroidImp asteroid : getAsteroidsClone()){
-			if (!asteroid.isFree(x, y)) return false;
+			if (!asteroid.testLazerFree(x, y)) return false;
 		}
 		return true;
 	}

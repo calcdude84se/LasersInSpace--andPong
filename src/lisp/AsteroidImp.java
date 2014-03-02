@@ -27,7 +27,7 @@ public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid,
 		this.xvelocity = vx;
 		this.yvelocity = vy;
 		this.r = r;
-		health = (int) r;
+		health = (int) r*2;
 		id = img;
 		this.drawer = room.getAsteroidDrawer();
 	}
@@ -78,12 +78,12 @@ public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid,
 		health--;
 		if(health<0){
 			room.addObject(new Explosion(getXCenter(),getYCenter(),room, Color.RED));
-			room.removeObject(this);
+			room.getAsteroidField().replaceRoid(this);
 	}
 	}
 		
-	public boolean testLazerFree(double xshot, double yshot, boolean isMissile){
-		if(xshot < x || xshot > x+2*xcenter || yshot < y || yshot> y + 2*ycenter){
+	public boolean testLazerFree(double xshot, double yshot){
+		if(xshot < x || xshot > x+xcenter || yshot < y || yshot> y + ycenter){
 			return true;
 		}
 		removeLife();
