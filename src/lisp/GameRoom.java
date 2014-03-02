@@ -173,8 +173,7 @@ public class GameRoom implements Drawable {
 			for(GameObject go : getGameObjectsClone())
 				go.draw(g);
 		else {
-			g.drawString("Lasers In Space! -- and Pong", 0, 12);
-			g.drawString("Press 's' to start,  'e' to exit", 0, 24);
+			drawString(g, "Lasers In Space! -- and Pong\nPress 's' to start,  'e' to exit", 0, 0);
 		}
 			
 	}
@@ -184,7 +183,7 @@ public class GameRoom implements Drawable {
 		g.setFont(text);
 		String[] lines = string.split("\n");
 		for(int i = 0; i < lines.length; i++)
-			g.drawString(lines[i], x, y + i * fontSize);
+			g.drawString(lines[i], x, y + (i + 1) * fontSize);
 	}
 	
 	private final int shipLeftUp = KeyEvent.VK_Q, shipLeftLaser = KeyEvent.VK_A,
