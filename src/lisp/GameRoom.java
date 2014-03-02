@@ -2,6 +2,7 @@ package lisp;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.FocusEvent;
@@ -29,6 +30,8 @@ public class GameRoom {
 	private Set<Integer> keysPressed = new HashSet<>();
 	private Set<Integer> keysReleased = new HashSet<>();
 	private boolean isGameOver;
+	
+	private static Font text = new Font("Helvetica", Font.PLAIN, 30);
 	
 	public GameRoom()
 	{
@@ -138,6 +141,10 @@ public class GameRoom {
 	
 	public ScoreBoard getScoreBoard() {
 		return scoreBoard;
+	}
+	
+	public static Font getText() {
+		return text;
 	}
 	
 	private Collection<GameObject> getGameObjectsClone() {

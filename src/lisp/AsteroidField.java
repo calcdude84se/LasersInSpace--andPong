@@ -32,8 +32,8 @@ public class AsteroidField implements GameObject{
 	 * This gets the coordinates for the asteroids based on the frame size and not arbitrary magic numbers.
 	 */
 	private AsteroidImp getRoid(int x1, int y1){
-		int x = gen.nextInt(x1)+ 60;
-		int y = gen.nextInt(y1) + 60;
+		int x = gen.nextInt(x1)+60;
+		int y = gen.nextInt(y1)-30;
 		int r = gen.nextInt(20) + 15;
 		double vx = gen.nextDouble() - (.5);
 		double vy = gen.nextDouble() + .2;

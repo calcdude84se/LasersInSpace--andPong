@@ -9,7 +9,6 @@ public abstract class GameObjectInRoom implements GameObject {
 	GameObjectInRoom(GameRoom room){
 		this.room = room;
 	}
-
 	@Override
 	public void destroy() {
 		room.removeObject(this);
