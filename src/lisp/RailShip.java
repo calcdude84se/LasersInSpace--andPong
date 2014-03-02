@@ -134,6 +134,7 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	void removeLife(){
 		lives--;
 		health = 10;
+		room.addObject(new CircularExplosion(x, y, room, 180, Color.CYAN));
 	}
 	public double getHealth(){
 		return health;
