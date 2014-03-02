@@ -20,14 +20,14 @@ public class PongPowerUp extends Powerup{
 	protected void activate() {
 		ball = new PongBall(x, y, 5, 5, room);
 		room.addObject(ball);
-		int timer = 470;
+		int timer = 240;
 		
 	}
 
 	@Override
 	protected void activatedStep() {
 		timer --;
-		if(timer == 0){
+		if(timer < 0){
 			ball.destroy();
 			this.destroy();
 		}

@@ -29,6 +29,9 @@ public class PongBall extends GameObjectInRoom {
 			x+=h;
 			if(room.getShipLeft().getY()>y||room.getShipLeft().getY()+room.getShipLeft().getHeight()<y){
 				room.getShipLeft().removeLife();
+				y = 100000;
+				x = 30;
+				h = 0;
 			}
 		}
 		if(x>room.getPanel().getWidth()-DIM - room.getShipRight().getWidth()){
@@ -36,6 +39,9 @@ public class PongBall extends GameObjectInRoom {
 			if(room.getShipRight().getY()>y||room.getShipRight().getY()+room.getShipRight().getHeight()<y){
 				room.getShipRight().removeLife();
 			}
+			y = 100000;
+			x = 30;
+			h = 0;
 		}
 		
 		
