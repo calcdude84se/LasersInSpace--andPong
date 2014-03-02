@@ -50,12 +50,19 @@ public class GameRoom implements Drawable {
 	
 	private GameObjectDrawer<AsteroidImp> asteroidDrawer;
 	private GameObjectDrawer<RailShip> shipBodyDrawer, shipDrawer;
-	
+	private static int BUFFER = 10;
 	private MenuState menuState;
 	
 	private BufferedImage background = Utilities.loadImage("images/space.png");
 	private BufferedImage logo = Utilities.loadImage("images/title.png");
-	
+	private BufferedImage s = Utilities.loadImage("images/s.png");
+	private BufferedImage o = Utilities.loadImage("images/o.png");
+	private BufferedImage p = Utilities.loadImage("images/p.png");
+	private BufferedImage e = Utilities.loadImage("images/e.png");
+	private BufferedImage c = Utilities.loadImage("images/c.png");
+	private BufferedImage keys = Utilities.loadImage("images/keys.png");
+	public BufferedImage on = Utilities.loadImage("images/on.png");
+	public BufferedImage off = Utilities.loadImage("images/off.png");	
 	public GameRoom()
 	{
 		stepSize = 10;
@@ -162,8 +169,19 @@ public class GameRoom implements Drawable {
 		public void draw(Graphics2D g) {
 			switch(menu) {
 			case main:
-				drawString(g, "Press '"+startGame+"' to start,  '"+exit+"' to exit\n'"+toggleSinglePlayer+"' to toggle single-player\n'"+options+"' for options\n'"+controls+"' for controls\n"+"Single-player "+booleanToString(singlePlayer)+"!", 0, logo.getHeight());
+				double scale = 1/1.8;
+				//drawString(g, "Press '"+startGame+"' to start,  '"+exit+"' to exit\n'"+toggleSinglePlayer+"' to toggle single-player\n'"+options+"' for options\n'"+controls+"' for controls\n"+"Single-player "+booleanToString(singlePlayer)+"!", 0, logo.getHeight());
 				g.drawImage(logo, panel.getWidth()/2-logo.getWidth()/2, 0, logo.getWidth(), logo.getHeight(), null);
+				g.drawImage(s, BUFFER, logo.getHeight(), (int)(s.getWidth()/(1.5)), (int)(s.getHeight()/1.5), null);
+				g.drawImage(e, BUFFER, (int)(logo.getHeight()+s.getHeight()*scale), (int)(s.getWidth()/(1.5)), (int)(s.getHeight()/1.5), null);
+				g.drawImage(o, BUFFER, (int)(logo.getHeight()+s.getHeight()*2*scale), (int)(s.getWidth()/(1.5)), (int)(s.getHeight()/1.5), null);
+				g.drawImage(p, BUFFER, (int)(logo.getHeight()+s.getHeight()*3*scale), (int)(s.getWidth()/(1.5)), (int)(s.getHeight()/1.5), null);
+				g.drawImage(c, BUFFER, (int)(logo.getHeight()+s.getHeight()*4*scale), (int)(s.getWidth()/(1.5)), (int)(s.getHeight()/1.5), null);
+				g.drawImage(keys, BUFFER + s.getWidth(), logo.getHeight(), keys.getWidth(), keys.getHeight(), null);
+				if (!singlePlayer) {
+					g.drawImage(on, BUFFER + s.getWidth()+ keys.getWidth(), (int)(logo.getHeight()+s.getHeight()*3.25*scale), on.getWidth(), on.getHeight(), null);
+				}
+				else g.drawImage(off, BUFFER + s.getWidth()+ keys.getWidth(), (int)(logo.getHeight()+s.getHeight()*3.25*scale), off.getWidth(), off.getHeight(), null);
 				break;
 			case options:
 				drawString(g, "Options\nPress '"+toggleRetro+"' to toggle retro mode: "+booleanToString(retro)+"\nPress '"+exit+"' to return to the main menu", 0, 0);
