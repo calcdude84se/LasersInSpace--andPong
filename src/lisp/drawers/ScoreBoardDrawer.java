@@ -18,8 +18,8 @@ public class ScoreBoardDrawer implements GameObjectDrawer<ScoreBoard> {
 	}
 	
 	private void drawLives(ScoreBoard scoreBoard, Graphics2D g) {
-		String left = scoreBoard.shipLeft.getLives().toString();
-		String right = scoreBoard.shipRight.getLives().toString();
+		String left = Integer.toString(scoreBoard.shipLeft.getLives());
+		String right = Integer.toString(scoreBoard.shipRight.getLives());
 		scoreBoard.room.drawString(g, left, scoreBoard.width/2-ScoreBoard.INDENT, scoreBoard.height/2 - 20);
 		scoreBoard.room.drawString(g, right, scoreBoard.width/2+ScoreBoard.INDENT, scoreBoard.height/2 - 20);
 		
