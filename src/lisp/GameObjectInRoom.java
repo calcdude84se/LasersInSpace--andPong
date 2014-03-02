@@ -1,7 +1,7 @@
 package lisp;
 
 
-public abstract class GameObjectInRoom implements GameObject {
+public abstract class GameObjectInRoom extends GameObjectABC {
 	
 	
 	protected GameRoom room;

@@ -19,13 +19,8 @@ public class Missile extends GameObjectInRoom {
 		this.r = r;
 		ship1 = room.getShipLeft();
 		ship2 = room.getShipRight();
-	}
-	
-	public void draw(Graphics2D g){
-		g.setColor(Color.CYAN);
-		g.drawOval((int) r[0]-5,(int) r[1]-5, 10, 10);
 		
-		
+		drawer = new MissileGeoDrawer();
 	}
 	
 	public void step(){
@@ -70,5 +65,16 @@ public class Missile extends GameObjectInRoom {
 		r[0] += r[2];
 		r[1] += r[3];
 		
+	}
+	
+	public class MissileGeoDrawer implements Drawable {
+
+		
+		public void draw(Graphics2D g){
+			g.setColor(Color.CYAN);
+			g.drawOval((int) r[0]-5,(int) r[1]-5, 10, 10);
+			
+			
+		}
 	}
 }

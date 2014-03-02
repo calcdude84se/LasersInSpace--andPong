@@ -1,13 +1,12 @@
 package lisp;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class AsteroidImp implements Asteroid{
+public class AsteroidImp extends GameObjectABC implements Asteroid{
 	
 	private double x;
 	private double y;
@@ -16,7 +15,7 @@ public class AsteroidImp implements Asteroid{
 	private double ycenter;
 	private double xvelocity;
 	private double yvelocity;
-	BufferedImageOp op;
+
 	
 	public AsteroidImp(double x, double y, double r, double vx, double vy){
 		this.x = x;
@@ -26,19 +25,8 @@ public class AsteroidImp implements Asteroid{
 		this.xvelocity = vx;
 		this.yvelocity = vy;
 		this.r = r;
-	}
-
-	public void draw(Graphics2D g){
-	//	g.drawOval(x, y, r, r); Commented out for science.  Swap these for outline vs. solid.
-	//	g.fillOval((int)x, (int)y, (int)(2*r), (int)(2*r));
-		String path = "images/asteroid.png";
-		BufferedImage image = null;
-        try {image = ImageIO.read(new File(path));
-        } catch (IOException e){
-        }
-        g.drawImage(image,
-        		(int)x,(int)y,(int)(2*r),(int)(2*r),
-        		null);
+		
+		this.drawer = new AsteroidGeoDrawer();
 	}
 
 	public void step() {
@@ -73,4 +61,24 @@ public class AsteroidImp implements Asteroid{
 		//nothing to do here.
 	}
 
+	public class AsteroidGeoDrawer implements Drawable {
+
+		public void draw(Graphics2D g) {
+		//	g.drawOval(x, y, r, r); Commented out for science.  Swap these for outline vs. solid.
+			g.fillOval((int)x, (int)y, (int)(2*r), (int)(2*r));
+		}
+	}
+	public class AsteroidImageDrawer implements Drawable {
+		@Override
+		public void draw(Graphics2D g) {
+			String path = "images/asteroid.png";
+			BufferedImage image = null;
+	        try {image = ImageIO.read(new File(path));
+	        } catch (IOException e){
+	        }
+	        g.drawImage(image,
+	        		(int)x,(int)y,(int)(2*r),(int)(2*r),
+	        		null);
+		}
+	}
 }
