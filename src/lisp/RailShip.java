@@ -60,7 +60,7 @@ public class RailShip extends GameObjectInRoom {
 			health+=.01;
 		}
 		if(health<0){
-			lives--;
+			removeLife();
 			health = 20;
 		}
 		if(lives <0){
@@ -111,7 +111,7 @@ public class RailShip extends GameObjectInRoom {
 			Ellipse2D asteroid = new Ellipse2D.Double(ast.getXCenter() - ast.getR(), ast.getYCenter()-ast.getR(), 2*ast.getR(), 2*ast.getR());
 			if(asteroid.intersects(x, y, SHIP_WIDTH, SHIP_HEIGHT)){			
 				room.addObject(new Explosion(ast.getXCenter(), ast.getYCenter(), room, Color.BLUE));
-				room.getScoreBoard().setScore(facesRight?1:0);
+				removeLife();
 				ast.destroy();
 			}
 			
@@ -123,5 +123,7 @@ public class RailShip extends GameObjectInRoom {
 	public double getY(){
 		return y;
 	}
-
+	void removeLife(){
+		lives--;
+	}
 }
