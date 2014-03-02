@@ -137,6 +137,9 @@ public class RailShip extends GameObjectInRoom implements GameObject {
 			
 		}
 	}
+	public double getX(){
+		return x;
+	}
 	public double getY(){
 		return y;
 	}
