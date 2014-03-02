@@ -1,10 +1,12 @@
 package lisp;
 
+import lisp.drawers.AsteroidGeoDrawer;
+
 public class AsteroidImp extends GameObjectABC<AsteroidImp> implements Asteroid{
 	
-	double x;
-	double y;
-	double r;
+	public double x;
+	public double y;
+	public double r;
 	private double xcenter;
 	private double ycenter;
 	private double xvelocity;
