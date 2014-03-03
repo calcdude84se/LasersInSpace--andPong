@@ -139,7 +139,7 @@ public class GameRoom implements Drawable {
 				isGameOver = false;
 				init();
 			} else if(key == exit) {
-				done = true;
+				//dont do anything
 			} else if(key == toggleSinglePlayer){
 				singlePlayer = !singlePlayer;
 			} else if(key == options) {
@@ -212,7 +212,7 @@ public class GameRoom implements Drawable {
 					drawString(g, "Player 1 has won!",180, gameover.getHeight());
 				else if(shipLeft.getHealth()<shipRight.getHealth())
 					drawString(g, "Player 2 has won!", 180, gameover.getHeight());
-				else drawString(g, "Player 2 and Player 1 have tied!", gameover.getWidth()/4, gameover.getHeight());
+				else drawString(g, "Player 2 and Player 1 have tied!", 120, gameover.getHeight());
 			}
 		}
 	}
