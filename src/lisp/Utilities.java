@@ -3,6 +3,7 @@ package lisp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -18,10 +19,10 @@ public abstract class Utilities {
 	public static <T> HashSet<T> cloneHashSet(Collection<T> hashSet) {
 		return (HashSet<T>)((HashSet<T>)hashSet).clone();
 	}
-	public static BufferedImage loadImage(String path){
+	public static BufferedImage loadImage(URL url){
 		BufferedImage image = null;
 			try {
-				image = ImageIO.read(new File(path));
+				image = ImageIO.read(url);
 			} catch (IOException e) {
 				
 			}

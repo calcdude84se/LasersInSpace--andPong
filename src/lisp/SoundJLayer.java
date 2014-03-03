@@ -23,15 +23,11 @@ class SoundJLayer extends PlaybackListener implements Runnable
     {
         try
         {
-            String urlAsString = 
-                "file:///" 
-                + new java.io.File(".").getCanonicalPath() 
-                + "/" 
-                + this.filePath;
+            String urlAsString = this.filePath;
 
             this.player = new AdvancedPlayer
             (
-                new java.net.URL(urlAsString).openStream(),
+                this.getClass().getResourceAsStream(urlAsString),
                 javazoom.jl.player.FactoryRegistry.systemRegistry().createAudioDevice()
             );
 

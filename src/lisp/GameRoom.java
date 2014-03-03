@@ -55,17 +55,17 @@ public class GameRoom implements Drawable {
 	private static int BUFFER = 10;
 	private MenuState menuState;
 	
-	private BufferedImage background = Utilities.loadImage("images/space.png");
-	private BufferedImage logo = Utilities.loadImage("images/title.png");
-	private BufferedImage s = Utilities.loadImage("images/s.png");
-	private BufferedImage o = Utilities.loadImage("images/o.png");
-	private BufferedImage p = Utilities.loadImage("images/p.png");
-	private BufferedImage e = Utilities.loadImage("images/e.png");
-	private BufferedImage c = Utilities.loadImage("images/c.png");
-	private BufferedImage keys = Utilities.loadImage("images/keys.png");
-	public BufferedImage on = Utilities.loadImage("images/on.png");
-	public BufferedImage off = Utilities.loadImage("images/off.png");
-	public BufferedImage gameover = Utilities.loadImage("images/gameover.png");
+	private BufferedImage background = Utilities.loadImage(this.getClass().getResource("/images/space.png"));
+	private BufferedImage logo = Utilities.loadImage(this.getClass().getResource("/images/title.png"));
+	private BufferedImage s = Utilities.loadImage(this.getClass().getResource("/images/s.png"));
+	private BufferedImage o = Utilities.loadImage(this.getClass().getResource("/images/o.png"));
+	private BufferedImage p = Utilities.loadImage(this.getClass().getResource("/images/p.png"));
+	private BufferedImage e = Utilities.loadImage(this.getClass().getResource("/images/e.png"));
+	private BufferedImage c = Utilities.loadImage(this.getClass().getResource("/images/c.png"));
+	private BufferedImage keys = Utilities.loadImage(this.getClass().getResource("/images/keys.png"));
+	public BufferedImage on = Utilities.loadImage(this.getClass().getResource("/images/on.png"));
+	public BufferedImage off = Utilities.loadImage(this.getClass().getResource("/images/off.png"));
+	public BufferedImage gameover = Utilities.loadImage(this.getClass().getResource("/images/gameover.png"));
 	public GameRoom()
 	{
 		stepSize = 10;

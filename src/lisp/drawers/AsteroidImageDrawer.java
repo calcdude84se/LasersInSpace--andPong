@@ -4,7 +4,7 @@ import lisp.AsteroidImp;
 
 public class AsteroidImageDrawer extends GenericImageDrawer<AsteroidImp> {
 	
-	private static final String[] paths = new String[] {"images/asteroid0.png", "images/asteroid1.png"};
+	private static final String[] paths = new String[] {"/images/asteroid0.png", "/images/asteroid1.png"};
 	
 	public AsteroidImageDrawer() {
 		init();
