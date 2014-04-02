@@ -19,10 +19,10 @@ public abstract class Utilities {
 	public static <T> HashSet<T> cloneHashSet(Collection<T> hashSet) {
 		return (HashSet<T>)((HashSet<T>)hashSet).clone();
 	}
-	public static BufferedImage loadImage(URL url){
+	public static BufferedImage loadImage(String theString){
 		BufferedImage image = null;
 			try {
-				image = ImageIO.read(url);
+				image = ImageIO.read(new File(theString));
 			} catch (IOException e) {
 				
 			}

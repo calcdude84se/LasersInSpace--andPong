@@ -5,4 +5,5 @@ public interface Asteroid extends GameObject{
 	public double getXCenter();
 	public double getYCenter();
 	public boolean isFree(double x, double y);
+	public boolean isLitUp();
 }

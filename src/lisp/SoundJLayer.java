@@ -1,12 +1,5 @@
 package lisp;
 import javazoom.jl.player.advanced.*;
-/*
- * HEY YOU!!
- * HEY!
- * 
- * 
- * You have to add the included .jar to the build path!  Sound requires jl1.0.1.jar
- */
 
 class SoundJLayer extends PlaybackListener implements Runnable
 {
@@ -23,11 +16,15 @@ class SoundJLayer extends PlaybackListener implements Runnable
     {
         try
         {
-            String urlAsString = this.filePath;
+            String urlAsString = 
+                "file:///" 
+                + new java.io.File(".").getCanonicalPath() 
+                + "/" 
+                + this.filePath;
 
             this.player = new AdvancedPlayer
             (
-                this.getClass().getResourceAsStream(urlAsString),
+                new java.net.URL(urlAsString).openStream(),
                 javazoom.jl.player.FactoryRegistry.systemRegistry().createAudioDevice()
             );
 
