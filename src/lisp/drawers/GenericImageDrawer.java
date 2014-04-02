@@ -15,16 +15,16 @@ import lisp.WithPosition;
 
 public abstract class GenericImageDrawer<T extends GameObject & WithId & WithPosition> implements GameObjectDrawer<T> {
 	
-	private BufferedImage[] images;
+	public BufferedImage[] images;
 	
 	protected abstract String[] getPaths();
 	
 	protected void init() {
 		String[] paths = getPaths();
 		images = new BufferedImage[paths.length];
-		for(int i = 0; i < images.length; i++)
+		for(int i = 0; i < images.length; i++){
 			images[i] = lisp.Utilities.loadImage(paths[i]);
-	        
+		}    
 	}
 
 	@Override

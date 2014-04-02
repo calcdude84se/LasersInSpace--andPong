@@ -12,9 +12,10 @@ import javax.swing.JPanel;
 public class AsteroidField extends GameObjectInRoom {
 	
 	Random gen = new Random();
-	private int asteroidNum = gen.nextInt(4) + 5;
+	private int asteroidNum = gen.nextInt(4) + 10;
 	private Collection<AsteroidImp> asteroids = new ArrayList<>();
 	private JPanel panel;
+	public Astronaut astronaut;
 	
 	public AsteroidField(GameRoom room){
 		super(room);
@@ -24,20 +25,20 @@ public class AsteroidField extends GameObjectInRoom {
 		 */
 		panel = room.getPanel();
 		int x1 = panel.getWidth() - 120;
-		int y1 = panel.getHeight() - 120;
+		int y1 = panel.getHeight();
 		for (int i=0; i<=asteroidNum; i++){
-		asteroids.add(getRoid(x1,y1));
+		asteroids.add(getRoid(x1));
 		}
 
 	}
 	/*
 	 * This gets the coordinates for the asteroids based on the frame size and not arbitrary magic numbers.
 	 */
-	private AsteroidImp getRoid(int x1, int y1){
-		int x = gen.nextInt(x1)+60;
-		int y = gen.nextInt(y1)-30;
-		int r = gen.nextInt(20) + 15;
-		double vx = gen.nextDouble() - (.5);
+	private AsteroidImp getRoid(int initx){
+		int x = initx;
+		int y = gen.nextInt(panel.getHeight())-30;
+		int r = gen.nextInt(40) + 15;
+		double vx = gen.nextDouble() + (.5);
 		double vy = gen.nextDouble() + .2;
 		int img = (int)Math.round(gen.nextDouble());
 		AsteroidImp jimmy = new AsteroidImp(room, this, x,y,r,vx,vy,img);
@@ -46,49 +47,52 @@ public class AsteroidField extends GameObjectInRoom {
 	
 	public void replaceRoid(AsteroidImp asteroid){
 		asteroids.remove(asteroid);
-		asteroids.add(getRoid(panel.getWidth()/2,1));
+		asteroids.add(getRoid(panel.getWidth()));
 	}
 
 	@Override
 	public void draw(Graphics2D g) {
 		g.setColor(Color.white);
-		for (AsteroidImp asteroid : getAsteroidsClone()){
+		for (Asteroid object : getAsteroidsClone()){
 			//Draw each asteroid in Asteroid Field
-			asteroid.draw(g);
+			if(object.isLitUp()) object.draw(g);
 		}
 	}
 
 	@Override
 	public void step() {
-		
-		for (AsteroidImp asteroid: getAsteroidsClone()){
-			asteroid.step();
-			if (room.isOutOfBounds(asteroid)){
-				asteroids.remove(asteroid);
-				asteroids.add(getRoid(panel.getWidth()/2, 1));
+		for (GameObject object: getAsteroidsClone()){
+			object.step();
+			if (room.isOutOfBounds((WithPosition) object)){
+				asteroids.remove(object);
+				asteroids.add(getRoid(panel.getWidth()));
 			}
 		}
 	}
 	
-	private Collection<AsteroidImp> getAsteroidsClone() {
+	private ArrayList<AsteroidImp> getAsteroidsClone() {
 		return Utilities.cloneArrayList(asteroids);
 	}
 	
 	public Collection<AsteroidImp> getAsteroids(){
 		return asteroids;
 	}
+	
+	public void lightAsteroid(int index){
+		getAsteroidsClone().get(index).lightUp();
+	}
 	/*
 	 * Checks that the passed coordinates are not occupied.
 	 */
 	public boolean testLazerFree(double x, double y){
-		for (AsteroidImp asteroid : getAsteroidsClone()){
-			if (!asteroid.testLazerFree(x, y)) return false;
+		for (GameObject asteroid : getAsteroidsClone()){
+			if (!((AsteroidImp) asteroid).testLazerFree(x, y)) return false;
 		}
 		return true;
 	}
 	
 	public boolean isFree(double x, double y){
-		for (AsteroidImp asteroid : getAsteroidsClone()){
+		for (Asteroid asteroid : getAsteroidsClone()){
 			if (!asteroid.isFree(x, y)) return false;
 		}
 		return true;
@@ -115,7 +119,7 @@ public class AsteroidField extends GameObjectInRoom {
 		}
 		return f;
 	}
-	public void removeObject(AsteroidImp asteroidImp) {
-		asteroids.remove(asteroidImp);
+	public void removeObject(GameObject object) {
+		asteroids.remove(object);
 	}
 }

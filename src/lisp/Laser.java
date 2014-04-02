@@ -62,34 +62,37 @@ public class Laser extends GameObjectInRoom {
 		double timeStep = STEPSIZE_GOAL;
 		
 		AsteroidField field = room.getAsteroidField();
+		AstronautField astronaut = room.getAstronautField();
 		
 		List<double[]> AsteroidList = new ArrayList<>();
+		int location = 0;
 		
 		for(Asteroid ast : field.getAsteroids()){
-			double[] n = {ast.getXCenter(), ast.getYCenter(), ast.getMass()/2000}; 
+			double[] n = {ast.getXCenter(), ast.getYCenter(), ast.getMass()/2000, location}; 
+			location++;
 			AsteroidList.add(n);
 		}
 		
 		
 		double dist;
 		
-		while(field.isFree(r[0], r[1]) && 
+		while(field.testLazerFree(r[0], r[1]) && astronaut.testLazerFree(r[0], r[1]) && 
 			  ship1.testLazerFree(r[0], r[1], false) &&
-			  ship2.testLazerFree(r[0], r[1], false) &&
 			  r[0]>0 && r[0]<room.getPanel().getWidth() && 
 			  r[1]>0 && r[1]< room.getPanel().getHeight()){
 			
-			room.doPowerupAt(r[0], r[1]);
-			
 			int[] e = {(int) r[0], (int) r[1], (int) r[2], (int) r[3]};
 			rList.add(e);
+			int count = 0;
+			ship1.lightShip();
 			for(double[] ast : AsteroidList){
 				
 				dist = -Math.sqrt((r[0]-ast[0])*(r[0]-ast[0])+(r[1]-ast[1])*(r[1]-ast[1]));
 				
 				r[2] += timeStep*ast[2]*(r[0]-ast[0])/(dist*dist*dist);
 				r[3] += timeStep*ast[2]*(r[1]-ast[1])/(dist*dist*dist);
-				
+				if (Math.abs(dist)<50) field.lightAsteroid(count);
+				count++;
 				
 			}
 			timeStep = STEPSIZE_GOAL/Math.sqrt(r[2]*r[2]+r[3]*r[3]);
@@ -100,7 +103,7 @@ public class Laser extends GameObjectInRoom {
 		}
 		
 		if(!field.isFree(r[0], r[1])){
-			room.addObject(new Explosion(r[0], r[1], room, 15,Color.BLUE ));
+			room.addObject(new Explosion(r[0], r[1], room, 15,Color.BLUE, false ));
 		}
 		
 		

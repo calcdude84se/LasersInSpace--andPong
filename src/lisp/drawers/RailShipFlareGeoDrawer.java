@@ -16,6 +16,7 @@ public class RailShipFlareGeoDrawer implements GameObjectDrawer<RailShip> {
 		//Engines
 		
 		double x = railShip.getX();
+		double y = railShip.getY();
 		
 		g.setColor(Color.RED);
 		if(railShip.thrustingDown>0){

@@ -4,7 +4,7 @@ import lisp.RailShip;
 
 
 public class RailShipBodyImageDrawer extends GenericImageDrawer<RailShip>{
-	private static final String[] paths = {"images/ship0.png", "images/ship1.png"};
+	public String[] paths = {"images/spaceship1.png","images/spaceship2.png"};
 	
 	public RailShipBodyImageDrawer(){
 		init();
@@ -15,5 +15,13 @@ public class RailShipBodyImageDrawer extends GenericImageDrawer<RailShip>{
 		// TODO Auto-generated method stub
 		return paths;
 	}
+	
+	public void setPaths(int index, String location){
+		paths[index]=location;
+		images[index]=lisp.Utilities.loadImage(paths[index]);
+	}
+
+	
+	
 
 }

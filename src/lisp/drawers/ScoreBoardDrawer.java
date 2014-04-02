@@ -14,19 +14,20 @@ public class ScoreBoardDrawer implements GameObjectDrawer<ScoreBoard> {
 		//g.drawRect(0, 0, scoreBoard.width, scoreBoard.height);
 		drawLives(scoreBoard, g);
 		drawHealth(scoreBoard, scoreBoard.shipLeft, 0, g);
-		drawHealth(scoreBoard, scoreBoard.shipRight, scoreBoard.width/2, g);
+		//drawHealth(scoreBoard, scoreBoard.shipRight, scoreBoard.width/2, g);
 	}
 	
 	private void drawLives(ScoreBoard scoreBoard, Graphics2D g) {
-		String left = Integer.toString(scoreBoard.shipLeft.getLives());
-		String right = Integer.toString(scoreBoard.shipRight.getLives());
+		String left = Integer.toString(scoreBoard.room.getAstronautField().rescuedAstronauts);
 		scoreBoard.room.drawString(g, left, scoreBoard.width/2-ScoreBoard.INDENT, scoreBoard.height/2 - 20);
-		scoreBoard.room.drawString(g, right, scoreBoard.width/2+ScoreBoard.INDENT, scoreBoard.height/2 - 20);
-		
+		left = Integer.toString(scoreBoard.room.getAstronautField().deadAstronauts);
+		scoreBoard.room.drawString(g,left,scoreBoard.width/2, scoreBoard.height/2 - 20);
+		left=Integer.toString(scoreBoard.room.getAstronautField().lostAstronauts);
+		scoreBoard.room.drawString(g,left,scoreBoard.width/2+ScoreBoard.INDENT, scoreBoard.height/2 - 20);
 	
 	}
 	private void drawHealth(ScoreBoard s, RailShip ship, double x, Graphics2D g){
 		g.setColor(ship.getHealth()>4?Color.CYAN:Color.RED);
-		g.drawRect((x>0)? s.width-(int)ship.getHealth()*s.width/20:0, s.height-14, (int)ship.getHealth()*s.width/20, 10);
+		g.fillRect((x>0)? s.width-(int)ship.getHealth()*s.width/20:0, s.height-14, (int)ship.getHealth()*s.width/5, 10);
 	}
 }

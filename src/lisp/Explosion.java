@@ -1,10 +1,12 @@
 package lisp;
 import java.awt.Color;
+import java.awt.geom.Rectangle2D.Double;
 
 import lisp.drawers.ExplosionGeoDrawer;
+import lisp.drawers.ExplosionImageDrawer;
 
 
-public class Explosion extends GameObjectInRoom{
+public class Explosion extends GameObjectInRoom implements WithPosition, WithId{
 	
 	public double x;
 	public double y;
@@ -13,28 +15,35 @@ public class Explosion extends GameObjectInRoom{
 	GameRoom room;
 	public Color color;
 	
-	Explosion(double x, double y, GameRoom room, double radius, Color color){
+	Explosion(double x, double y, GameRoom room, double radius, Color color, boolean destroyed){
 		super(room);
 		this.x = x;
 		this.y = y;
 		this.room = room;
 		this.color = color;
 		this.radius = radius;
-		
-		drawer = new ExplosionGeoDrawer();
-	}
-	
-	Explosion(double x, double y, GameRoom room, Color color){
-		this(x, y,  room, 30, color);
+		if(destroyed) drawer = new ExplosionImageDrawer();
+		else drawer = new ExplosionGeoDrawer();
 	}
 
 	@Override
 	public void step() {
 		life+=5;
+		x--;
 		if( life>2*radius ){
 			this.destroy();
 			
 		}
+	}
+
+	@Override
+	public int getId() {
+		return 0;
+	}
+
+	@Override
+	public Double getPosition() {
+		return new Double(x, y, 2*radius, 2*radius);
 	}
 
 }
