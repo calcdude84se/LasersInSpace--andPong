@@ -62,6 +62,8 @@ public class GameRoom implements Drawable {
 	public BufferedImage off = Utilities.loadImage("images/off.png");
 	public BufferedImage gameover = Utilities.loadImage("images/gameover.png");
 
+	
+	//I changed this
 	public GameRoom()
 	{
 		stepSize = 10;
