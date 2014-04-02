@@ -38,7 +38,7 @@ public class Laser extends GameObjectInRoom {
 		this.init_y = init_y;
 		this.facesRight = facesRight;
 		this.owner = owner;
-        SoundJLayer soundToPlay = new SoundJLayer("/sounds/laser.mp3");
+        SoundJLayer soundToPlay = new SoundJLayer("sounds/laser.mp3");
         soundToPlay.play();
 		drawer = new LaserDrawer();
 		

@@ -61,6 +61,7 @@ public class GameRoom implements Drawable {
 	public BufferedImage on = Utilities.loadImage("images/on.png");
 	public BufferedImage off = Utilities.loadImage("images/off.png");
 	public BufferedImage gameover = Utilities.loadImage("images/gameover.png");
+
 	public GameRoom()
 	{
 		stepSize = 10;
@@ -170,7 +171,7 @@ public class GameRoom implements Drawable {
 				drawString(g, astronautField.deadAstronauts+"", panel.getWidth()/2, gameover.getHeight()/2);
 				drawString(g, astronautField.rescuedAstronauts+"", panel.getWidth()/2, gameover.getHeight()/2-35);
 				drawString(g, astronautField.lostAstronauts+"", panel.getWidth()/2, gameover.getHeight()/2+35);
-				
+
 			}
 		}
 	}
