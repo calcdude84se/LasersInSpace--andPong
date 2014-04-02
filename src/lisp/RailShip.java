@@ -72,11 +72,13 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	public void accUp(){
 		y_speed-= PER_STEP_ACC;
 		thrustingUp = 3;
+		lightShip();
 	}
 	
 	public void accDown(){
 		y_speed+= PER_STEP_ACC;
 		thrustingDown = 3;
+		lightShip();
 	}
 	
 	public void fireLaser(){
@@ -85,6 +87,7 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 			room.addObject(new Laser(getX()+(facesRight?width+1:-1) , y+height/2, facesRight, this, room));
 			lazerCoolDown = COOL_DOWN_TIME;
 		}
+		lightShip();
 		
 	}
 	
@@ -124,7 +127,7 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 	
 	public void lightShip(){
 		for(AsteroidImp ast : Utilities.cloneArrayList(room.getAsteroidField().getAsteroids())){
-			Ellipse2D asteroid = new Ellipse2D.Double(ast.getXCenter() - ast.getR()-20, ast.getYCenter()-ast.getR()-20, 2*ast.getR()+20, 2*ast.getR()+20);
+			Ellipse2D asteroid = new Ellipse2D.Double(ast.getXCenter() - ast.getR()-80, ast.getYCenter()-ast.getR()-80, 2*ast.getR()+80, 2*ast.getR()+80);
 			if(asteroid.intersects(getPosition())){			
 				ast.lightUp();
 			}
@@ -137,6 +140,7 @@ public class RailShip extends GameObjectInRoom implements WithPosition, WithId{
 			Rectangle2D astro = new Rectangle2D.Double(astronaut.getX(), astronaut.getY(), astronaut.getWidth(), astronaut.getHeight());
 			if(astro.intersects(getPosition())&&!astronaut.dead){
 				room.getAstronautField().saveAstronaut();
+				health++;
 			}
 		}
 	}
