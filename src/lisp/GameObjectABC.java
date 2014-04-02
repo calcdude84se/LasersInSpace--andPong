@@ -2,7 +2,7 @@ package lisp;
 
 import java.awt.Graphics2D;
 
-import lisp.drawers.GameObjectDrawer;
+import drawers.GameObjectDrawer;
 
 public abstract class GameObjectABC<T extends GameObjectABC> implements GameObject {
 

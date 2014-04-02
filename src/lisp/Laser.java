@@ -6,7 +6,7 @@ import java.awt.Stroke;
 import java.util.ArrayList;
 import java.util.List;
 
-import lisp.drawers.LaserDrawer;
+import drawers.LaserDrawer;
 
 public class Laser extends GameObjectInRoom {
 	public int [][] path;

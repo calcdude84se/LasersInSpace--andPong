@@ -2,8 +2,8 @@ package lisp;
 import java.awt.Color;
 import java.awt.geom.Rectangle2D.Double;
 
-import lisp.drawers.ExplosionGeoDrawer;
-import lisp.drawers.ExplosionImageDrawer;
+import drawers.ExplosionGeoDrawer;
+import drawers.ExplosionImageDrawer;
 
 
 public class Explosion extends GameObjectInRoom implements WithPosition, WithId{

@@ -4,7 +4,7 @@ import java.awt.Font;
 
 import javax.swing.JPanel;
 
-import lisp.drawers.ScoreBoardDrawer;
+import drawers.ScoreBoardDrawer;
 
 public class ScoreBoard extends GameObjectInRoom {
 	

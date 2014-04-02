@@ -1,4 +1,4 @@
-package lisp.drawers;
+package drawers;
 
 import lisp.AsteroidImp;
 import lisp.Star;

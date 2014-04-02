@@ -1,4 +1,4 @@
-package lisp.drawers;
+package drawers;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

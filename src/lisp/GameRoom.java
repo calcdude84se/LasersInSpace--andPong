@@ -12,15 +12,15 @@ import java.util.Collection;
 
 import javax.swing.JPanel;
 
-import lisp.drawers.AsteroidImageDrawer;
-import lisp.drawers.AstronautImageDrawer;
-import lisp.drawers.ComboGameObjectDrawer;
-import lisp.drawers.ExplosionGeoDrawer;
-import lisp.drawers.GameObjectDrawer;
-import lisp.drawers.IndirectGameObjectDrawer;
-import lisp.drawers.RailShipBodyImageDrawer;
-import lisp.drawers.RailShipFlareGeoDrawer;
-import lisp.drawers.StarImageDrawer;
+import drawers.AsteroidImageDrawer;
+import drawers.AstronautImageDrawer;
+import drawers.ComboGameObjectDrawer;
+import drawers.ExplosionGeoDrawer;
+import drawers.GameObjectDrawer;
+import drawers.IndirectGameObjectDrawer;
+import drawers.RailShipBodyImageDrawer;
+import drawers.RailShipFlareGeoDrawer;
+import drawers.StarImageDrawer;
 
 public class GameRoom implements Drawable {
 	
